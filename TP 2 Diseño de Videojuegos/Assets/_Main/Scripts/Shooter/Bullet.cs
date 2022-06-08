@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour, IProduct<BulletTypeSO>
+public class Bullet : MonoBehaviour, IProduct<BulletTypeSO>, IDamager
 {
-    private BulletTypeSO _data;
     public BulletTypeSO Data => _data;
+    public float Damage => Data.Damage;
 
+    private BulletTypeSO _data;
     private float _currentLifeTime;
 
     private void Update()
