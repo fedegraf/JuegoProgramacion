@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Damagable : MonoBehaviour, IDamagable
+public class Damagable : MonoBehaviour, IDamagable, IObservable
 {
     public float MaxHealth => _maxHealth;
     public float CurrentHealth => _currentHealth;
     public bool IsAlive => _isAlive;
+    public List<IObserver> Subscribers => _subscribers;
+    private List<IObserver> _subscribers = new List<IObserver>();
 
     private float _currentHealth; 
     private bool _isAlive;
@@ -33,6 +35,8 @@ public class Damagable : MonoBehaviour, IDamagable
 
         if (_currentHealth == 0) Die();
         else Debug.Log($"Current {gameObject.name} Health:{CurrentHealth}");
+
+        NotifyAll("TAKE_DAMAGE");
     }
 
     public void TakeHeal(float heal)
@@ -41,5 +45,28 @@ public class Damagable : MonoBehaviour, IDamagable
 
         _currentHealth += heal;
         if (_currentHealth > MaxHealth) _currentHealth = MaxHealth;
+        NotifyAll("TAKE_DAMAGE");
+    }
+
+    public void Suscribe(IObserver observer)
+    {
+        if (_subscribers.Contains(observer)) return;
+        _subscribers.Add(observer);
+    }
+
+    public void Unsuscribe(IObserver observer)
+    {
+        if (!_subscribers.Contains(observer)) return;
+        _subscribers.Remove(observer);
+    }
+
+    public void NotifyAll(string message, params object[] args)
+    {
+        if (_subscribers.Count < 1) return;
+
+        foreach (var suscriber in _subscribers)
+        {
+            suscriber.OnNotify(message, args);
+        }
     }
 }

@@ -5,30 +5,42 @@ using UnityEngine;
 public class CharacterAnimator : MonoBehaviour
 {
     private Animator _animator;
+    private Rigidbody _rb;
+    private Character _character;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody>();
+        _character = GetComponent<Character>();
     }
 
-    public void SetMovementValue(float speed)
+    private void FixedUpdate()
     {
-        _animator.SetFloat("Movement", speed);
+        if (_rb)
+        {
+            MovementsValues();
+        }
+        if (_character.Shooter)
+        {
+            ShootingValues();
+        }
     }
 
-    public void SetInputsValue(Vector2 inputs)
+    private void MovementsValues()
     {
-        _animator.SetFloat("InputH", inputs.x);
-        _animator.SetFloat("InputV", inputs.y);
+        _animator.SetFloat("Movement", _rb.velocity.magnitude);
+
+        var direction = new Vector2(_rb.velocity.normalized.x, _rb.velocity.normalized.z);
+
+        _animator.SetFloat("InputH", direction.x);
+        _animator.SetFloat("InputV", direction.y);
+
     }
 
-    public void SetShooting(bool isShooting)
+    private void ShootingValues()
     {
-        _animator.SetBool("IsShooting", isShooting);
-    }
-
-    public void SetReloading(bool isReloading)
-    {
-        _animator.SetBool("IsReloading", isReloading);
+        _animator.SetBool("IsShooting", _character.Shooter.IsShooting);
+        _animator.SetBool("IsReloading", _character.Shooter.IsReloading);
     }
 }

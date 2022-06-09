@@ -25,13 +25,9 @@ public class BulletShooter : BulletSpawner, IObservable
     public List<IObserver> Subscribers => _subscribers;
     private List<IObserver> _subscribers = new List<IObserver>();
 
-    private CharacterAnimator _animator;
-
-
     private void Awake()
     {
-        if(GetComponent<CharacterAnimator>() != null)
-            _animator = GetComponent<CharacterAnimator>();
+
     }
 
     private void Start()
@@ -72,7 +68,6 @@ public class BulletShooter : BulletSpawner, IObservable
     private IEnumerator ShootWeapon()
     {
         IsShooting = true;
-        _animator.SetShooting(true);
 
         _bulletsInWorld.Add(CreateBullet(bulletType));
         ResetShooCoolDown();
@@ -83,7 +78,6 @@ public class BulletShooter : BulletSpawner, IObservable
         yield return new WaitForSeconds(0.5f);
 
         IsShooting = false;
-        _animator.SetShooting(false);
 
         yield return null;
     }
@@ -93,13 +87,11 @@ public class BulletShooter : BulletSpawner, IObservable
         NotifyAll("RELOAD");
 
         IsReloading = true;
-        _animator.SetReloading(IsReloading);
 
         yield return new WaitForSeconds(reloadTime);
 
         CurrentAmmo = maxAmmo;
         IsReloading = false;
-        _animator.SetReloading(IsReloading);
 
         UpdateAmmoHud();
         yield return null;

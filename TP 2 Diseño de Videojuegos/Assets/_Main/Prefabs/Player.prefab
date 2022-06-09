@@ -105,6 +105,8 @@ GameObject:
   - component: {fileID: 3915962234950469069}
   - component: {fileID: 7473732476237360413}
   - component: {fileID: 208451618530619426}
+  - component: {fileID: 1587141021445262582}
+  - component: {fileID: 7334636956506767481}
   - component: {fileID: 6685502671532667654}
   - component: {fileID: 4531170041955474804}
   - component: {fileID: 4531170041955474803}
@@ -149,6 +151,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensivity: 100
+  mouseXInput: Mouse X
+  mouseYInput: Mouse Y
+  horizontalInput: Horizontal
+  verticalInput: Vertical
+  runInput: 
+  shootInput: Shoot
+  reloadInput: Reload
 --- !u!114 &6294429746250704112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e49428d28775a488c68038931c3c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: cb5ddae891f38b74286500f40af364b6, type: 2}
 --- !u!114 &4880170197353775906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,8 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff72348a41640954fbe6899af886e1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 5
-  rotationSpeed: 10
 --- !u!114 &3915962234950469069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +213,7 @@ MonoBehaviour:
   bulletType: {fileID: 11400000, guid: c0617010fcf802a488dc56c2b27240db, type: 2}
   maxAmmo: 15
   maxShootCoolDown: 0.5
-  reloadTime: 1
+  reloadTime: 1.2
 --- !u!114 &208451618530619426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +227,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAmmoText: {fileID: 0}
-  playerHealthText: {fileID: 0}
+--- !u!114 &1587141021445262582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685502671525265540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf3d6d4617037146acb375f8b4d5cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 0}
+  color1: {r: 0, g: 0, b: 0, a: 0}
+  color2: {r: 0, g: 0, b: 0, a: 0}
+  color3: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &7334636956506767481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685502671525265540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f1b15eeb58db34c8da611bf2b60939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
 --- !u!95 &6685502671532667654
 Animator:
   serializedVersion: 3
@@ -253,7 +289,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 84
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!136 &4531170041955474803
 CapsuleCollider:

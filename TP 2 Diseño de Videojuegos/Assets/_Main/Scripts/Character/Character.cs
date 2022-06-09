@@ -3,28 +3,45 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    private Movement _movement;
-    private CharacterAnimator _characterAnimator;
+    public EntityTypeSO Stats => stats;
+    public Movement Movement { get; private set; }
+    public BulletShooter Shooter { get; private set; }
+
+    [SerializeField] private EntityTypeSO stats;
 
     private void Awake()
     {
-        _movement = GetComponent<Movement>();
-        _characterAnimator = GetComponent<CharacterAnimator>();
+        Movement = GetComponent<Movement>();
+        Shooter = GetComponent<BulletShooter>();
+
+        Movement.SetValues(Stats.WalkSpeed ,Stats.RunSpeed , Stats.RotationSpeed);
     }
 
-    private void Update()
+    public void DoWalking(Vector2 direction, bool isRunning)
     {
-        _characterAnimator.SetMovementValue(_movement.BodySpeed);
-    }
+        if (!Movement) return;
 
-    public void DoWalking(Vector2 direction)
-    {
-        _movement.Walking(direction);
-        _characterAnimator.SetInputsValue(direction);
+        Movement.Walking(direction, isRunning);
     }
 
     public void DoRotation(Vector2 rotation)
     {
-        _movement.Rotation(rotation);
+        if (!Movement) return;
+
+        Movement.Rotation(rotation);
+    }
+
+    public void DoShoot()
+    {
+        if (!Shooter) return;
+
+        Shooter.DoShoot();
+    }
+
+    public void DoReload()
+    {
+        if (!Shooter) return;
+
+        Shooter.DoReloadAmmo();
     }
 }
