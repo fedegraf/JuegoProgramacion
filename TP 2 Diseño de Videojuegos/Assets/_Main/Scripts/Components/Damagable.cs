@@ -8,21 +8,25 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
     public float CurrentHealth => _currentHealth;
     public bool IsAlive => _isAlive;
     public List<IObserver> Subscribers => _subscribers;
-    private List<IObserver> _subscribers = new List<IObserver>();
 
+    private List<IObserver> _subscribers = new List<IObserver>();
     private float _currentHealth; 
     private bool _isAlive;
+
+    private DieCommand dieCommand;
 
     [SerializeField] private int _maxHealth;
     private void Awake()
     {
         _isAlive = true;
         _currentHealth = MaxHealth;
+        dieCommand = new DieCommand(this, gameObject.tag);
     }
 
     public void Die()
     {
         _isAlive = false;
+        Destroy(gameObject);
         Debug.Log($"{gameObject.name} Dead");
     }
 
@@ -33,8 +37,7 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
         _currentHealth -= damage;
         if (_currentHealth < 0) _currentHealth = 0;
 
-        if (_currentHealth == 0) Die();
-        else Debug.Log($"Current {gameObject.name} Health:{CurrentHealth}");
+        if (_currentHealth == 0) dieCommand.Do();
 
         NotifyAll("TAKE_DAMAGE");
     }

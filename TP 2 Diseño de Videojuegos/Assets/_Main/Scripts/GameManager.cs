@@ -1,55 +1,96 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static Transform respawnPoint;
-    [SerializeField] private GameObject player;
-    private static bool isPlaying;
-    public static VoidDelegate StartGameEvent;
-    public static VoidDelegate GameOverEvent;
-    public static VoidDelegate WinGameEvent;
+    public static GameManager Instance { get; private set; }
 
-    public static bool IsPlaying { get => isPlaying; }
+    public UnityAction OnGamePlaying;
+    public UnityAction OnGamePaused;
+    public UnityAction OnDead;
+    public UnityAction OnMainMenu;
 
-    // Start is called before the first frame update
+    public enum GameStates
+    {
+        Playing,
+        Paused,
+        Dead,
+        MainMenu,
+        Close
+    }
+
+    public GameStates CurrentState { get; private set; }
+
+
+    private void Awake()
+    {
+        MakeSingleton();
+    }
+
     void Start()
     {
-   /*
-        Time.timeScale = 0;
-        isPlaying = false;
-        Cursor.visible = true;
-        player.GetComponent<HealthScript>().DeathEvent += GameOver;
-    */
-        StartPlay();
+        SetState(GameStates.Playing);
     }
 
-    void GameOver()
+    private void MakeSingleton()
     {
-        isPlaying = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        GameOverEvent?.Invoke();
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
-    public static void WinGame()
+    private void GamePlaying()
     {
-        isPlaying = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        WinGameEvent?.Invoke();
-    }
-
-    public void StartPlay()
-    {
-        isPlaying = true;
         Time.timeScale = 1; 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        StartGameEvent?.Invoke();
     }
 
-    public void QuitGame()
+    private void GamePaused()
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        //Spawn Puase Menu
+    }
+
+    public void SetState(GameStates newState)
+    {
+        switch (newState)
+        {
+            case GameStates.Playing:
+                GamePlaying();
+                OnGamePlaying?.Invoke();
+                break;
+            case GameStates.Paused:
+                GamePaused();
+                OnGamePaused?.Invoke();
+                break;
+            case GameStates.Dead:
+                GamePaused();
+                OnDead?.Invoke();
+                break;
+            case GameStates.MainMenu:
+                GamePaused();
+                OnMainMenu?.Invoke();
+                break;
+            case GameStates.Close:
+                QuitGame();
+                break;
+        }
+
+        CurrentState = newState;
+    }
+
+    private void QuitGame()
     {
         Application.Quit();
     }
+
 }

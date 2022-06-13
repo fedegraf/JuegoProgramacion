@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.IsPlaying)
+        if (GameManager.Instance.CurrentState == GameManager.GameStates.Playing)
         {
             float MouseX = Input.GetAxis(xAxis) * MouseSensitivity + Time.deltaTime;
             float MouseY = Input.GetAxis(yAxis) * MouseSensitivity + Time.deltaTime;

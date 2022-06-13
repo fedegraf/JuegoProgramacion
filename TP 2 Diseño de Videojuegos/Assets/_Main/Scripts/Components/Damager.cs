@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Damager : MonoBehaviour
+public class Damager : MonoBehaviour, IDamager
 {
     [SerializeField] private float _damage;
     [SerializeField] private bool isDestroyable;
-    private IDamager iDamager;
-
-    private void Start()
+    public float Damage => _damage;
+    public void SetDamage(float newDamage)
     {
-        iDamager = GetComponent<IDamager>();
-        if (iDamager != null) _damage = iDamager.Damage;
+        _damage = newDamage;
     }
 
     private void OnCollisionEnter(Collision collision)

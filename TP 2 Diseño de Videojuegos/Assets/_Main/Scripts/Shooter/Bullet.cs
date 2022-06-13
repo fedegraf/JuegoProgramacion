@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour, IProduct<BulletTypeSO>, IDamager
+public class Bullet : MonoBehaviour, IProduct<BulletTypeSO>
 {
     public BulletTypeSO Data => _data;
     public float Damage => Data.Damage;
@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour, IProduct<BulletTypeSO>, IDamager
     public void SetData(BulletTypeSO newData)
     {
         _data = newData;
+        GetComponent<IDamager>().SetDamage(Damage);
     }
 
     private void Movement()

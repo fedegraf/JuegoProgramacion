@@ -31,7 +31,14 @@ public class PlayerInputs : MonoBehaviour
 
     private void Update()
     {
-        if (_character) CharacterInputs();
+        if (_character &&
+            GameManager.Instance.CurrentState == GameManager.GameStates.Playing)
+        {
+            CharacterInputs();
+        }
+
+        if (GameManager.Instance.CurrentState != GameManager.GameStates.Dead)
+            UIInputs();
     }
 
     private void CharacterInputs()
@@ -39,6 +46,11 @@ public class PlayerInputs : MonoBehaviour
         Walking();
         Rotation();
         Weapon();
+    }
+
+    private void UIInputs()
+    {
+        TogglePauseGame();
     }
 
     private void Walking()
@@ -68,5 +80,16 @@ public class PlayerInputs : MonoBehaviour
         if (Input.GetButton(shootInput)) _character.DoShoot();
 
         else if (Input.GetButtonDown(reloadInput)) _character.DoReload();
+    }
+
+    private void TogglePauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (GameManager.Instance.CurrentState == GameManager.GameStates.Playing)
+                GameManager.Instance.SetState(GameManager.GameStates.Paused);
+            else if (GameManager.Instance.CurrentState == GameManager.GameStates.Paused)
+                GameManager.Instance.SetState(GameManager.GameStates.Playing);
+        }
     }
 }
