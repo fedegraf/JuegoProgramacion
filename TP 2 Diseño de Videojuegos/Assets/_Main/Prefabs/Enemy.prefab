@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19edcf2998548e342af5e99fa7c56e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraToFollow: {fileID: 0}
 --- !u!223 &6050227345228415082
 Canvas:
   m_ObjectHideFlags: 0
@@ -388,7 +387,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
-  walkPointRange: 25
+  walkPointRange: 14.51
   damage: 25
   timeBetweenAttacks: 1.5
   sightRange: 7

@@ -15,6 +15,8 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private string runInput;
     [SerializeField] private string shootInput;
     [SerializeField] private string reloadInput;
+    [SerializeField] private string pickUpInput;
+    [SerializeField] private string showInventory;
 
 
     private void Awake()
@@ -46,6 +48,7 @@ public class PlayerInputs : MonoBehaviour
         Walking();
         Rotation();
         Weapon();
+        Item();
     }
 
     private void UIInputs()
@@ -80,6 +83,12 @@ public class PlayerInputs : MonoBehaviour
         if (Input.GetButton(shootInput)) _character.DoShoot();
 
         else if (Input.GetButtonDown(reloadInput)) _character.DoReload();
+    }
+
+    private void Item()
+    {
+        if (Input.GetButtonDown(pickUpInput)) _character.DoPickUpItem();
+        else if (Input.GetButtonDown(showInventory)) _character.ShowItems();
     }
 
     private void TogglePauseGame()

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+/*    [SerializeField] private GameObject player;
     [SerializeField] public float MouseSensitivity = 50;
     private float xRotation = 0.0f;
     private float yRotation = 0.0f;
@@ -53,5 +53,5 @@ public class InputManager : MonoBehaviour
                 player.GetComponent<PlayerMovementScript>().Shoot();
             }
         } 
-    }
+    }*/
 }

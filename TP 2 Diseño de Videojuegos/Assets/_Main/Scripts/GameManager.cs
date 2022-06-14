@@ -11,16 +11,18 @@ public class GameManager : MonoBehaviour
     public UnityAction OnDead;
     public UnityAction OnMainMenu;
 
+
+
     public enum GameStates
     {
         Playing,
         Paused,
         Dead,
-        MainMenu,
-        Close
+        InitScreen
     }
 
     public GameStates CurrentState { get; private set; }
+    [SerializeField] private GameStates initialState;
 
 
     private void Awake()
@@ -30,7 +32,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SetState(GameStates.Playing);
+        if (initialState == GameStates.Paused || initialState == GameStates.Dead)
+            initialState = GameStates.Playing;
+
+        SetState(initialState);
     }
 
     private void MakeSingleton()
@@ -45,19 +50,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void GamePlaying()
-    {
-        Time.timeScale = 1; 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     private void GamePaused()
     {
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        //Spawn Puase Menu
     }
 
     public void SetState(GameStates newState)
@@ -65,30 +62,59 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameStates.Playing:
-                GamePlaying();
-                OnGamePlaying?.Invoke();
+                StatePlaying();
                 break;
             case GameStates.Paused:
-                GamePaused();
-                OnGamePaused?.Invoke();
+                StatePaused();
                 break;
             case GameStates.Dead:
-                GamePaused();
-                OnDead?.Invoke();
+                StateDead();
                 break;
-            case GameStates.MainMenu:
-                GamePaused();
-                OnMainMenu?.Invoke();
-                break;
-            case GameStates.Close:
-                QuitGame();
+            case GameStates.InitScreen:
+                StateInitScreen();
                 break;
         }
 
         CurrentState = newState;
     }
 
-    private void QuitGame()
+    private void StatePlaying()
+    {
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Level 1"))
+        {
+            SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
+        }
+
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        OnGamePlaying?.Invoke();
+    }
+
+    private void StatePaused()
+    {
+        GamePaused();
+        OnGamePaused?.Invoke();
+    }
+
+    private void StateDead()
+    {
+        GamePaused();
+        OnDead?.Invoke();
+    }
+
+    private void StateInitScreen()
+    {
+        GamePaused();
+        OnMainMenu?.Invoke();
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("MainMenu"))
+        {
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        }
+
+    }
+
+    public void QuitGame()
     {
         Application.Quit();
     }
