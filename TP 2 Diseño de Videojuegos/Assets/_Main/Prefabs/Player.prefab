@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4880170197353775906}
   - component: {fileID: 7473732476237360413}
   - component: {fileID: 208451618530619426}
-  - component: {fileID: 8996538912499012187}
+  - component: {fileID: 7970226783580238622}
   - component: {fileID: 3915962234950469069}
   - component: {fileID: 1587141021445262582}
   - component: {fileID: 7334636956506767481}
@@ -160,6 +160,8 @@ MonoBehaviour:
   shootInput: Shoot
   reloadInput: Reload
   pickUpInput: 
+  itemInGroundUse: 
+  showInventory: 
 --- !u!114 &6294429746250704112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAmmoText: {fileID: 0}
---- !u!114 &8996538912499012187
+--- !u!114 &7970226783580238622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,7 +228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6685502671525265540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e8096d2ff583f94395622b634ceaa80, type: 3}
+  m_Script: {fileID: 11500000, guid: e068bcb42f927914287df303621f39a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3915962234950469069

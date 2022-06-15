@@ -16,6 +16,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private string shootInput;
     [SerializeField] private string reloadInput;
     [SerializeField] private string pickUpInput;
+    [SerializeField] private string itemInGroundUse;
     [SerializeField] private string showInventory;
 
 
@@ -87,8 +88,9 @@ public class PlayerInputs : MonoBehaviour
 
     private void Item()
     {
-        if (Input.GetButtonDown(pickUpInput)) _character.DoPickUpItem();
-        else if (Input.GetButtonDown(showInventory)) _character.ShowItems();
+        if (Input.GetButtonDown(pickUpInput)) _character.DoPickUp();
+        else if (Input.GetButtonDown(itemInGroundUse)) _character.DoItemInGroundUse();
+        else if (Input.GetButtonDown(showInventory)) _character.DoShowItems();
     }
 
     private void TogglePauseGame()

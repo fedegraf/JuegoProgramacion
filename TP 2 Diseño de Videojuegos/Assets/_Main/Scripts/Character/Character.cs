@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     public EntityTypeSO Stats => stats;
     public Movement Movement { get; private set; }
     public Shooter.BulletShooter Shooter { get; private set; }
-    public Item.ItemPickUpper ItemPickUpper { get; private set; }
+    public Items.ItemPickUp ItemPickUp { get; private set; }
 
     [SerializeField] private EntityTypeSO stats;
 
@@ -15,75 +15,94 @@ public class Character : MonoBehaviour
     {
         Movement = GetComponent<Movement>();
         Shooter = GetComponent<Shooter.BulletShooter>();
-        ItemPickUpper = GetComponent<Item.ItemPickUpper>();
+        ItemPickUp = GetComponent<Items.ItemPickUp>();
 
 
         Movement.SetValues(Stats.WalkSpeed, Stats.RunSpeed, Stats.RotationSpeed);
     }
 
+    private bool CheckForMovement()
+    {
+        var isNull = Movement == null;
+        if (isNull)
+        {
+            Debug.LogWarning("Shooter is Null");
+            return true;
+        }
+
+        else return false;
+    }
+
+    private bool CheckForShooter()
+    {
+        var isNull = Shooter == null;
+        if (isNull)
+        {
+            Debug.LogWarning("Shooter is Null");
+            return true;
+        }
+
+        else return false;
+    }
+
+    private bool CheckForItemPickUp()
+    {
+        var isNull = ItemPickUp == null;
+        if (isNull)
+        {
+            Debug.LogWarning("ItemPickup is Null");
+            return true;
+        }
+
+        else return false;
+    }
+
     public void DoWalking(Vector2 direction, bool isRunning)
     {
-        if (!Movement)
-        {
-            Debug.LogWarning("Movement Null");
-            return;
-        }
+        if (CheckForMovement()) return;
 
         Movement.Walking(direction, isRunning);
     }
 
     public void DoRotation(Vector2 rotation)
     {
-        if (!Movement)
-        {
-            Debug.LogWarning("Movement Null");
-            return;
-        }
+        if (CheckForMovement()) return;
 
         Movement.Rotation(rotation);
     }
 
     public void DoShoot()
     {
-        if (!Shooter)
-        {
-            Debug.LogWarning("Shooter Null");
-            return;
-        }
+        if (CheckForShooter()) return;
 
         Shooter.DoShoot();
     }
 
     public void DoReload()
     {
-        if (!Shooter)
-        {
-            Debug.LogWarning("Shooter Null");
-            return;
-        }
+        if (CheckForShooter()) return;
 
         Shooter.DoReloadAmmo();
     }
 
-    public void DoPickUpItem()
+    public void DoPickUp()
     {
-        if (!ItemPickUpper)
-        {
-            Debug.LogWarning("ItemPickUpper Null");
-            return;
-        }
+        if (CheckForItemPickUp()) return;
 
-        ItemPickUpper.PickUpItem();
+        ItemPickUp.PickUp();
     }
 
-    public void ShowItems()
+    public void DoItemInGroundUse()
     {
-        if (!ItemPickUpper)
-        {
-            Debug.LogWarning("ItemPickUpper Null");
-            return;
-        }
+        if (CheckForItemPickUp()) return;
 
-        ItemPickUpper.ShowItems();
+        ItemPickUp.UseItemInGround();
+    }
+
+    public void DoShowItems()
+    {
+        if (CheckForItemPickUp()) return;
+
+        ItemPickUp.ShowItems();
     }
 }
