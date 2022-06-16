@@ -33,7 +33,10 @@ namespace Shooter
         public int GetAmmo(WeaponController wpnCntrl)
         {
             var ammoType = wpnCntrl.CurrentWeapon.BulletType;
-            return AmmoCollected[ammoType];
+            if (AmmoCollected.ContainsKey(ammoType))
+                return AmmoCollected[ammoType];
+            else
+                return 0;
         }
 
         public void ReloadAmmo(WeaponController wpnController)
