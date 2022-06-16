@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5b23b35fd58ad4e9aceeaa0d93cad9, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  magazineSize: 0
-  cadence: 0
-  reloadTime: 0
-  ammoType: {fileID: 0}
+  magazineSize: 12
+  cadence: 0.85
+  reloadTime: 1.2
+  ammoType: {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}

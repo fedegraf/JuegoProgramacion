@@ -8,12 +8,12 @@ namespace Shooter
     {
         [SerializeField] private WeaponTypeSO[] weapons;
 
-        private Dictionary<WeaponTypeSO, int> _weapons = new Dictionary<WeaponTypeSO, int>();
+        private int _currentWeaponIndex;
+        private Dictionary<WeaponTypeSO, int> _ammoInWeaponsMag = new Dictionary<WeaponTypeSO, int>();
         //WeaponTypeSO = Weapon
         //Int = AmmoInMag
 
         public WeaponTypeSO CurrentWeapon { get; private set; }
-        public int AmmoInMag { get; private set; }
 
         private void Start()
         {
@@ -24,7 +24,7 @@ namespace Shooter
         {
             for (int i = 0; i < weapons.Length; i++)
             {
-                _weapons.Add(weapons[i], weapons[i].MagazineSize);
+                _ammoInWeaponsMag.Add(weapons[i], weapons[i].MagazineSize);
             }
 
             CurrentWeapon = weapons[0];
@@ -32,18 +32,30 @@ namespace Shooter
 
         public void SetAmmo(int newAmmo)
         {
-            _weapons[CurrentWeapon] = newAmmo;
+            _ammoInWeaponsMag[CurrentWeapon] = newAmmo;
         }
 
         public void ShootAmmo()
         {
-            _weapons[CurrentWeapon]--;
+            _ammoInWeaponsMag[CurrentWeapon]--;
+        }
+
+        public void CycleWeapons()
+        {
+            _currentWeaponIndex++;
+
+            if (_currentWeaponIndex >= weapons.Length)
+                _currentWeaponIndex = 0;
+
+            CurrentWeapon = weapons[_currentWeaponIndex];
         }
 
         public int GetCurrentAmmoInMag()
-        { 
-            return _weapons[CurrentWeapon];
+        {
+            if (_ammoInWeaponsMag.ContainsKey(CurrentWeapon))
+                return _ammoInWeaponsMag[CurrentWeapon];
+            else
+                return 0;
         }
-
     }
 }

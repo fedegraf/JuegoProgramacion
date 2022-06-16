@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
         Movement.SetValues(Stats.WalkSpeed, Stats.RunSpeed, Stats.RotationSpeed);
     }
 
-    private bool CheckForMovement()
+    private bool IsMovementNull()
     {
         var isNull = Movement == null;
         if (isNull)
@@ -33,7 +33,7 @@ public class Character : MonoBehaviour
         else return false;
     }
 
-    private bool CheckForShooter()
+    private bool IsShooterNull()
     {
         var isNull = Shooter == null;
         if (isNull)
@@ -45,7 +45,7 @@ public class Character : MonoBehaviour
         else return false;
     }
 
-    private bool CheckForItemPickUp()
+    private bool IsItemPickUpNull()
     {
         var isNull = ItemPickUp == null;
         if (isNull)
@@ -59,50 +59,50 @@ public class Character : MonoBehaviour
 
     public void DoWalking(Vector2 direction, bool isRunning)
     {
-        if (CheckForMovement()) return;
+        if (IsMovementNull()) return;
 
         Movement.Walking(direction, isRunning);
     }
 
     public void DoRotation(Vector2 rotation)
     {
-        if (CheckForMovement()) return;
+        if (IsMovementNull()) return;
 
         Movement.Rotation(rotation);
     }
 
     public void DoShoot()
     {
-        if (CheckForShooter()) return;
+        if (IsShooterNull()) return;
 
         Shooter.DoShoot();
     }
 
     public void DoReload()
     {
-        if (CheckForShooter()) return;
+        if (IsShooterNull()) return;
 
         Shooter.DoReload();
     }
 
+    public void DoCycleWeapons()
+    {
+        if (IsShooterNull()) return;
+
+        Shooter.DoCycleWeapons();
+    }
+
     public void DoPickUp()
     {
-        if (CheckForItemPickUp()) return;
+        if (IsItemPickUpNull()) return;
 
         ItemPickUp.PickUp();
     }
 
     public void DoItemInGroundUse()
     {
-        if (CheckForItemPickUp()) return;
+        if (IsItemPickUpNull()) return;
 
         ItemPickUp.UseItemInGround();
-    }
-
-    public void DoShowItems()
-    {
-        if (CheckForItemPickUp()) return;
-
-        ItemPickUp.ShowItems();
     }
 }

@@ -39,17 +39,17 @@ namespace Shooter
                 return 0;
         }
 
-        public void ReloadAmmo(WeaponController wpnController)
+        public bool ReloadAmmo(WeaponController wpnController)
         {    
             if (GetAmmo(wpnController) == 0)
             {
                 Debug.Log("There is not ammo for this weapon");
-                return;
+                return false;
             }
 
             var currentWeapon = wpnController.CurrentWeapon;
 
-            int ammoToReload = currentWeapon.MagazineSize - wpnController.AmmoInMag;
+            int ammoToReload = currentWeapon.MagazineSize - wpnController.GetCurrentAmmoInMag();
             int ammoInBag = AmmoCollected[currentWeapon.BulletType];
             if (ammoInBag < ammoToReload)
             {
@@ -60,6 +60,8 @@ namespace Shooter
             AmmoCollected[currentWeapon.BulletType] -= ammoToReload;
 
             wpnController.SetAmmo(ammoToReload);
+
+            return true;
         }
 
     }

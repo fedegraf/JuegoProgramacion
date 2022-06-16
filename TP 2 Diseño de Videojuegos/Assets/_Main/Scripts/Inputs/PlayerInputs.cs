@@ -17,7 +17,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private string reloadInput;
     [SerializeField] private string pickUpInput;
     [SerializeField] private string itemInGroundUse;
-    [SerializeField] private string showInventory;
+    [SerializeField] private string cycleWeapons;
 
 
     private void Awake()
@@ -82,15 +82,14 @@ public class PlayerInputs : MonoBehaviour
     private void Weapon()
     {
         if (Input.GetButton(shootInput)) _character.DoShoot();
-
         else if (Input.GetButtonDown(reloadInput)) _character.DoReload();
+        else if (Input.GetButtonDown(cycleWeapons)) _character.DoCycleWeapons();
     }
 
     private void Item()
     {
         if (Input.GetButtonDown(pickUpInput)) _character.DoPickUp();
         else if (Input.GetButtonDown(itemInGroundUse)) _character.DoItemInGroundUse();
-        else if (Input.GetButtonDown(showInventory)) _character.DoShowItems();
     }
 
     private void TogglePauseGame()

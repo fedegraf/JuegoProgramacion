@@ -26,6 +26,11 @@ namespace Shooter
             _weapon = GetComponent<WeaponController>();
             _ammo = GetComponent<AmmoController>();
         }
+        private void Start()
+        {
+            EnableShooting(true);
+            UpdateAmmoHud();
+        }
 
         private void Update()
         {
@@ -37,11 +42,6 @@ namespace Shooter
                 if (_currentReloadCD <= 0)
                     UpdateAmmoHud();
             }
-        }
-
-        private void Start()
-        {
-            EnableShooting(true);
         }
 
         public void EnableShooting(bool enable)
@@ -69,12 +69,19 @@ namespace Shooter
         {
             if (_weapon.GetCurrentAmmoInMag() == _weapon.CurrentWeapon.MagazineSize || IsReloading || IsShooting) return;
 
-            _ammo.ReloadAmmo(_weapon);
+            if (!_ammo.ReloadAmmo(_weapon)) return;
+
             NotifyAll("RELOAD");
             ResetReloadCoolDown();
         }
 
-        private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", _weapon.GetCurrentAmmoInMag(), _weapon.CurrentWeapon.MagazineSize);
+        public void DoCycleWeapons()
+        {
+            _weapon.CycleWeapons();
+            UpdateAmmoHud();
+        }
+
+        private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", _weapon.GetCurrentAmmoInMag(), _ammo.GetAmmo(_weapon));
 
         private void ResetShootCoolDown() => _currentShootCD = _weapon.CurrentWeapon.Cadence;
         private void ResetReloadCoolDown() => _currentReloadCD = _weapon.CurrentWeapon.ReloadTime;

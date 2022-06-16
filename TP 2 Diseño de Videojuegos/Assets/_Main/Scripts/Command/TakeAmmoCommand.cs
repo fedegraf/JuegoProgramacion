@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Shooter
 {
-    public class ReloadAmmoCommand : ICommand
+    public class TakeAmmoCommand : ICommand
     {
         private AmmoController _ammo;
         private BulletTypeSO _bulletType;
         private int _ammoToAdd;
 
-        public ReloadAmmoCommand(AmmoController ammo, BulletTypeSO bulletType, int ammoToAdd)
+        public TakeAmmoCommand(AmmoController ammo, BulletTypeSO bulletType, int ammoToAdd)
         {
             _ammo = ammo;
             _bulletType = bulletType;
@@ -19,6 +19,10 @@ namespace Shooter
 
         public void Do()
         {
+            int ammoCollected = _ammo.AmmoCollected[_bulletType];
+
+            if (ammoCollected >= _bulletType.MaxAmmo) return;
+
             _ammo.AddAmmo(_bulletType, _ammoToAdd);
         }
     }

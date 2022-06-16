@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TakeHealCommand
+public class TakeHealCommand : ICommand
 {
     private IDamagable _victim;
     private float _heal;
@@ -13,11 +13,10 @@ public class TakeHealCommand
         _heal = heal;
     }
 
-    public bool Do()
+    public void Do()
     {
-        if (_victim.CurrentHealth == _victim.MaxHealth) return false;
+        if (_victim.CurrentHealth == _victim.MaxHealth) return;
 
         _victim.TakeHeal(_heal);
-        return true;
     }
 }
