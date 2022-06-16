@@ -103,6 +103,8 @@ GameObject:
   - component: {fileID: 6294429746250704112}
   - component: {fileID: 4880170197353775906}
   - component: {fileID: 7473732476237360413}
+  - component: {fileID: 3256146476780069357}
+  - component: {fileID: 2756824151234202591}
   - component: {fileID: 208451618530619426}
   - component: {fileID: 7970226783580238622}
   - component: {fileID: 3915962234950469069}
@@ -202,10 +204,32 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2010877876507002221, guid: e0fa8ef6dea72464ba2dc370882e594a, type: 3}
   bulletSpawn: {fileID: 2081421219435000454}
   bulletBox: {fileID: 0}
-  bulletType: {fileID: 11400000, guid: c0617010fcf802a488dc56c2b27240db, type: 2}
-  maxAmmo: 15
-  maxShootCoolDown: 0.5
-  reloadTime: 1.2
+--- !u!114 &3256146476780069357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685502671525265540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6040e59c2a439a246957087392f811c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2756824151234202591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685502671525265540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d8a05f173723b47b9a2769015169a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 11400000, guid: 87275a6ad6610834f8bf8c1f14845ad0, type: 2}
 --- !u!114 &208451618530619426
 MonoBehaviour:
   m_ObjectHideFlags: 0

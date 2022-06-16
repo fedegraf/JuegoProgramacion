@@ -6,23 +6,19 @@ namespace Items
 {
     public class Medikit : Item, IUsableItem
     {
-        [SerializeField] private int heal;
+        [SerializeField] private int healAmmount;
         private TakeHealCommand _healCommand;
 
         public bool Use(GameObject user)
         {
             if (!user.TryGetComponent<IDamagable>(out var damagable)) return false;
 
-            _healCommand = new TakeHealCommand(damagable, heal);
+            _healCommand = new TakeHealCommand(damagable, healAmmount);
 
-            if (_healCommand.Do())
-            {
-                gameObject.SetActive(false);
-                return true;
-            }
-            return false;
-                
-            
+            _healCommand.Do();
+            gameObject.SetActive(false);
+            return true;
+
         }
     }
 }

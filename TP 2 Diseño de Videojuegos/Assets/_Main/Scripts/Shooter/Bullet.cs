@@ -15,8 +15,10 @@ namespace Shooter
         private void Update()
         {
             _currentLifeTime += Time.deltaTime;
-            if (_currentLifeTime >= Data.LifeTime) DestroyBullet();
-            else Movement();
+            if (_currentLifeTime < Data.LifeTime)
+                Movement();
+            else
+                DestroyBullet();
         }
 
         public void SetData(BulletTypeSO newData)

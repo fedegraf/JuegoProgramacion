@@ -6,58 +6,42 @@ namespace Shooter
 {
     public class BulletShooter : BulletSpawner, IObservable
     {
-        [Header("Shooter Values")]
-        [SerializeField] private BulletTypeSO bulletType;
+        //[Header("Shooter Values")]
         public bool CanShoot { get; private set; }
-        public bool IsShooting { get; private set; }
-        public int CurrentAmmo { get; private set; }
-        public bool IsReloading { get; private set; }
-        [SerializeField] private int maxAmmo = 15;
+        public bool IsShooting => _currentShootCD > 0;
+        public bool IsReloading => _currentReloadCD > 0;
+        public List<IObserver> Subscribers => _subscribers;
 
-        [Range(0, 2f)]
-        [SerializeField] private float maxShootCoolDown = 1f;
-        private float _shootCoolDown;
+        private WeaponController _weapon;
+        private AmmoController _ammo;
 
-        [Range(0, 2f)]
-        [SerializeField] private float reloadTime = 1f;
-
+        private float _currentShootCD;
+        private float _currentReloadCD;
 
         private List<Bullet> _bulletsInWorld = new List<Bullet>();
-
-        public List<IObserver> Subscribers => _subscribers;
         private List<IObserver> _subscribers = new List<IObserver>();
 
         private void Awake()
         {
-
+            _weapon = GetComponent<WeaponController>();
+            _ammo = GetComponent<AmmoController>();
         }
-
         private void Start()
         {
-            CanShoot = true;
-            CurrentAmmo = maxAmmo;
-
+            EnableShooting(true);
             UpdateAmmoHud();
         }
 
         private void Update()
         {
-            if (_shootCoolDown > 0)
-                _shootCoolDown -= Time.deltaTime;
-        }
-
-        public void DoShoot()
-        {
-            if (CurrentAmmo < 1 || !CanShoot || IsShooting || IsReloading || !bulletType || _shootCoolDown > 0) return;
-
-            StartCoroutine(ShootWeapon());
-        }
-
-        public void DoReloadAmmo()
-        {
-            if (CurrentAmmo == maxAmmo || IsReloading || !bulletType || IsShooting) return;
-
-            StartCoroutine(ReloadAmmo());
+            if (_currentShootCD > 0)
+                _currentShootCD -= Time.deltaTime;
+            if (_currentReloadCD > 0)
+            {
+                _currentReloadCD -= Time.deltaTime;
+                if (_currentReloadCD <= 0)
+                    UpdateAmmoHud();
+            }
         }
 
         public void EnableShooting(bool enable)
@@ -65,41 +49,42 @@ namespace Shooter
             CanShoot = enable;
         }
 
-        private void ResetShooCoolDown() => _shootCoolDown = maxShootCoolDown;
-
-        private IEnumerator ShootWeapon()
+        public void DoShoot()
         {
-            IsShooting = true;
+            if (_weapon.GetCurrentAmmoInMag() == 0)
+            {
+                DoReload();
+            }
 
-            _bulletsInWorld.Add(CreateBullet(bulletType));
-            ResetShooCoolDown();
-            CurrentAmmo--;
+            if (!CanShoot || IsShooting || IsReloading || _currentShootCD > 0) return;
 
+            _bulletsInWorld.Add(CreateBullet(_weapon.CurrentWeapon.BulletType));
+            _weapon.ShootAmmo();
             UpdateAmmoHud();
+            ResetShootCoolDown();
 
-            yield return new WaitForSeconds(0.5f);
-
-            IsShooting = false;
-
-            yield return null;
         }
 
-        private IEnumerator ReloadAmmo()
+        public void DoReload()
         {
+            if (_weapon.GetCurrentAmmoInMag() == _weapon.CurrentWeapon.MagazineSize || IsReloading || IsShooting) return;
+
+            if (!_ammo.ReloadAmmo(_weapon)) return;
+
             NotifyAll("RELOAD");
-
-            IsReloading = true;
-
-            yield return new WaitForSeconds(reloadTime);
-
-            CurrentAmmo = maxAmmo;
-            IsReloading = false;
-
-            UpdateAmmoHud();
-            yield return null;
+            ResetReloadCoolDown();
         }
 
-        private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", CurrentAmmo, maxAmmo);
+        public void DoCycleWeapons()
+        {
+            _weapon.CycleWeapons();
+            UpdateAmmoHud();
+        }
+
+        private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", _weapon.GetCurrentAmmoInMag(), _ammo.GetAmmo(_weapon));
+
+        private void ResetShootCoolDown() => _currentShootCD = _weapon.CurrentWeapon.Cadence;
+        private void ResetReloadCoolDown() => _currentReloadCD = _weapon.CurrentWeapon.ReloadTime;
 
         public void Suscribe(IObserver observer)
         {
