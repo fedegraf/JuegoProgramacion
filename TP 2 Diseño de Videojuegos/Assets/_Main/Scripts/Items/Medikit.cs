@@ -14,8 +14,15 @@ namespace Items
             if (!user.TryGetComponent<IDamagable>(out var damagable)) return false;
 
             _healCommand = new TakeHealCommand(damagable, heal);
-            gameObject.SetActive(false);
-            return _healCommand.Do();
+
+            if (_healCommand.Do())
+            {
+                gameObject.SetActive(false);
+                return true;
+            }
+            return false;
+                
+            
         }
     }
 }

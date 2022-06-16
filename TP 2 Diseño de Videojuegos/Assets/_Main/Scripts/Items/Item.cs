@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Items
 {
+    [ExecuteInEditMode]
     public class Item : MonoBehaviour, IItem
     {
         [SerializeField] private ItemTypeSO data;
@@ -27,7 +28,7 @@ namespace Items
             if (Data != null)
             {
                 transform.localScale = Data.Scale;
-                _meshRndr.material.color = Data.Color;
+                _meshRndr.sharedMaterial.color = Data.Color;
                 _meshFiltr.mesh = Data.Mesh;
                 _sphereColldr.radius = Data.InteractionRadius;
             }

@@ -11,7 +11,10 @@ namespace Items
 
         private List<IItem> _itemsInInventory = new List<IItem>();
         private IItem _itemToPickUp;
-        private bool _isItemInRange;
+        private bool IsItemInRange()
+        {
+            return _itemToPickUp != null;
+        }
 
         private void Start()
         {
@@ -25,18 +28,21 @@ namespace Items
 
         public void PickUp()
         {
-            if (!_isItemInRange) return;
+            if (!IsItemInRange()) return;
 
             _itemsInInventory.Add(_itemToPickUp.PickUp());
+            Debug.Log($"{_itemToPickUp.Data.ItemName} Added To Inventory");
+            _itemToPickUp = null;
         }
 
         public void UseItemInGround()
         {
-            if (!_isItemInRange) return;
+            if (!IsItemInRange()) return;
 
             if (_itemToPickUp.ItemObject.GetComponent<IUsableItem>().Use(gameObject))
             {
                 Debug.Log($"{_itemToPickUp.Data.ItemName} Used");
+                _itemToPickUp = null;
             }
             else
                 Debug.Log("You Cant Use That Item Right Now");
@@ -61,21 +67,17 @@ namespace Items
 
         private void OnTriggerStay(Collider other)
         {
-            var itemToPickUp = other.GetComponent<IItem>();
-
-            if (itemToPickUp == null && !CanPickUp)
-            {
-                if (_itemToPickUp != null)
-                {
-                    _itemToPickUp = null;
-                    _isItemInRange = false;
-                }
-                return;
-            }
-            else
+            if (other.TryGetComponent<IItem>(out var itemToPickUp) && CanPickUp)
             {
                 _itemToPickUp = itemToPickUp;
-                _isItemInRange = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.GetComponent<IItem>() != null)
+            {
+                _itemToPickUp = null;
             }
         }
     }

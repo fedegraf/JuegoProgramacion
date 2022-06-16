@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TakeHealCommand : MonoBehaviour
+public class TakeHealCommand
 {
     private IDamagable _victim;
     private float _heal;
