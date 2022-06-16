@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     public EntityTypeSO Stats => stats;
     public Movement Movement { get; private set; }
     public Shooter.BulletShooter Shooter { get; private set; }
+    public Shooter.BulletShooterV2 ShooterV2 { get; private set; }
     public Items.ItemPickUp ItemPickUp { get; private set; }
 
     [SerializeField] private EntityTypeSO stats;
@@ -15,6 +16,7 @@ public class Character : MonoBehaviour
     {
         Movement = GetComponent<Movement>();
         Shooter = GetComponent<Shooter.BulletShooter>();
+        ShooterV2 = GetComponent<Shooter.BulletShooterV2>();
         ItemPickUp = GetComponent<Items.ItemPickUp>();
 
 
@@ -35,7 +37,7 @@ public class Character : MonoBehaviour
 
     private bool CheckForShooter()
     {
-        var isNull = Shooter == null;
+        var isNull = ShooterV2 == null;
         if (isNull)
         {
             Debug.LogWarning("Shooter is Null");
@@ -75,14 +77,14 @@ public class Character : MonoBehaviour
     {
         if (CheckForShooter()) return;
 
-        Shooter.DoShoot();
+        ShooterV2.DoShoot();
     }
 
     public void DoReload()
     {
         if (CheckForShooter()) return;
 
-        Shooter.DoReloadAmmo();
+        ShooterV2.DoReload();
     }
 
     public void DoPickUp()
