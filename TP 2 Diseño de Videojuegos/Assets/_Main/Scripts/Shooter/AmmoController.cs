@@ -45,7 +45,9 @@ namespace Shooter
 
         public int GetAmmo(WeaponController wpnCntrl)
         {
-            var ammoType = wpnCntrl.CurrentWeapon.BulletType;
+            if (wpnCntrl.CurrentWeapon == null) return 0;
+
+            var ammoType = wpnCntrl.CurrentWeapon.Data.BulletType;
             if (AmmoCollected.ContainsKey(ammoType))
                 return AmmoCollected[ammoType];
             else
@@ -62,15 +64,15 @@ namespace Shooter
 
             var currentWeapon = wpnController.CurrentWeapon;
 
-            int ammoToReload = currentWeapon.MagazineSize - wpnController.GetCurrentAmmoInMag();
-            int ammoInBag = AmmoCollected[currentWeapon.BulletType];
+            int ammoToReload = currentWeapon.Data.MagazineSize - wpnController.GetCurrentAmmoInMag();
+            int ammoInBag = AmmoCollected[currentWeapon.Data.BulletType];
             if (ammoInBag < ammoToReload)
             {
                 ammoToReload = ammoInBag;
-                AmmoCollected[currentWeapon.BulletType] = 0;
+                AmmoCollected[currentWeapon.Data.BulletType] = 0;
             }
 
-            AmmoCollected[currentWeapon.BulletType] -= ammoToReload;
+            AmmoCollected[currentWeapon.Data.BulletType] -= ammoToReload;
 
             wpnController.SetAmmo(ammoToReload);
 

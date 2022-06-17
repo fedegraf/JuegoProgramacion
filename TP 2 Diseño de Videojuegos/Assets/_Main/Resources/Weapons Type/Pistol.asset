@@ -16,3 +16,4 @@ MonoBehaviour:
   cadence: 0.85
   reloadTime: 1.2
   ammoType: {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
+  mesh: {fileID: 272717651244581583, guid: 97821bb222342934da2d89a14e03d722, type: 3}
