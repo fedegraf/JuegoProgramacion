@@ -4,24 +4,23 @@ using UnityEngine;
 
 namespace Items
 {
-    public class AmmoBox : Item, IUsableItem
+    public class AmmoBox : BaseItem, IInteractable
     {
         [SerializeField] private int ammoAmmount;
         [SerializeField] private Shooter.BulletTypeSO bulletType;
-        private Shooter.TakeAmmoCommand _takeAmmoCommand;
+        private Shooter.TakeAmmoCommand _command;
 
-        public bool Use(GameObject user)
+        public bool Interact(GameObject user)
         {
-            if (!user.TryGetComponent<IDamagable>(out var ammoController)) return false;
+            if (!user.TryGetComponent<Shooter.AmmoController>(out var ammo)) return false;
 
-            _takeAmmoCommand = new Shooter.TakeAmmoCommand(user.GetComponent<Shooter.AmmoController>(), bulletType, ammoAmmount);
+            if (ammo.IsAmmoFull(bulletType)) return false;
 
-            if (_takeAmmoCommand == null) return false;
-
-            _takeAmmoCommand.Do();
+            _command = new Shooter.TakeAmmoCommand(ammo, bulletType, ammoAmmount);
+            _command.Do();
             gameObject.SetActive(false);
-
             return true;
         }
     }
+
 }

@@ -89,7 +89,7 @@ public class PlayerInputs : MonoBehaviour
     private void Item()
     {
         if (Input.GetButtonDown(pickUpInput)) _character.DoPickUp();
-        else if (Input.GetButtonDown(itemInGroundUse)) _character.DoItemInGroundUse();
+        else if (Input.GetButtonDown(itemInGroundUse)) _character.DoItemUse();
     }
 
     private void TogglePauseGame()

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AmmoBox
   m_EditorClassIdentifier: 
   scale: {x: 0.5, y: 0.5, z: 0.5}
-  color: {r: 0.3207547, g: 0.3207547, b: 0.071, a: 1}
+  material: {fileID: 2100000, guid: f90c5aaa72bf3f14da67bbf15c6f5827, type: 2}
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   interactionRadius: 1.5
