@@ -12,11 +12,11 @@ namespace Items
 
         public bool Interact(GameObject user)
         {
-            if (!user.TryGetComponent<Shooter.AmmoController>(out var ammo)) return false;
+            if (!user.TryGetComponent<Shooter.WeaponController>(out var weapon)) return false;
 
-            if (ammo.IsAmmoFull(bulletType)) return false;
+            if (weapon.Ammo.CanReload(weapon.CurrentWeapon)) return false;
 
-            _command = new Shooter.TakeAmmoCommand(ammo, bulletType, ammoAmmount);
+            _command = new Shooter.TakeAmmoCommand(weapon.Ammo, bulletType, ammoAmmount);
             _command.Do();
             gameObject.SetActive(false);
             return true;

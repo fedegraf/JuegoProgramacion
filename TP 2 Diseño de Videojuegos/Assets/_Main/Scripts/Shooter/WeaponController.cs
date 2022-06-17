@@ -15,10 +15,11 @@ namespace Shooter
         private List<IObserver> _subscribers = new List<IObserver>();
         private List<Weapon> _weaponsList = new List<Weapon>();
         private List<Bullet> _bulletsInWorld = new List<Bullet>();
-        private AmmoController _ammo;
+        
 
         public Weapon CurrentWeapon { get; private set; }
-        public bool CanShoot { get; private set; }
+        public AmmoController Ammo { get; private set; }
+        public bool CanShoot { get; private set;}
         public bool IsShooting => _currentShootCD > 0;
         public bool IsReloading => _currentReloadCD > 0;
         public List<IObserver> Subscribers => _subscribers;
@@ -26,7 +27,7 @@ namespace Shooter
 
         private void Awake()
         {
-            _ammo = new AmmoController();
+            Ammo = new AmmoController();
             SetWeaponsList();
         }
 
@@ -70,7 +71,7 @@ namespace Shooter
             UpdateWeaponHud();
         }
 
-        private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", CurrentWeapon.AmmoInMag, _ammo.GetAmmo(CurrentWeapon));
+        private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", CurrentWeapon.AmmoInMag, Ammo.GetAmmo(CurrentWeapon));
         private void UpdateWeaponHud() => NotifyAll("WEAPONUPDATE", CurrentWeapon.Data.WeaponName);
 
         private void ResetShootCoolDown() => _currentShootCD = CurrentWeapon.Data.Cadence;
@@ -90,7 +91,7 @@ namespace Shooter
         {
             if (CurrentWeapon.AmmoInMag == 0)
             {
-                _ammo.Reload(CurrentWeapon);
+                Ammo.Reload(CurrentWeapon);
                 return;
             }
 
@@ -103,9 +104,9 @@ namespace Shooter
 
         public void DoReload()
         {
-            if (CurrentWeapon.AmmoInMag == CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting || !_ammo.CanReload(CurrentWeapon)) return;
+            if (CurrentWeapon.AmmoInMag == CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting || !Ammo.CanReload(CurrentWeapon)) return;
 
-            _ammo.Reload(CurrentWeapon);
+            Ammo.Reload(CurrentWeapon);
             NotifyAll("RELOAD");
             ResetReloadCoolDown();
         }
@@ -215,7 +216,9 @@ namespace Shooter
 
         public bool CanReload(Weapon weapon)
         {
-            return GetAmmo(weapon) > 0;
+            int currentAmmo = GetAmmo(weapon);
+            int maxAmmo = weapon.Data.BulletType.MaxAmmo;
+            return currentAmmo > 0 && currentAmmo < maxAmmo;
         }
 
         public void Reload(Weapon weapon)
@@ -235,3 +238,4 @@ namespace Shooter
 
     }
 }
+ 

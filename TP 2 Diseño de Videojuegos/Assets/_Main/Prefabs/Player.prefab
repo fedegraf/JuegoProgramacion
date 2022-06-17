@@ -102,8 +102,6 @@ GameObject:
   - component: {fileID: 1392719673363979076}
   - component: {fileID: 6294429746250704112}
   - component: {fileID: 4880170197353775906}
-  - component: {fileID: 7473732476237360413}
-  - component: {fileID: 3256146476780069357}
   - component: {fileID: 2756824151234202591}
   - component: {fileID: 3712746200007334427}
   - component: {fileID: 6765916082606062195}
@@ -190,33 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff72348a41640954fbe6899af886e1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7473732476237360413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6685502671525265540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981f4b37fcc4e7847b6788c6d00052e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2010877876507002221, guid: e0fa8ef6dea72464ba2dc370882e594a, type: 3}
-  bulletSpawn: {fileID: 2081421219435000454}
-  bulletBox: {fileID: 0}
---- !u!114 &3256146476780069357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6685502671525265540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6040e59c2a439a246957087392f811c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2756824151234202591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,8 +200,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d8a05f173723b47b9a2769015169a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
+  bulletPrefab: {fileID: 0}
+  bulletSpawn: {fileID: 0}
+  bulletBox: {fileID: 0}
+  weaponsType:
+  - {fileID: 11400000, guid: 9a03442b1255c7f4c8ff08a54d6cf066, type: 2}
+  - {fileID: 11400000, guid: df336edb6a6943b4282004398ca78c48, type: 2}
   - {fileID: 11400000, guid: 87275a6ad6610834f8bf8c1f14845ad0, type: 2}
+  weaponGO: {fileID: 6685502671525265610}
 --- !u!114 &3712746200007334427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAmmoText: {fileID: 0}
+  currentWeaponText: {fileID: 0}
 --- !u!114 &3915962234950469069
 MonoBehaviour:
   m_ObjectHideFlags: 0

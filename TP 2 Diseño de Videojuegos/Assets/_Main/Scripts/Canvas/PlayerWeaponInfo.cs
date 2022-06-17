@@ -12,7 +12,7 @@ namespace Shooter
 
         private void Start()
         {
-            GetComponent<BulletShooter>().Suscribe(this);
+            GetComponent<WeaponController>().Suscribe(this);
         }
 
         public void OnNotify(string message, params object[] args)

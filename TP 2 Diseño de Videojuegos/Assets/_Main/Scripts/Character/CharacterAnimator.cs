@@ -21,7 +21,7 @@ public class CharacterAnimator : MonoBehaviour
         {
             MovementsValues();
         }
-        if (_character.Shooter)
+        if (_character.Weapon)
         {
             ShootingValues();
         }
@@ -40,7 +40,7 @@ public class CharacterAnimator : MonoBehaviour
 
     private void ShootingValues()
     {
-        _animator.SetBool("IsShooting", _character.Shooter.IsShooting);
-        _animator.SetBool("IsReloading", _character.Shooter.IsReloading);
+        _animator.SetBool("IsShooting", _character.Weapon.IsShooting);
+        _animator.SetBool("IsReloading", _character.Weapon.IsReloading);
     }
 }

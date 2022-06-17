@@ -1843,6 +1843,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &902909195 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2081421219435000454, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+  m_PrefabInstance: {fileID: 4531170041955474761}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &909240318
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,7 +2098,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031487723}
-  m_LocalRotation: {x: 0.102134235, y: -0.8342247, z: 0.16508168, w: 0.51612586}
+  m_LocalRotation: {x: 0.10213424, y: -0.8342247, z: 0.16508165, w: 0.5161258}
   m_LocalPosition: {x: 21.11, y: 6.569993, z: -0.5600023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2406,7 +2411,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303374999}
-  m_LocalRotation: {x: 0.102134235, y: -0.8342247, z: 0.16508168, w: 0.51612586}
+  m_LocalRotation: {x: 0.10213424, y: -0.8342247, z: 0.16508165, w: 0.5161258}
   m_LocalPosition: {x: 21.11, y: 6.569993, z: -0.5600023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3303,6 +3308,18 @@ PrefabInstance:
       propertyPath: weaponGO
       value: 
       objectReference: {fileID: 540417984}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: bulletBox
+      value: 
+      objectReference: {fileID: 851107750}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: bulletSpawn
+      value: 
+      objectReference: {fileID: 902909195}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 2010877876507002221, guid: e0fa8ef6dea72464ba2dc370882e594a, type: 3}
     - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: weapons.Array.size
       value: 3
