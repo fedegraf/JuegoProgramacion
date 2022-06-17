@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2939235800798450144}
   - component: {fileID: 8446002053319546219}
   - component: {fileID: 1909336410314550567}
+  - component: {fileID: 105288905}
   m_Layer: 0
   m_Name: Orisus
   m_TagString: Untagged
@@ -125,6 +126,19 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &105288905
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322789322439879153}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3155236403502693788
 GameObject:
