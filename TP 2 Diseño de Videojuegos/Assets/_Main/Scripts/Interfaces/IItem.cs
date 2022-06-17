@@ -9,6 +9,5 @@ namespace Items
         public GameObject ItemObject { get; }
         public ItemTypeSO Data { get; }
         public void SetData(ItemTypeSO newData);
-        public IItem PickUp();
     }
 }
