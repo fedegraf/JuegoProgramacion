@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Items
 {
-    public class MediKit : BaseItem, IInteractable
+    public class MedikitScript : BaseItem, IInteractable
     {
         [SerializeField] private int healAmmount;
         private TakeHealCommand _command;
@@ -18,7 +18,7 @@ namespace Items
                 Debug.Log("You have max health");
                 return false;
             }
-                
+
 
             _command = new TakeHealCommand(damagable, healAmmount);
             _command.Do();
@@ -27,3 +27,4 @@ namespace Items
         }
     }
 }
+
