@@ -30,6 +30,7 @@ namespace Shooter
         {
             EnableShooting(true);
             UpdateAmmoHud();
+            UpdateWeaponHud();
         }
 
         private void Update()
@@ -79,9 +80,11 @@ namespace Shooter
         {
             _weapon.CycleWeapons();
             UpdateAmmoHud();
+            UpdateWeaponHud();
         }
 
         private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", _weapon.GetCurrentAmmoInMag(), _ammo.GetAmmo(_weapon));
+        private void UpdateWeaponHud() => NotifyAll("WEAPONUPDATE", _weapon.CurrentWeapon.WeaponName);
 
         private void ResetShootCoolDown() => _currentShootCD = _weapon.CurrentWeapon.Cadence;
         private void ResetReloadCoolDown() => _currentReloadCD = _weapon.CurrentWeapon.ReloadTime;
