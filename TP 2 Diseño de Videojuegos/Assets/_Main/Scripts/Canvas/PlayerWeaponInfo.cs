@@ -8,6 +8,7 @@ namespace Shooter
     public class PlayerWeaponInfo : MonoBehaviour, IObserver
     {
         [SerializeField] private Text currentAmmoText;
+        [SerializeField] private Text currentWeaponText;
 
         private void Start()
         {
@@ -24,11 +25,20 @@ namespace Shooter
             {
                 currentAmmoText.text = "RELOADING";
             }
+            else if (message == "WEAPONUPDATE")
+            {
+                UpdateCurrentWeaponText((string)args[0]);
+            }
         }
 
         private void UpdateAmmoText(int currentAmmo, int maxAmmo)
         {
             currentAmmoText.text = $"Ammo: {currentAmmo}/{maxAmmo}";
+        }
+
+        private void UpdateCurrentWeaponText(string weaponName)
+        {
+            currentWeaponText.text = $"Weapon: {weaponName}";
         }
     }
 }
