@@ -19,10 +19,6 @@ namespace Shooter
 
         public void Do()
         {
-            int ammoCollected = _ammo.AmmoCollected[_bulletType];
-
-            if (ammoCollected >= _bulletType.MaxAmmo) return;
-
             _ammo.AddAmmo(_bulletType, _ammoToAdd);
         }
     }

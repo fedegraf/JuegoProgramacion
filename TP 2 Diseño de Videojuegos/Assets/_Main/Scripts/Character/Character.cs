@@ -7,7 +7,8 @@ public class Character : MonoBehaviour
     public EntityTypeSO Stats => stats;
     public Movement Movement { get; private set; }
     public Shooter.BulletShooter Shooter { get; private set; }
-    public Items.ItemPickUp ItemPickUp { get; private set; }
+    public Items.ItemInteracter ItemInteracter { get; private set; }
+    public Items.ItemLooter ItemLooter { get; private set; }
 
     [SerializeField] private EntityTypeSO stats;
 
@@ -15,7 +16,8 @@ public class Character : MonoBehaviour
     {
         Movement = GetComponent<Movement>();
         Shooter = GetComponent<Shooter.BulletShooter>();
-        ItemPickUp = GetComponent<Items.ItemPickUp>();
+        ItemInteracter = GetComponent<Items.ItemInteracter>();
+        ItemLooter = GetComponent<Items.ItemLooter>();
 
 
         Movement.SetValues(Stats.WalkSpeed, Stats.RunSpeed, Stats.RotationSpeed);
@@ -45,9 +47,21 @@ public class Character : MonoBehaviour
         else return false;
     }
 
-    private bool IsItemPickUpNull()
+    private bool IsItemInteractorNull()
     {
-        var isNull = ItemPickUp == null;
+        var isNull = ItemInteracter == null;
+        if (isNull)
+        {
+            Debug.LogWarning("ItemPickup is Null");
+            return true;
+        }
+
+        else return false;
+    }
+
+    private bool IsItemLooterNull()
+    {
+        var isNull = ItemLooter == null;
         if (isNull)
         {
             Debug.LogWarning("ItemPickup is Null");
@@ -94,15 +108,15 @@ public class Character : MonoBehaviour
 
     public void DoPickUp()
     {
-        if (IsItemPickUpNull()) return;
+        if (IsItemLooterNull()) return;
 
-        ItemPickUp.PickUp();
+        ItemLooter.LootItem();
     }
 
-    public void DoItemInGroundUse()
+    public void DoItemUse()
     {
-        if (IsItemPickUpNull()) return;
+        if (IsItemInteractorNull()) return;
 
-        ItemPickUp.UseItemInGround();
+        ItemInteracter.InteractWithItem();
     }
 }

@@ -30,6 +30,19 @@ namespace Shooter
             }
         }
 
+        public bool IsAmmoFull(BulletTypeSO bulletType)
+        {
+            if (!AmmoCollected.ContainsKey(bulletType)) return false;
+
+            int currentAmmo = AmmoCollected[bulletType];
+
+            if (currentAmmo >= bulletType.MaxAmmo)
+                return true;
+            else
+                return false;
+
+        }
+
         public int GetAmmo(WeaponController wpnCntrl)
         {
             var ammoType = wpnCntrl.CurrentWeapon.BulletType;

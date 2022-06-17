@@ -4,22 +4,26 @@ using UnityEngine;
 
 namespace Items
 {
-    public class Medikit : Item, IUsableItem
+    public class MediKit : BaseItem, IInteractable
     {
         [SerializeField] private int healAmmount;
-        private TakeHealCommand _healCommand;
+        private TakeHealCommand _command;
 
-        public bool Use(GameObject user)
+        public bool Interact(GameObject user)
         {
             if (!user.TryGetComponent<IDamagable>(out var damagable)) return false;
 
-            _healCommand = new TakeHealCommand(damagable, healAmmount);
+            if (damagable.CurrentHealth >= damagable.MaxHealth)
+            {
+                Debug.Log("You have max health");
+                return false;
+            }
+                
 
-            _healCommand.Do();
+            _command = new TakeHealCommand(damagable, healAmmount);
+            _command.Do();
             gameObject.SetActive(false);
             return true;
-
         }
     }
 }
-

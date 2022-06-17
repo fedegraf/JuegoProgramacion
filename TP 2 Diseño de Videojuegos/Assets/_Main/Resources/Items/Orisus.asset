@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Orisus
   m_EditorClassIdentifier: 
   scale: {x: 0.5, y: 0.5, z: 0.5}
-  color: {r: 0.35236156, g: 0.735849, b: 0.09371662, a: 1}
+  material: {fileID: 2100000, guid: 4a59d94b5ba73354ca80f55b449626df, type: 2}
   mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   interactionRadius: 1.5
