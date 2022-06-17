@@ -12,12 +12,13 @@ namespace Shooter
         [SerializeField] private float cadence;
         [SerializeField] private float reloadTime;
         [SerializeField] BulletTypeSO ammoType;
-
+        [SerializeField] Mesh mesh;
         public string WeaponName => name;
         public int MagazineSize => magazineSize;
         public float Cadence => cadence;
         public float ReloadTime => reloadTime;
         public BulletTypeSO BulletType => ammoType;
+        public Mesh Mesh => mesh;
     }
 
 }

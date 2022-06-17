@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &926599178434316980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 611160176903849887}
+  m_Layer: 8
+  m_Name: Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &611160176903849887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926599178434316980}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children:
+  - {fileID: 6685502671525764330}
+  m_Father: {fileID: 6685502671525764260}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3631243513801646420
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,8 +162,8 @@ Transform:
   m_LocalPosition: {x: 1.64, y: -4.2, z: -6.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 611160176903849887}
   - {fileID: 6685502671525764326}
-  - {fileID: 6685502671525764330}
   - {fileID: 6685502671525764342}
   - {fileID: 6685502671525764340}
   - {fileID: 6685502671525764294}
@@ -163,7 +194,7 @@ MonoBehaviour:
   reloadInput: Reload
   pickUpInput: 
   itemInGroundUse: 
-  showInventory: 
+  cycleWeapons: 
 --- !u!114 &6294429746250704112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,8 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d8a05f173723b47b9a2769015169a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 11400000, guid: 87275a6ad6610834f8bf8c1f14845ad0, type: 2}
+  weaponsType: []
+  weapon: {fileID: 0}
 --- !u!114 &208451618530619426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAmmoText: {fileID: 0}
+  currentWeaponText: {fileID: 0}
 --- !u!114 &7970226783580238622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1580,7 +1612,7 @@ Transform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 6685502671525764260}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6685502671536836038
 SkinnedMeshRenderer:
@@ -1748,13 +1780,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6685502671525265610}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2081421219435000454}
-  m_Father: {fileID: 6685502671525764260}
-  m_RootOrder: 1
+  m_Father: {fileID: 611160176903849887}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6685502671536836036
 SkinnedMeshRenderer:

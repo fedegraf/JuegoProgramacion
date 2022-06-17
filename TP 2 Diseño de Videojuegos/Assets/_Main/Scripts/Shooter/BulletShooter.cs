@@ -55,11 +55,12 @@ namespace Shooter
             if (_weapon.GetCurrentAmmoInMag() == 0)
             {
                 DoReload();
+                return;
             }
 
             if (!CanShoot || IsShooting || IsReloading || _currentShootCD > 0) return;
 
-            _bulletsInWorld.Add(CreateBullet(_weapon.CurrentWeapon.BulletType));
+            _bulletsInWorld.Add(CreateBullet(_weapon.CurrentWeapon.Data.BulletType));
             _weapon.ShootAmmo();
             UpdateAmmoHud();
             ResetShootCoolDown();
@@ -68,7 +69,7 @@ namespace Shooter
 
         public void DoReload()
         {
-            if (_weapon.GetCurrentAmmoInMag() == _weapon.CurrentWeapon.MagazineSize || IsReloading || IsShooting) return;
+            if (_weapon.GetCurrentAmmoInMag() == _weapon.CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting) return;
 
             if (!_ammo.ReloadAmmo(_weapon)) return;
 
@@ -84,10 +85,10 @@ namespace Shooter
         }
 
         private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", _weapon.GetCurrentAmmoInMag(), _ammo.GetAmmo(_weapon));
-        private void UpdateWeaponHud() => NotifyAll("WEAPONUPDATE", _weapon.CurrentWeapon.WeaponName);
+        private void UpdateWeaponHud() => NotifyAll("WEAPONUPDATE", _weapon.CurrentWeapon.Data.WeaponName);
 
-        private void ResetShootCoolDown() => _currentShootCD = _weapon.CurrentWeapon.Cadence;
-        private void ResetReloadCoolDown() => _currentReloadCD = _weapon.CurrentWeapon.ReloadTime;
+        private void ResetShootCoolDown() => _currentShootCD = _weapon.CurrentWeapon.Data.Cadence;
+        private void ResetReloadCoolDown() => _currentReloadCD = _weapon.CurrentWeapon.Data.ReloadTime;
 
         public void Suscribe(IObserver observer)
         {
