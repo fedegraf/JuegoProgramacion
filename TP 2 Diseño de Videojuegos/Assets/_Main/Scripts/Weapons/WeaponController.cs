@@ -128,7 +128,6 @@ namespace Weapons
         {
             if (CurrentWeapon.AmmoInMag == CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting || !Ammo.CanReload(CurrentWeapon)) return;
 
-            Debug.Log("Did reaload");
             Ammo.Reload(CurrentWeapon);
             NotifyAll("RELOAD");
             ResetReloadCoolDown();

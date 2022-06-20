@@ -16,13 +16,13 @@ TagManager:
   - 
   - Player
   - Enemy
-  - PlayerBullet
+  - Bullet
   - 
   - 
   - 
   - 
   - 
-  - 
+  - Item
   - 
   - 
   - 

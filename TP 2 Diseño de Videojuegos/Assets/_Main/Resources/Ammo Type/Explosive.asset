@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 100
-  lifeTime: 2
+  lifeTime: 3
   maxAmmo: 6
   isThrowable: 1

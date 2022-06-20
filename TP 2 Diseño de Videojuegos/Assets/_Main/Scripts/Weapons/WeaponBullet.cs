@@ -6,8 +6,9 @@ namespace Weapons
 {
     public class WeaponBullet : BulletBase, IProduct<AmmoTypeSO>
     {
-        private void Update()
+        public override void Update()
         {
+            base.Update();
             if (_currentLifeTime > 0)
                 Movement();
             else

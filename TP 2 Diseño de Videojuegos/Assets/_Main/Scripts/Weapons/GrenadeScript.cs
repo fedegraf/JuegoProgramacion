@@ -16,13 +16,11 @@ namespace Weapons
             _rb = GetComponent<Rigidbody>();
         }
 
-        private void Update()
+        public override void Update()
         {
+            base.Update();
             if (_currentLifeTime <= 0)
-            {
-                Debug.Log("Explode");
-            }
-                
+                Explode();
         }
 
         private void Start()
@@ -42,6 +40,7 @@ namespace Weapons
             var newSphere = gameObject.AddComponent<SphereCollider>();
             newSphere.isTrigger = true;
             newSphere.radius = explosionRadius;
+            Debug.Log("EXPLOSION");
             DestroyBullet();
         }
 

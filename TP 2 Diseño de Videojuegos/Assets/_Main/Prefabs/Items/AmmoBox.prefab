@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1566265206825599653}
   - component: {fileID: 8473764085685204230}
   - component: {fileID: 5449316397563039320}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: ItemName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7610901505805408112}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Texts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 4824722125950247834}
   - component: {fileID: 4824722125950247835}
   - component: {fileID: 4824722125950247836}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: AmmoBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 7596727288058907319}
   - component: {fileID: 3564385990449903606}
   - component: {fileID: 2495363648710934039}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}

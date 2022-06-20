@@ -1833,7 +1833,7 @@ Transform:
   - {fileID: 1759406004}
   - {fileID: 2084151624}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &902909195 stripped
 Transform:
@@ -2156,7 +2156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1192754825 stripped
 MonoBehaviour:
@@ -2223,14 +2223,6 @@ PrefabInstance:
     - target: {fileID: 4824722125950247837, guid: d35cb66aaba450840bc571abe364031d, type: 3}
       propertyPath: m_Name
       value: AmmoBox
-      objectReference: {fileID: 0}
-    - target: {fileID: 6271062508829475387, guid: d35cb66aaba450840bc571abe364031d, type: 3}
-      propertyPath: bulletType
-      value: 
-      objectReference: {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
-    - target: {fileID: 6271062508829475387, guid: d35cb66aaba450840bc571abe364031d, type: 3}
-      propertyPath: ammoAmmount
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d35cb66aaba450840bc571abe364031d, type: 3}
@@ -2861,7 +2853,7 @@ Transform:
   m_LocalScale: {x: 0.55181, y: 1.4824, z: 4.3480496}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1759406004 stripped
 Transform:
@@ -3526,7 +3518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6685502671525764260, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6685502671525764260, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3575,6 +3567,10 @@ PrefabInstance:
     - target: {fileID: 7473732476237360413, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066088393548141749, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: layersToAvoid.m_Bits
+      value: 66816
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
