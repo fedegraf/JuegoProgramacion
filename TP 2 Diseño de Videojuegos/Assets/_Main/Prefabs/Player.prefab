@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
+  grenadePrefab: {fileID: 0}
   bulletSpawn: {fileID: 0}
   bulletBox: {fileID: 0}
   weaponsType:

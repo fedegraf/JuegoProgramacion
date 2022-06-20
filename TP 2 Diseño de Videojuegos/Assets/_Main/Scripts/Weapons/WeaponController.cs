@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Shooter
+namespace Weapons
 {
     public class WeaponController : BulletSpawner, IObservable
     {
@@ -14,8 +15,7 @@ namespace Shooter
         private float _currentReloadCD;
         private List<IObserver> _subscribers = new List<IObserver>();
         private List<Weapon> _weaponsList = new List<Weapon>();
-        private List<Bullet> _bulletsInWorld = new List<Bullet>();
-        
+        private List<BulletBase> _bulletsInWorld = new List<BulletBase>();       
 
         public Weapon CurrentWeapon { get; private set; }
         public AmmoController Ammo { get; private set; }
@@ -24,16 +24,24 @@ namespace Shooter
         public bool IsReloading => _currentReloadCD > 0;
         public List<IObserver> Subscribers => _subscribers;
 
+        //Test 
+        [Header("Test Values")]
+        [SerializeField] AmmoTypeSO[] ammoTypeToAdd;
+        [SerializeField] int[] ammoAmmountToAdd;
+        private TakeAmmoCommand _takeAmmoCommand;
+
 
         private void Awake()
         {
             Ammo = new AmmoController();
-            SetWeaponsList();
+            Ammo.OnAmmoAdded += OnAmmoAddedHandler;
         }
 
         private void Start()
         {
             EnableShooting(true);
+            SetWeaponsList();
+            AddAmmo();
         }
 
         private void Update()
@@ -45,6 +53,15 @@ namespace Shooter
                 _currentReloadCD -= Time.deltaTime;
                 if (_currentReloadCD <= 0)
                     UpdateAmmoHud();
+            }
+        }
+
+        private void AddAmmo()
+        {
+            for (int i = 0; i < ammoTypeToAdd.Length; i++)
+            {
+                _takeAmmoCommand = new TakeAmmoCommand(Ammo, ammoTypeToAdd[i], ammoAmmountToAdd[i]);
+                _takeAmmoCommand.Do();
             }
         }
 
@@ -71,11 +88,16 @@ namespace Shooter
             UpdateWeaponHud();
         }
 
-        private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", CurrentWeapon.AmmoInMag, Ammo.GetAmmo(CurrentWeapon));
+        private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", CurrentWeapon.AmmoInMag, Ammo.GetAmmo(CurrentWeapon.Data.AmmoType));
         private void UpdateWeaponHud() => NotifyAll("WEAPONUPDATE", CurrentWeapon.Data.WeaponName);
 
         private void ResetShootCoolDown() => _currentShootCD = CurrentWeapon.Data.Cadence;
         private void ResetReloadCoolDown() => _currentReloadCD = CurrentWeapon.Data.ReloadTime;
+
+        private void OnAmmoAddedHandler()
+        {
+            UpdateAmmoHud();
+        }
 
         public void SetAmmo(int newAmmo)
         {
@@ -91,7 +113,7 @@ namespace Shooter
         {
             if (CurrentWeapon.AmmoInMag == 0)
             {
-                Ammo.Reload(CurrentWeapon);
+                DoReload();
                 return;
             }
 
@@ -106,9 +128,11 @@ namespace Shooter
         {
             if (CurrentWeapon.AmmoInMag == CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting || !Ammo.CanReload(CurrentWeapon)) return;
 
+            Debug.Log("Did reaload");
             Ammo.Reload(CurrentWeapon);
             NotifyAll("RELOAD");
             ResetReloadCoolDown();
+
         }
 
         public void DoCycleWeapons()
@@ -171,20 +195,22 @@ namespace Shooter
             AmmoInMag = ammo;
         }
 
-        public BulletTypeSO Shoot()
+        public AmmoTypeSO Shoot()
         {
             AmmoInMag--;
-            return Data.BulletType;
+            return Data.AmmoType;
         }
     }
 
     public class AmmoController
     {
-        private Dictionary<BulletTypeSO, int> _ammoCollected = new Dictionary<BulletTypeSO, int>();
+        private Dictionary<AmmoTypeSO, int> _ammoCollected = new Dictionary<AmmoTypeSO, int>();
 
-        public Dictionary<BulletTypeSO, int> AmmoCollected => _ammoCollected;
+        public Dictionary<AmmoTypeSO, int> AmmoCollected => _ammoCollected;
 
-        public void AddAmmo(BulletTypeSO bulletType, int ammoToAdd)
+        public event Action OnAmmoAdded;
+
+        public void AddAmmo(AmmoTypeSO bulletType, int ammoToAdd)
         {
             if (AmmoCollected.ContainsKey(bulletType))
             {
@@ -202,12 +228,14 @@ namespace Shooter
             {
                 AmmoCollected.Add(bulletType, ammoToAdd);
             }
-        }
-        public int GetAmmo(Weapon weapon)
-        {
-            if (weapon == null) return 0;
 
-            var ammoType = weapon.Data.BulletType;
+            OnAmmoAdded.Invoke();
+
+        }
+        public int GetAmmo(AmmoTypeSO ammoType)
+        {
+            if (ammoType == null) return 0;
+
             if (AmmoCollected.ContainsKey(ammoType))
                 return AmmoCollected[ammoType];
             else
@@ -216,26 +244,29 @@ namespace Shooter
 
         public bool CanReload(Weapon weapon)
         {
-            int currentAmmo = GetAmmo(weapon);
-            int maxAmmo = weapon.Data.BulletType.MaxAmmo;
-            return currentAmmo > 0 && currentAmmo < maxAmmo;
+            int currentAmmo = GetAmmo(weapon.Data.AmmoType);
+            if (currentAmmo == 0) return false;
+            return currentAmmo > 0;
         }
 
         public void Reload(Weapon weapon)
         {
-            int ammoToReload = weapon.Data.MagazineSize - weapon.AmmoInMag;
-            int ammoInBag = AmmoCollected[weapon.Data.BulletType];
-            if (ammoInBag < ammoToReload)
+            int ammoNeeded = weapon.Data.MagazineSize - weapon.AmmoInMag;
+            int ammoInBag = AmmoCollected[weapon.Data.AmmoType];
+            int newAmmoInBag = ammoInBag - ammoNeeded;
+
+            if (newAmmoInBag < 0)
             {
-                ammoToReload = ammoInBag;
-                AmmoCollected[weapon.Data.BulletType] = 0;
+                ammoNeeded = newAmmoInBag + ammoNeeded;
+                newAmmoInBag = 0;
             }
 
-            AmmoCollected[weapon.Data.BulletType] -= ammoToReload;
+            AmmoCollected[weapon.Data.AmmoType] = newAmmoInBag;
 
-            weapon.SetAmmoInMag(ammoToReload);
+            ammoNeeded += weapon.AmmoInMag;
+            weapon.SetAmmoInMag(ammoNeeded);
+
         }
-
     }
 }
  

@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 {
     public EntityTypeSO Stats => stats;
     public Movement Movement { get; private set; }
-    public Shooter.WeaponController Weapon { get; private set; }
+    public Weapons.WeaponController Weapon { get; private set; }
     public Items.ItemInteracter ItemInteracter { get; private set; }
     public Items.ItemLooter ItemLooter { get; private set; }
 
@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         Movement = GetComponent<Movement>();
-        Weapon = GetComponent<Shooter.WeaponController>();
+        Weapon = GetComponent<Weapons.WeaponController>();
         ItemInteracter = GetComponent<Items.ItemInteracter>();
         ItemLooter = GetComponent<Items.ItemLooter>();
 

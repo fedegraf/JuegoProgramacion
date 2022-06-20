@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -231,10 +231,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6232367235780683246, guid: b649e4231853fd94caeec319ef193118, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6232367235780683246, guid: b649e4231853fd94caeec319ef193118, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -252,10 +248,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7595943563227985606, guid: b649e4231853fd94caeec319ef193118, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7595943563227985606, guid: b649e4231853fd94caeec319ef193118, type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7595943563227985606, guid: b649e4231853fd94caeec319ef193118, type: 3}
@@ -2198,7 +2190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4824722125950247815, guid: d35cb66aaba450840bc571abe364031d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.45
+      value: -7.6
       objectReference: {fileID: 0}
     - target: {fileID: 4824722125950247815, guid: d35cb66aaba450840bc571abe364031d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2231,6 +2223,14 @@ PrefabInstance:
     - target: {fileID: 4824722125950247837, guid: d35cb66aaba450840bc571abe364031d, type: 3}
       propertyPath: m_Name
       value: AmmoBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271062508829475387, guid: d35cb66aaba450840bc571abe364031d, type: 3}
+      propertyPath: bulletType
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
+    - target: {fileID: 6271062508829475387, guid: d35cb66aaba450840bc571abe364031d, type: 3}
+      propertyPath: ammoAmmount
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d35cb66aaba450840bc571abe364031d, type: 3}
@@ -3389,6 +3389,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2010877876507002221, guid: e0fa8ef6dea72464ba2dc370882e594a, type: 3}
     - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: grenadePrefab
+      value: 
+      objectReference: {fileID: 2918043198136433635, guid: acb0d6a2c56e6584aa474d485e56368a, type: 3}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: weapons.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -3406,12 +3410,16 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: df336edb6a6943b4282004398ca78c48, type: 2}
     - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: weaponsType.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: ammoTypeToAdd.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: weaponsType.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 9a03442b1255c7f4c8ff08a54d6cf066, type: 2}
+      objectReference: {fileID: 11400000, guid: f7b555a4650f8584aaea48e88233fe78, type: 2}
     - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: weaponsType.Array.data[1]
       value: 
@@ -3419,7 +3427,39 @@ PrefabInstance:
     - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: weaponsType.Array.data[2]
       value: 
+      objectReference: {fileID: 11400000, guid: 9a03442b1255c7f4c8ff08a54d6cf066, type: 2}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: weaponsType.Array.data[3]
+      value: 
       objectReference: {fileID: 11400000, guid: 87275a6ad6610834f8bf8c1f14845ad0, type: 2}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: ammoAmmountToAdd.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: ammoTypeToAdd.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: ammoTypeToAdd.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b0401c18bd7cd424482a3b94f3843392, type: 2}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: ammoTypeToAdd.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: c0617010fcf802a488dc56c2b27240db, type: 2}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: ammoAmmountToAdd.Array.data[0]
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: ammoAmmountToAdd.Array.data[1]
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: ammoAmmountToAdd.Array.data[2]
+      value: 999
+      objectReference: {fileID: 0}
     - target: {fileID: 3631243513801646420, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_TagString
       value: Player
