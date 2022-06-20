@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IProduct<T> where T : ScriptableObject
 {
     T Data { get; }
+    public void SetData(T newData);
 }

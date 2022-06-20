@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8446002053319546219}
   - component: {fileID: 1909336410314550567}
   - component: {fileID: 105288905}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Orisus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 7836993031422665414}
   - component: {fileID: 1866512000282240059}
   - component: {fileID: 5337446664089259185}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

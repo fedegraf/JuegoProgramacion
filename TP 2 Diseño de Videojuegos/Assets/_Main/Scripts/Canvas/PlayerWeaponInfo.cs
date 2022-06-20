@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Shooter
+namespace Weapons
 {
     public class PlayerWeaponInfo : MonoBehaviour, IObserver
     {
