@@ -20,5 +20,12 @@ namespace Weapons
             float finalSpeed = Data.Speed * Time.deltaTime;
             transform.position += transform.forward * finalSpeed;
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            var wall = other.gameObject;
+            if (wall.layer == LayerMask.NameToLayer("Wall"))
+                DestroyBullet();
+        }
     }
 }
