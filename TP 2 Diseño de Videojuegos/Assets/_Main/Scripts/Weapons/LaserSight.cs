@@ -6,7 +6,7 @@ namespace Weapons
 {
     public class LaserSight : MonoBehaviour
     {
-        [SerializeField] private LayerMask layersToAvoid;
+        [SerializeField] private string[] tagsToAvoid; 
         private LineRenderer lr;
         // Start is called before the first frame update
         void Start()
@@ -17,9 +17,11 @@ namespace Weapons
         // Update is called once per frame
         void Update()
         {
-            if (Physics.Raycast(transform.position, transform.forward, out var hit))
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, transform.forward, out hit))
             {
-                if (hit.collider && hit.collider.gameObject.layer == layersToAvoid)
+                if (hit.collider && CheckForTag(hit.collider.gameObject))
                 {
                     float posmaxed = hit.distance * 100;
                     lr.SetPosition(1, new Vector3(0, 0, posmaxed));
@@ -31,5 +33,17 @@ namespace Weapons
             }
 
         }
+
+        private bool CheckForTag(GameObject gameObject)
+        {
+            for (int i = 0; i < tagsToAvoid.Length; i++)
+            {
+                if (gameObject.CompareTag(tagsToAvoid[i]))
+                    return true;
+            }
+
+            return false;
+        }
+
     }
 }

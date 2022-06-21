@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 4824722125950247836}
   m_Layer: 16
   m_Name: AmmoBox
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
