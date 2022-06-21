@@ -24,7 +24,7 @@ public class HealthBar : MonoBehaviour, IObserver
     {
         if (message != "TAKE_DAMAGE") return;
 
-        _healthBar.fillAmount = (float)_damagable.CurrentHealth / 100;
+        _healthBar.fillAmount = (float)_damagable.CurrentHealth / _damagable.MaxHealth;
 
         SetHealthColors();
     }

@@ -14,6 +14,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private string verticalInput;
     [SerializeField] private string runInput;
     [SerializeField] private string shootInput;
+    [SerializeField] private string skillInput;
     [SerializeField] private string reloadInput;
     [SerializeField] private string pickUpInput;
     [SerializeField] private string itemInGroundUse;
@@ -50,6 +51,7 @@ public class PlayerInputs : MonoBehaviour
         Rotation();
         Weapon();
         Item();
+        Skill();
     }
 
     private void UIInputs()
@@ -90,6 +92,11 @@ public class PlayerInputs : MonoBehaviour
     {
         if (Input.GetButtonDown(pickUpInput)) _character.DoPickUp();
         else if (Input.GetButtonDown(itemInGroundUse)) _character.DoItemUse();
+    }
+
+    private void Skill()
+    { 
+        if(Input.GetButtonDown(skillInput)) _character.DoSkill();
     }
 
     private void TogglePauseGame()
