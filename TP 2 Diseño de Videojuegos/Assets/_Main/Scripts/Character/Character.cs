@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 {
     public EntityTypeSO Stats => stats;
     public Movement Movement { get; private set; }
-    public Shooter.BulletShooter Shooter { get; private set; }
+    public Weapons.WeaponController Weapon { get; private set; }
     public Items.ItemInteracter ItemInteracter { get; private set; }
     public Items.ItemLooter ItemLooter { get; private set; }
 
@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         Movement = GetComponent<Movement>();
-        Shooter = GetComponent<Shooter.BulletShooter>();
+        Weapon = GetComponent<Weapons.WeaponController>();
         ItemInteracter = GetComponent<Items.ItemInteracter>();
         ItemLooter = GetComponent<Items.ItemLooter>();
 
@@ -35,9 +35,9 @@ public class Character : MonoBehaviour
         else return false;
     }
 
-    private bool IsShooterNull()
+    private bool IsWeaponNull()
     {
-        var isNull = Shooter == null;
+        var isNull = Weapon == null;
         if (isNull)
         {
             Debug.LogWarning("Shooter is Null");
@@ -87,23 +87,23 @@ public class Character : MonoBehaviour
 
     public void DoShoot()
     {
-        if (IsShooterNull()) return;
+        if (IsWeaponNull()) return;
 
-        Shooter.DoShoot();
+        Weapon.DoShoot();
     }
 
     public void DoReload()
     {
-        if (IsShooterNull()) return;
+        if (IsWeaponNull()) return;
 
-        Shooter.DoReload();
+        Weapon.DoReload();
     }
 
     public void DoCycleWeapons()
     {
-        if (IsShooterNull()) return;
+        if (IsWeaponNull()) return;
 
-        Shooter.DoCycleWeapons();
+        Weapon.DoCycleWeapons();
     }
 
     public void DoPickUp()

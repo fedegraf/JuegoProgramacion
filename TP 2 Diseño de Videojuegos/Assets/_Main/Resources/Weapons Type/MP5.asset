@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MP5
   m_EditorClassIdentifier: 
   magazineSize: 15
-  cadence: 0.5
+  cadence: 0.25
   reloadTime: 1
   ammoType: {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
+  mesh: {fileID: 4300010, guid: d406f8f3cbe268f4e9d0234d45cca60c, type: 3}

@@ -1,25 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Shooter
+namespace Weapons
 {
     public class TakeAmmoCommand : ICommand
     {
         private AmmoController _ammo;
-        private BulletTypeSO _bulletType;
+        private AmmoTypeSO _ammoType;
         private int _ammoToAdd;
 
-        public TakeAmmoCommand(AmmoController ammo, BulletTypeSO bulletType, int ammoToAdd)
+        public TakeAmmoCommand(AmmoController ammo, AmmoTypeSO ammoType, int ammoToAdd)
         {
             _ammo = ammo;
-            _bulletType = bulletType;
+            _ammoType = ammoType;
             _ammoToAdd = ammoToAdd;
         }
 
         public void Do()
         {
-            _ammo.AddAmmo(_bulletType, _ammoToAdd);
+            int currentAmmo = _ammo.GetAmmo(_ammoType);
+            int newTotalAmmo = _ammoToAdd + currentAmmo;
+            if (newTotalAmmo > _ammoType.MaxAmmo)
+            { 
+                int temp = newTotalAmmo - _ammoType.MaxAmmo;
+                _ammoToAdd -= temp;
+            }
+            _ammo.AddAmmo(_ammoType, _ammoToAdd);
         }
     }
 }
