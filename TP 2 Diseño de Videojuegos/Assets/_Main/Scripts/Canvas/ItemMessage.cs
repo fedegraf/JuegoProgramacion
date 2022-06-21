@@ -7,13 +7,14 @@ namespace Items
 {
     public class ItemMessage : MonoBehaviour
     {
-        [SerializeField] private string _nearMessage;
+        [SerializeField] private string nearMessage;
+        [SerializeField] private string awayMessage;
         [SerializeField] private TextMesh text;
-        private string awayMessage;
 
         private void Awake()
         {
-            awayMessage = GetComponent<IItem>().Data.ItemName;
+            if(awayMessage == "")
+                awayMessage = GetComponent<IItem>().Data.ItemName;
         }
 
         private void Start()
@@ -29,7 +30,7 @@ namespace Items
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
-                ChangeMessage(_nearMessage);
+                ChangeMessage(nearMessage);
         }
 
         private void OnTriggerExit(Collider other)

@@ -19,6 +19,7 @@ namespace Weapons
 
         public Weapon CurrentWeapon { get; private set; }
         public AmmoController Ammo { get; private set; }
+        public List<Weapon> WeaponsList => _weaponsList;
         public bool CanShoot { get; private set;}
         public bool IsShooting => _currentShootCD > 0;
         public bool IsReloading => _currentReloadCD > 0;
@@ -67,13 +68,13 @@ namespace Weapons
 
         private void SetWeaponsList()
         {
+            if (weaponsType.Length < 1) return;
+
             for (int i = 0; i < weaponsType.Length; i++)
             {
                 var newWeapon = new Weapon(weaponsType[i],i);
-                _weaponsList.Add(newWeapon);
+                AddWeapon(newWeapon);
             }
-
-            SetWeapon(0);
         }
 
         private void SetWeapon(int index)
@@ -82,14 +83,26 @@ namespace Weapons
             if (CurrentWeapon == null) return;
 
             var weaponSMR = weaponGO.GetComponent<SkinnedMeshRenderer>();
+            if (!weaponSMR) return; 
             weaponSMR.sharedMesh = CurrentWeapon.Data.Mesh;
 
             UpdateAmmoHud();
             UpdateWeaponHud();
         }
 
-        private void UpdateAmmoHud() => NotifyAll("AMMOUPDATE", CurrentWeapon.AmmoInMag, Ammo.GetAmmo(CurrentWeapon.Data.AmmoType));
-        private void UpdateWeaponHud() => NotifyAll("WEAPONUPDATE", CurrentWeapon.Data.WeaponName);
+        private void UpdateAmmoHud()
+        {
+            if (CurrentWeapon == null) return;
+
+            NotifyAll("AMMOUPDATE", CurrentWeapon.AmmoInMag, Ammo.GetAmmo(CurrentWeapon.Data.AmmoType));
+        }
+
+        private void UpdateWeaponHud()
+        {
+            if (CurrentWeapon == null) return;
+
+            NotifyAll("WEAPONUPDATE", CurrentWeapon.Data.WeaponName);
+        }
 
         private void ResetShootCoolDown() => _currentShootCD = CurrentWeapon.Data.Cadence;
         private void ResetReloadCoolDown() => _currentReloadCD = CurrentWeapon.Data.ReloadTime;
@@ -109,8 +122,17 @@ namespace Weapons
             CanShoot = enable;
         }
 
+        public void AddWeapon(Weapon newWeapon)
+        {
+            _weaponsList.Add(newWeapon);
+            if (_weaponsList.Count == 1)
+                SetWeapon(0);
+        }
+
         public void DoShoot()
         {
+            if (CurrentWeapon == null) return;
+
             if (CurrentWeapon.AmmoInMag == 0)
             {
                 DoReload();
@@ -126,6 +148,8 @@ namespace Weapons
 
         public void DoReload()
         {
+            if (CurrentWeapon == null) return;
+
             if (CurrentWeapon.AmmoInMag == CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting || !Ammo.CanReload(CurrentWeapon)) return;
 
             Ammo.Reload(CurrentWeapon);
@@ -136,6 +160,8 @@ namespace Weapons
 
         public void DoCycleWeapons()
         {
+            if (CurrentWeapon == null) return;
+
             int currentIndex = CurrentWeapon.Index;
             currentIndex++;
 
