@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Medikit
   m_EditorClassIdentifier: 
   scale: {x: 0.5, y: 0.5, z: 0.5}
-  material: {fileID: 2100000, guid: c4dc2a5c985374d42aa8ac2eed5c0b00, type: 2}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 2100000, guid: e47e8f0bb92aaff4c93eedb0398a1c96, type: 2}
+  mesh: {fileID: -2842683310417224088, guid: 69de5cf452d7f1643814adf0febb69f0, type: 3}
   interactionRadius: 1.5

@@ -12,6 +12,7 @@ namespace Items
 
         public Weapons.AmmoTypeSO BulletType => ammoType;
 
+
         public string Interact(GameObject user)
         {
             if (!user.TryGetComponent<Weapons.WeaponController>(out var weapon)) return "You can't get ammo";

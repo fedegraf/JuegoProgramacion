@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8520181766003344822
+--- !u!1 &6277293850916013206
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,79 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8520181766003344812}
-  - component: {fileID: 7025888514931953535}
-  - component: {fileID: 8514475844944295050}
-  - component: {fileID: 8520181766003344818}
-  - component: {fileID: 8520181766003344817}
-  - component: {fileID: 8520181766003344816}
-  - component: {fileID: 8520181766003344823}
+  - component: {fileID: 7312683807464143106}
+  - component: {fileID: 498859130968578691}
+  - component: {fileID: 3850224548025696213}
   m_Layer: 16
-  m_Name: Medikit
-  m_TagString: Item
+  m_Name: Mesh
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8520181766003344812
+--- !u!4 &7312683807464143106
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520181766003344822}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.78, y: -4.0205207, z: 10.545673}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_Children:
-  - {fileID: 3764198408568536665}
-  m_Father: {fileID: 0}
+  m_GameObject: {fileID: 6277293850916013206}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_Children: []
+  m_Father: {fileID: 8520181766003344812}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7025888514931953535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520181766003344822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2cfaf26ce026d94a999fd93ca149f9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: e3404f7870f6413419637625555101cb, type: 2}
-  healAmmount: 50
---- !u!114 &8514475844944295050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520181766003344822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eb3625c90fb6214188ffb76afecf774, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nearMessage: Press E To Heal
-  awayMessage: 
-  text: {fileID: 1614627460229290044}
---- !u!33 &8520181766003344818
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!33 &498859130968578691
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520181766003344822}
+  m_GameObject: {fileID: 6277293850916013206}
   m_Mesh: {fileID: -2842683310417224088, guid: 69de5cf452d7f1643814adf0febb69f0, type: 3}
---- !u!23 &8520181766003344817
+--- !u!23 &3850224548025696213
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520181766003344822}
+  m_GameObject: {fileID: 6277293850916013206}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -115,6 +81,71 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8520181766003344822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8520181766003344812}
+  - component: {fileID: 7025888514931953535}
+  - component: {fileID: 8514475844944295050}
+  - component: {fileID: 8520181766003344816}
+  - component: {fileID: 8520181766003344823}
+  m_Layer: 16
+  m_Name: Medikit
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8520181766003344812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520181766003344822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7312683807464143106}
+  - {fileID: 3764198408568536665}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7025888514931953535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520181766003344822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2cfaf26ce026d94a999fd93ca149f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: e3404f7870f6413419637625555101cb, type: 2}
+  healAmmount: 50
+--- !u!114 &8514475844944295050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520181766003344822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb3625c90fb6214188ffb76afecf774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nearMessage: Press E To Heal
+  awayMessage: 
+  text: {fileID: 1614627460229290044}
 --- !u!65 &8520181766003344816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -172,7 +203,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8520181766003344812}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6748046055685500060
 MonoBehaviour:

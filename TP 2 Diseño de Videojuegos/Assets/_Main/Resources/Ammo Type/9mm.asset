@@ -17,3 +17,4 @@ MonoBehaviour:
   lifeTime: 3
   maxAmmo: 40
   isThrowable: 0
+  mesh: {fileID: -7745756782809674522, guid: faf35e45031de1744b38f392782c3d72, type: 3}

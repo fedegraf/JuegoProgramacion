@@ -11,6 +11,8 @@ namespace Items
 
         public Weapons.WeaponTypeSO WeaponType => weaponType;
 
+
+
         public string Interact(GameObject user)
         {
             if (!user.TryGetComponent<Weapons.WeaponController>(out var wpnController)) return "Can't equip this weapon";

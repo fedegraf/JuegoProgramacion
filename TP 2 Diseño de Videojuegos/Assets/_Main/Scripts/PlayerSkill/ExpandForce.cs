@@ -67,7 +67,10 @@ namespace Skills
 
             for (int i = 0; i < _enemiesIn.Count; i++)
             {
-                if (_enemiesIn[i] == null) return;
+                if (_enemiesIn[i] == null)
+                {
+                    _enemiesIn.RemoveAt(i);
+                }
 
                 var body = _enemiesIn[i].Enemy.GetComponent<Rigidbody>();               
                 UseForce(body);
