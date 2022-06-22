@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Damagable : MonoBehaviour, IDamagable, IObservable
 {
+    [SerializeField] private bool isVulnerable = true;
     public float MaxHealth => _maxHealth;
     public float CurrentHealth => _currentHealth;
     public bool IsAlive => _isAlive;
     public List<IObserver> Subscribers => _subscribers;
+
+    public bool IsVulnearble => isVulnerable;
 
     private List<IObserver> _subscribers = new List<IObserver>();
     private float _currentHealth; 
@@ -31,8 +34,8 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
     }
 
     public void TakeDamage(float damage)
-    {
-        if (!IsAlive) return;
+    {   
+        if (!IsAlive || !IsVulnearble) return;
 
         _currentHealth -= damage;
         if (_currentHealth < 0) _currentHealth = 0;
@@ -49,6 +52,10 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
         _currentHealth += heal;
         if (_currentHealth > MaxHealth) _currentHealth = MaxHealth;
         NotifyAll("TAKE_DAMAGE");
+    }
+    public void SetVulnerable(bool vulnerable)
+    {
+        isVulnerable = vulnerable;
     }
 
     public void Suscribe(IObserver observer)

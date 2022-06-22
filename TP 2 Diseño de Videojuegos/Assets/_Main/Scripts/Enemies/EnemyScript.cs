@@ -10,6 +10,11 @@ public class EnemyScript : MonoBehaviour, IEnemy
     public Character Character { get; private set; }
     public TakeDamageCommand PlayerDamageCommand { get; private set; }
 
+    public bool IsAttacking { get; private set; }
+
+    public bool IsMoving { get; private set; }
+    public bool IsFollowingPlayer { get; private set; }
+
     [SerializeField] private float damage;
 
     private void Awake()
@@ -40,6 +45,21 @@ public class EnemyScript : MonoBehaviour, IEnemy
     public void DoAttack()
     {
         PlayerDamageCommand.Do();
+    }
+
+    public void SetIsAttacking(bool isAttacking)
+    {
+        IsAttacking = isAttacking;
+    }
+
+    public void SetIsMoving(bool isMoving)
+    {
+        IsMoving = isMoving;
+    }
+
+    public void SetIsFollowing(bool isFollowingPlayer)
+    {
+        IsFollowingPlayer = isFollowingPlayer;
     }
 }
 

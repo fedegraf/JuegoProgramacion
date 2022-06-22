@@ -9,7 +9,9 @@ namespace Skills
         [SerializeField] private float force;
         [SerializeField] private float forceRedius;
         [SerializeField] private float maxCoolDown;
-        [SerializeField] private SphereCollider sphreCollider; 
+        [SerializeField] private int damage;
+        [SerializeField] private SphereCollider sphreCollider;
+        [SerializeField] private bool isInfinite;
         private bool _canUseSkill => CurrentCoolDown >= maxCoolDown;
         private List<IObserver> _subscribers = new List<IObserver>();
         private List<IEnemy> _enemiesIn = new List<IEnemy>();
@@ -25,6 +27,7 @@ namespace Skills
             sphreCollider.isTrigger = true;
             sphreCollider.radius = forceRedius;
             ResetSkillCoolDown();
+            CurrentCoolDown = maxCoolDown;
         }
 
         private void Update()
@@ -38,8 +41,13 @@ namespace Skills
 
         private void UseForce(Rigidbody body)
         {
-            body.AddForce(-body.transform.forward * force, ForceMode.Impulse);
+            body.AddForce(-body.transform.forward * force, ForceMode.VelocityChange);
             ResetSkillCoolDown();
+        }
+
+        private void DamageBody(Rigidbody body)
+        {
+            body.GetComponent<IDamagable>().TakeDamage(damage);
         }
 
         private void ResetSkillCoolDown()
@@ -49,12 +57,16 @@ namespace Skills
 
         public void UseSkill()
         {
-            if (!CanUseSkill && _enemiesIn.Count > 0) return;
+            if (!isInfinite)
+            {
+                if (!CanUseSkill && _enemiesIn.Count > 0) return;
+            }           
 
             for (int i = 0; i < _enemiesIn.Count; i++)
             {
                 var body = _enemiesIn[i].Enemy.GetComponent<Rigidbody>();
                 UseForce(body);
+                DamageBody(body);
             }
         }
 
@@ -87,8 +99,6 @@ namespace Skills
             if (enemy == null) return;
 
             _enemiesIn.Add(enemy);
-
-            Debug.Log($"Enemies In: {_enemiesIn.Count}");
         }
 
         private void OnTriggerExit(Collider other)
@@ -98,8 +108,6 @@ namespace Skills
             if (enemy == null) return;
 
             _enemiesIn.Remove(enemy);
-
-            Debug.Log($"Enemies In: {_enemiesIn.Count}");
         }
 
         private void OnDrawGizmosSelected()
