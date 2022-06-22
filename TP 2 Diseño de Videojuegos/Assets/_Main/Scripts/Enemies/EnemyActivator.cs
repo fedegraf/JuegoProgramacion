@@ -9,6 +9,7 @@ namespace Enemies
         private List<IEnemy> _enemiesToActivate = new List<IEnemy>();
         private bool _isUsed;
 
+
         private void Awake()
         {
             SetChildrenInList();

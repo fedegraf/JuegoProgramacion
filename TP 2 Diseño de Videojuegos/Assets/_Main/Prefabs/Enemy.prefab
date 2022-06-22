@@ -431,11 +431,11 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
-  walkPointRange: 14.51
+  walkPointRange: 20
   damage: 25
   timeBetweenAttacks: 1.5
-  sightRange: 7
-  attackRange: 1.1
+  sightRange: 10
+  attackRange: 1.5
 --- !u!114 &502425258
 MonoBehaviour:
   m_ObjectHideFlags: 0

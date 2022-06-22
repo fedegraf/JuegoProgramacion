@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: a13d816714663cb4ea73c6b478e27427, type: 2}
   ammoAmmount: 25
-  bulletType: {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
+  ammoType: {fileID: 0}
 --- !u!114 &4818959018214347425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +278,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4824722125950247837}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

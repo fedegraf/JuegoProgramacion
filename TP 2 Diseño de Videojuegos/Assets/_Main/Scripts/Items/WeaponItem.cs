@@ -11,14 +11,19 @@ namespace Items
 
         public Weapons.WeaponTypeSO WeaponType => weaponType;
 
-        public bool Interact(GameObject user)
+        public string Interact(GameObject user)
         {
-            if (!user.TryGetComponent<Weapons.WeaponController>(out var wpnController)) return false;
+            if (!user.TryGetComponent<Weapons.WeaponController>(out var wpnController)) return "Can't equip this weapon";
 
             _command = new Weapons.AddWeaponCommand(wpnController, weaponType);
             _command.Do();
             gameObject.SetActive(false);
-            return true;
+
+            if(wpnController.WeaponsList.Count <= 1)
+                return $"You got a {weaponType.WeaponName}!";
+            else
+                return $"You got a {weaponType.WeaponName}! Use Q to cycle weapons";
+
         }
     }
 }

@@ -94,7 +94,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3893812250815627456}
-  m_Text: AmmoBox
+  m_Text: Weapon Box
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -171,7 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb3625c90fb6214188ffb76afecf774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nearMessage: Press E To Take Weapon
+  nearMessage: Use E To Get Weapon
+  awayMessage: New Weapon
   text: {fileID: 6743890601568072844}
 --- !u!33 &4450286469132740866
 MeshFilter:
@@ -230,7 +231,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4450286469132740870}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

@@ -267,6 +267,12 @@ namespace Weapons
                 return 0;
         }
 
+        public bool CanGetAmmo(Weapon weapon)
+        { 
+            int currentAmmo = GetAmmo(weapon.Data.AmmoType);
+            return currentAmmo <= weapon.Data.AmmoType.MaxAmmo;
+        }
+
         public bool CanReload(Weapon weapon)
         {
             int currentAmmo = GetAmmo(weapon.Data.AmmoType);

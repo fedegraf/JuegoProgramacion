@@ -9,21 +9,25 @@ namespace Items
         [SerializeField] private int healAmmount;
         private TakeHealCommand _command;
 
-        public bool Interact(GameObject user)
+        public string Interact(GameObject user)
         {
-            if (!user.TryGetComponent<IDamagable>(out var damagable)) return false;
+            if (!user.TryGetComponent<IDamagable>(out var damagable)) return "You can't heal right now";
 
             if (damagable.CurrentHealth >= damagable.MaxHealth)
             {
-                Debug.Log("You have max health");
-                return false;
+                return "You Have Max Health";
             }
 
 
             _command = new TakeHealCommand(damagable, healAmmount);
             _command.Do();
             gameObject.SetActive(false);
-            return true;
+            return $"You healed {healAmmount} PS";
+        }
+
+        public void SetHealAmmount(int heal)
+        {
+            healAmmount = heal;
         }
     }
 }

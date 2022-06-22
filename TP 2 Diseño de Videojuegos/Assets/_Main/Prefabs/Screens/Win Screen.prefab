@@ -484,7 +484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3204818595867405353}
-  - component: {fileID: 6598031722400934306}
+  - component: {fileID: 7603403888677418055}
   - component: {fileID: 7025616367164083601}
   - component: {fileID: 9171252118600876336}
   - component: {fileID: 5398515687974821315}
@@ -517,7 +517,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6598031722400934306
+--- !u!114 &7603403888677418055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -526,10 +526,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6481007890787446256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e6137820d017047ac561abde2e1b6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 707e354aa40e5c94d8ee3e70225bdf13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playAgainButton: {fileID: 0}
   mainMenuButton: {fileID: 8592562655140511147}
   quitButton: {fileID: 491291758091551066}
 --- !u!223 &7025616367164083601

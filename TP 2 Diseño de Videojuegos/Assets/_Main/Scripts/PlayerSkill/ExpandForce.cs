@@ -11,7 +11,8 @@ namespace Skills
         [SerializeField] private float maxCoolDown;
         [SerializeField] private int damage;
         [SerializeField] private SphereCollider sphreCollider;
-        [SerializeField] private bool isInfinite;
+        [SerializeField] private string cantUseMessage;
+        [SerializeField] private string useMessage;
         private bool _canUseSkill => CurrentCoolDown >= maxCoolDown;
         private List<IObserver> _subscribers = new List<IObserver>();
         private List<IEnemy> _enemiesIn = new List<IEnemy>();
@@ -57,17 +58,23 @@ namespace Skills
 
         public void UseSkill()
         {
-            if (!isInfinite)
+            if (!CanUseSkill || _enemiesIn.Count < 1)
             {
-                if (!CanUseSkill && _enemiesIn.Count > 0) return;
-            }           
+                NotifyAll("MESSAGE", cantUseMessage);
+                return;
+            }
+
 
             for (int i = 0; i < _enemiesIn.Count; i++)
             {
-                var body = _enemiesIn[i].Enemy.GetComponent<Rigidbody>();
+                if (_enemiesIn[i] == null) return;
+
+                var body = _enemiesIn[i].Enemy.GetComponent<Rigidbody>();               
                 UseForce(body);
-                DamageBody(body);
+                DamageBody(body);               
             }
+
+            NotifyAll("MESSAGE", useMessage);
         }
 
         public void Suscribe(IObserver observer)
