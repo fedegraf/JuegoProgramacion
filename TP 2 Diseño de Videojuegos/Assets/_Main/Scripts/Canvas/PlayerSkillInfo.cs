@@ -28,9 +28,11 @@ namespace Skills
 
         private void UpdateBar()
         {
-            if (_expandForce.CanUseSkill) skillBar.color = readyColor;
-            else skillBar.color = loadingColor;
             skillBar.fillAmount = _expandForce.CurrentCoolDown / _expandForce.MaxCoolDown;
+            if (skillBar.fillAmount == 1)
+                skillBar.color = readyColor;
+            else
+                skillBar.color = loadingColor;
         }
     }
 

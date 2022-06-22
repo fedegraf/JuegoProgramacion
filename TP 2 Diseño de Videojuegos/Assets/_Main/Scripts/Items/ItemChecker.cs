@@ -37,8 +37,7 @@ namespace Items
         private void OnTriggerEnter(Collider other)
         {
             if (!other.TryGetComponent<IItemPickUp>(out var itemPickUp))
-            {
-                
+            {               
                 return;
             }
 

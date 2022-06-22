@@ -8,6 +8,7 @@ public class CanvasController : MonoBehaviour
     [SerializeField] private GameObject hudCanvas;
     [SerializeField] private GameObject pauseMenuCanvas;
     [SerializeField] private GameObject deadMenuCanvas;
+    [SerializeField] private GameObject winMenuCanvas;
 
     private GameObject _currentActiveCanvas;
 
@@ -23,6 +24,7 @@ public class CanvasController : MonoBehaviour
         GameManager.Instance.OnGamePaused += OnGamePausedHandler;
         GameManager.Instance.OnGamePlaying += OnGamePlayingHandler;
         GameManager.Instance.OnDead += OnDeadHandler;
+        GameManager.Instance.OnWin += OnWinHandler;
     }
 
     private void SetCanvas(GameObject newCanvas)
@@ -47,6 +49,11 @@ public class CanvasController : MonoBehaviour
     private void OnDeadHandler()
     {
         SetCanvas(deadMenuCanvas);
+    }
+
+    private void OnWinHandler()
+    {
+        SetCanvas(winMenuCanvas);
     }
 
     private void OnDestroy()

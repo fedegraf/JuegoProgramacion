@@ -21,10 +21,9 @@ namespace Weapons
             transform.position += transform.forward * finalSpeed;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            var wall = other.gameObject;
-            if (wall.layer == LayerMask.NameToLayer("Wall"))
+            if (collision.gameObject.CompareTag("Wall"))
                 DestroyBullet();
         }
     }
