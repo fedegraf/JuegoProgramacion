@@ -101,18 +101,18 @@ public class EnemyIA : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         //Walking Range
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, walkPointRange);
 
         //Sight Range
-        Gizmos.color = playerInSightRange ? Color.green : Color.red;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, sightRange);
 
         //Attack Range
-        Gizmos.color = playerInAttackRange ? Color.green : Color.red;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

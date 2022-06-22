@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb36cbd9df24b144e8652c754c8186df, type: 3}
   m_Name: Rifle
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 45
   damage: 25
   lifeTime: 5
   maxAmmo: 90
+  isThrowable: 0

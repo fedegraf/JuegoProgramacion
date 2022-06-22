@@ -160,7 +160,7 @@ namespace Weapons
 
         public void DoCycleWeapons()
         {
-            if (CurrentWeapon == null) return;
+            if (CurrentWeapon == null || IsReloading) return;
 
             int currentIndex = CurrentWeapon.Index;
             currentIndex++;

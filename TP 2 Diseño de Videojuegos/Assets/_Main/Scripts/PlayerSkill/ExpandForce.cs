@@ -9,11 +9,10 @@ namespace Skills
         [SerializeField] private float force;
         [SerializeField] private float forceRedius;
         [SerializeField] private float maxCoolDown;
-        private SphereCollider _sphreCollider;
-        private bool _canUseSkill => CurrentCoolDown == maxCoolDown;
-        private bool _useSkillTrigger;
+        [SerializeField] private SphereCollider sphreCollider; 
+        private bool _canUseSkill => CurrentCoolDown >= maxCoolDown;
         private List<IObserver> _subscribers = new List<IObserver>();
-
+        private List<IEnemy> _enemiesIn = new List<IEnemy>();
 
         public bool CanUseSkill => _canUseSkill;
         public float CurrentCoolDown { get; private set; }
@@ -23,8 +22,8 @@ namespace Skills
 
         private void Awake()
         {
-            _sphreCollider = GetComponent<SphereCollider>();
-            _sphreCollider.radius = forceRedius;
+            sphreCollider.isTrigger = true;
+            sphreCollider.radius = forceRedius;
             ResetSkillCoolDown();
         }
 
@@ -34,14 +33,13 @@ namespace Skills
             {
                 CurrentCoolDown += Time.deltaTime;
                 NotifyAll("SKILL_UPDATED");
-            }               
+            }
         }
 
         private void UseForce(Rigidbody body)
         {
             body.AddForce(-body.transform.forward * force, ForceMode.Impulse);
-            Debug.Log("Used Force");
-            _useSkillTrigger = false;
+            ResetSkillCoolDown();
         }
 
         private void ResetSkillCoolDown()
@@ -51,10 +49,13 @@ namespace Skills
 
         public void UseSkill()
         {
-            if (CanUseSkill) return;
+            if (!CanUseSkill && _enemiesIn.Count > 0) return;
 
-            _useSkillTrigger = true;
-            ResetSkillCoolDown();
+            for (int i = 0; i < _enemiesIn.Count; i++)
+            {
+                var body = _enemiesIn[i].Enemy.GetComponent<Rigidbody>();
+                UseForce(body);
+            }
         }
 
         public void Suscribe(IObserver observer)
@@ -81,14 +82,24 @@ namespace Skills
 
         private void OnTriggerEnter(Collider other)
         {
-            var enemy = other.gameObject.GetComponent<IEnemy>();
-            var enemyBody = other.gameObject.GetComponent<Rigidbody>();
+            var enemy = other.GetComponent<IEnemy>();
 
-            if (enemy != null && enemyBody != null)
-            {
-                if(_useSkillTrigger)
-                    UseForce(enemyBody);
-            }
+            if (enemy == null) return;
+
+            _enemiesIn.Add(enemy);
+
+            Debug.Log($"Enemies In: {_enemiesIn.Count}");
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            var enemy = other.GetComponent<IEnemy>();
+
+            if (enemy == null) return;
+
+            _enemiesIn.Remove(enemy);
+
+            Debug.Log($"Enemies In: {_enemiesIn.Count}");
         }
 
         private void OnDrawGizmosSelected()
