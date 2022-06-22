@@ -8,6 +8,7 @@ public class EnemyIA : MonoBehaviour
     private NavMeshAgent _agent;
     private GameObject _player;
     private IEnemy _enemy;
+    private Animator _animator;
 
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
 
@@ -30,6 +31,7 @@ public class EnemyIA : MonoBehaviour
         _player = GameObject.Find("Player");
         _agent = GetComponent<NavMeshAgent>();
         _enemy = GetComponent<IEnemy>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -43,7 +45,12 @@ public class EnemyIA : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!_enemy.CanMove) return;
+        if (!_enemy.CanMove)
+        {
+            _animator.SetBool("isWalking", false);
+            _animator.SetBool("isChasing", false);
+            return;
+        }
 
         if (!playerInSightRange && !playerInAttackRange) Patrolling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
@@ -59,6 +66,8 @@ public class EnemyIA : MonoBehaviour
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
+        _animator.SetBool("isWalking", true);
+        
         if (distanceToWalkPoint.magnitude < 1f)
             _walkPointSet = false;
 
@@ -78,6 +87,7 @@ public class EnemyIA : MonoBehaviour
 
     private void ChasePlayer()
     {
+        _animator.SetBool("isChasing", true);
         _agent.SetDestination(_player.transform.position);
     }
 
@@ -89,6 +99,7 @@ public class EnemyIA : MonoBehaviour
 
         if (!alreadyAttacked)
         {
+            _animator.SetTrigger("Attack");
             _enemy.DoAttack();
 
             alreadyAttacked = true;
