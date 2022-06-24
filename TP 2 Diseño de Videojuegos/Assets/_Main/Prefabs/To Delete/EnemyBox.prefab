@@ -46,6 +46,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4146553161992441829}
+  - component: {fileID: 5936975574857332764}
   - component: {fileID: 4146553161992441828}
   m_Layer: 0
   m_Name: Batch3
@@ -71,6 +72,18 @@ Transform:
   m_Father: {fileID: 4146553161383333393}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5936975574857332764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146553161992441830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876002f3dd0fca343aa77a9e8fc271c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &4146553161992441828
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93,6 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4146553162185982579}
+  - component: {fileID: 114963755354586266}
   - component: {fileID: 4146553162185982578}
   m_Layer: 0
   m_Name: Batch5
@@ -118,6 +132,18 @@ Transform:
   m_Father: {fileID: 4146553161383333393}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114963755354586266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146553162185982580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876002f3dd0fca343aa77a9e8fc271c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &4146553162185982578
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -260,6 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4146553162794180338}
+  - component: {fileID: 2094461475663711890}
   - component: {fileID: 4146553162794180337}
   m_Layer: 0
   m_Name: Batch6
@@ -285,6 +312,18 @@ Transform:
   m_Father: {fileID: 4146553161383333393}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2094461475663711890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146553162794180339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876002f3dd0fca343aa77a9e8fc271c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &4146553162794180337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -307,6 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4146553162965864791}
+  - component: {fileID: 8469576394655008232}
   - component: {fileID: 4146553162965864790}
   m_Layer: 0
   m_Name: Batch4
@@ -335,6 +375,18 @@ Transform:
   m_Father: {fileID: 4146553161383333393}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8469576394655008232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146553162965864792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876002f3dd0fca343aa77a9e8fc271c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &4146553162965864790
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -357,6 +409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4146553162976295594}
+  - component: {fileID: 4503855728654828298}
   - component: {fileID: 4146553162976295593}
   m_Layer: 0
   m_Name: Batch7
@@ -384,6 +437,18 @@ Transform:
   m_Father: {fileID: 4146553161383333393}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4503855728654828298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146553162976295595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876002f3dd0fca343aa77a9e8fc271c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &4146553162976295593
 BoxCollider:
   m_ObjectHideFlags: 0

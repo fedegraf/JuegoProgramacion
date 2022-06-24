@@ -14,13 +14,11 @@ public class DeadMenu : MonoBehaviour
         playAgainButton.onClick.AddListener(PlayAgainButtonOnClickHandler);
         mainMenuButton.onClick.AddListener(MainMenuButtonOnClickHandler);
         quitButton.onClick.AddListener(QuitButtonOnClickHandler);
-
-        playAgainButton.gameObject.SetActive(false);
     }
 
     private void PlayAgainButtonOnClickHandler()
     {
-        GameManager.Instance.SetState(GameManager.GameStates.Playing);
+        GameManager.Instance.ReloadScene();
     }
 
     private void MainMenuButtonOnClickHandler()

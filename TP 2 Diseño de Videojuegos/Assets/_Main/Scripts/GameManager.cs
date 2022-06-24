@@ -116,13 +116,19 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
-
     }
 
     private void StateGameWon()
     {
         GamePaused();
         OnWin?.Invoke();
+    }
+
+    public void ReloadScene()
+    {
+        SetState(GameStates.Playing);
+        var currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     public void QuitGame()

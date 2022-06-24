@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Damagable : MonoBehaviour, IDamagable, IObservable
 {
@@ -19,6 +20,9 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
     private DieCommand dieCommand;
 
     [SerializeField] private int _maxHealth;
+
+    public UnityAction OnDie;
+
     private void Awake()
     {
         _isAlive = true;
@@ -29,8 +33,7 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
     public void Die()
     {
         _isAlive = false;
-        Destroy(gameObject);
-        Debug.Log($"{gameObject.name} Dead");
+        OnDie?.Invoke();
     }
 
     public void TakeDamage(float damage)

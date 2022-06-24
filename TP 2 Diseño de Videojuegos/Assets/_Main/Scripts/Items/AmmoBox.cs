@@ -17,7 +17,7 @@ namespace Items
         {
             if (!user.TryGetComponent<Weapons.WeaponController>(out var weapon)) return "You can't get ammo";
 
-            if (weapon.Ammo.CanGetAmmo(weapon.CurrentWeapon)) return "You've reached max ammount for this ammo";
+            if (weapon.Ammo.IsAmmoFull(weapon.CurrentWeapon)) return "You've reached max ammount for this ammo";
 
             _command = new Weapons.TakeAmmoCommand(weapon.Ammo, ammoType, ammoAmmount);
             _command.Do();

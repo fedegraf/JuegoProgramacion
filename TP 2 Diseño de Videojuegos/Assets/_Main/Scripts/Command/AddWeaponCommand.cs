@@ -17,7 +17,7 @@ namespace Weapons
 
         public void Do()
         {
-            int weaponIndex = _wpnController.WeaponsList.Count + 1;
+            int weaponIndex = _wpnController.WeaponsList.Count;
             var newWeapon = new Weapon(_weaponToAdd, weaponIndex);
             _wpnController.AddWeapon(newWeapon);
         }

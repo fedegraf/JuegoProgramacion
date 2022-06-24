@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: 
   magazineSize: 30
-  cadence: 0.45
+  cadence: 0.35
   reloadTime: 1.5
   ammoType: {fileID: 11400000, guid: c0617010fcf802a488dc56c2b27240db, type: 2}
   mesh: {fileID: 4300010, guid: 860793eb3324391468f1c120a75ec049, type: 3}

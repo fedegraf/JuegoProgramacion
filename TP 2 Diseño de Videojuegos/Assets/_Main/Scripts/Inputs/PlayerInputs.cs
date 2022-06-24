@@ -73,8 +73,8 @@ public class PlayerInputs : MonoBehaviour
 
     private void Rotation()
     {
-        float x = Input.GetAxis(mouseXInput) * mouseSensivity * Time.deltaTime;
-        float Y = Input.GetAxis(mouseYInput) * mouseSensivity * Time.deltaTime;
+        float x = Input.GetAxis(mouseXInput) * mouseSensivity;
+        float Y = Input.GetAxis(mouseYInput) * mouseSensivity;
 
         Vector2 mouseInput = new Vector2(x, Y);
 

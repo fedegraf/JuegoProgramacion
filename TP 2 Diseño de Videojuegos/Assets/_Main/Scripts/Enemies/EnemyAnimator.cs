@@ -22,6 +22,7 @@ namespace Enemies
             {
                 Movements();
                 Attacking();
+                Death();
             }
         }
 
@@ -35,6 +36,13 @@ namespace Enemies
         {
             if (_enemy.IsAttacking)
                 _animator.SetTrigger("Attack");
+        }
+
+
+        private void Death()
+        {
+            if(_enemy.IsDead)
+            _animator.SetTrigger("Death");
         }
     }
 }

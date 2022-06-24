@@ -434,7 +434,7 @@ MonoBehaviour:
   walkPointRange: 20
   damage: 25
   timeBetweenAttacks: 1.5
-  sightRange: 10
+  sightRange: 25
   attackRange: 1.5
 --- !u!114 &502425258
 MonoBehaviour:

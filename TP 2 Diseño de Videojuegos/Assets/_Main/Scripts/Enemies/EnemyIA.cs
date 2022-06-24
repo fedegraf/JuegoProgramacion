@@ -40,6 +40,15 @@ public class EnemyIA : MonoBehaviour
 
     private void Update()
     {
+        if (_enemy.IsDead || _enemy.IsStuned)
+        {
+            playerInSightRange = false;
+            playerInAttackRange = false;
+            _walkPointSet = false;
+            _agent.SetDestination(transform.position);
+            return;
+        }
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 

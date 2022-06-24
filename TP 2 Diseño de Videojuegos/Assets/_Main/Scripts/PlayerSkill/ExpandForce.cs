@@ -58,7 +58,7 @@ namespace Skills
 
         public void UseSkill()
         {
-            if (!CanUseSkill || _enemiesIn.Count < 1)
+            if (!CanUseSkill || _enemiesIn.Count == 0)
             {
                 NotifyAll("MESSAGE", cantUseMessage);
                 return;
@@ -67,14 +67,13 @@ namespace Skills
 
             for (int i = 0; i < _enemiesIn.Count; i++)
             {
-                if (_enemiesIn[i] == null)
+                if (!_enemiesIn[i].IsDead)
                 {
-                    _enemiesIn.RemoveAt(i);
-                }
-
-                var body = _enemiesIn[i].Enemy.GetComponent<Rigidbody>();               
-                UseForce(body);
-                DamageBody(body);               
+                    var body = _enemiesIn[i].Enemy.GetComponent<Rigidbody>();
+                    body.GetComponent<IEnemy>().Stunt();
+                    UseForce(body);
+                    DamageBody(body);
+                }            
             }
 
             NotifyAll("MESSAGE", useMessage);
@@ -106,7 +105,7 @@ namespace Skills
         {
             var enemy = other.GetComponent<IEnemy>();
 
-            if (enemy == null) return;
+            if (enemy == null || enemy.IsDead) return;
 
             _enemiesIn.Add(enemy);
         }
@@ -115,7 +114,7 @@ namespace Skills
         {
             var enemy = other.GetComponent<IEnemy>();
 
-            if (enemy == null) return;
+            if (enemy == null || enemy.IsDead) return;
 
             _enemiesIn.Remove(enemy);
         }

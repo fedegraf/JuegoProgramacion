@@ -267,10 +267,10 @@ namespace Weapons
                 return 0;
         }
 
-        public bool CanGetAmmo(Weapon weapon)
+        public bool IsAmmoFull(Weapon weapon)
         { 
             int currentAmmo = GetAmmo(weapon.Data.AmmoType);
-            return currentAmmo <= weapon.Data.AmmoType.MaxAmmo;
+            return currentAmmo >= weapon.Data.AmmoType.MaxAmmo;
         }
 
         public bool CanReload(Weapon weapon)

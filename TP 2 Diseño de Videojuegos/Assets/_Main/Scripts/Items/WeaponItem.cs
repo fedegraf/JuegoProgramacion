@@ -20,12 +20,7 @@ namespace Items
             _command = new Weapons.AddWeaponCommand(wpnController, weaponType);
             _command.Do();
             gameObject.SetActive(false);
-
-            if(wpnController.WeaponsList.Count <= 1)
-                return $"You got a {weaponType.WeaponName}!";
-            else
-                return $"You got a {weaponType.WeaponName}! Use Q to cycle weapons";
-
+            return $"You got a {weaponType.WeaponName}!";
         }
     }
 }
