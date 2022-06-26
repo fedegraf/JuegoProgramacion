@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     public Weapons.WeaponController Weapon { get; private set; }
     public Items.ItemInteracter ItemInteracter { get; private set; }
     public Items.ItemLooter ItemLooter { get; private set; }
+    public Skills.ExpandForce ExpandForce { get; private set; }
 
     [SerializeField] private EntityTypeSO stats;
 
@@ -18,6 +19,7 @@ public class Character : MonoBehaviour
         Weapon = GetComponent<Weapons.WeaponController>();
         ItemInteracter = GetComponent<Items.ItemInteracter>();
         ItemLooter = GetComponent<Items.ItemLooter>();
+        ExpandForce = GetComponent<Skills.ExpandForce>();
 
 
         Movement.SetValues(Stats.WalkSpeed, Stats.RunSpeed, Stats.RotationSpeed);
@@ -71,6 +73,18 @@ public class Character : MonoBehaviour
         else return false;
     }
 
+    private bool IsExpandForceNull()
+    {
+        var isNull = ExpandForce == null;
+        if (isNull)
+        {
+            Debug.LogWarning("ExpandForce is Null");
+            return true;
+        }
+
+        else return false;
+    }
+
     public void DoWalking(Vector2 direction, bool isRunning)
     {
         if (IsMovementNull()) return;
@@ -118,5 +132,12 @@ public class Character : MonoBehaviour
         if (IsItemInteractorNull()) return;
 
         ItemInteracter.InteractWithItem();
+    }
+
+    public void DoSkill()
+    {
+        if (IsExpandForceNull()) return;
+
+        ExpandForce.UseSkill();
     }
 }

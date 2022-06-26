@@ -10,7 +10,8 @@ namespace Weapons
         [SerializeField] private float explosionForce;
         [SerializeField] private GameObject BlastFx;
         private Rigidbody _rb;
-        
+
+        private List<IDamagable> _damagablesInRange = new List<IDamagable>();
 
         private void Awake()
         {

@@ -8,11 +8,12 @@ namespace Items
     {
         [Header("Base Settings")]
         [SerializeField] private ItemTypeSO data;
-
+        //[SerializeField] private float rotationSpeed;
         public ItemTypeSO Data => data;
         public GameObject ItemObject => gameObject;
 
         private SphereCollider _sphrCollider;
+        private GameObject _mesh;
         private MeshFilter _meshFiltr;
         private MeshRenderer _meshRndr;
 
@@ -20,20 +21,24 @@ namespace Items
         {
             if (Data == null) return;
 
-            _sphrCollider = GetComponent<SphereCollider>();
-            _meshFiltr = GetComponent<MeshFilter>();
-            _meshRndr = GetComponent<MeshRenderer>();
+            _sphrCollider = GetComponent<SphereCollider>();;
+            _mesh = transform.GetChild(0).gameObject;
+            _meshFiltr = _mesh.GetComponent<MeshFilter>();
+            _meshRndr = _mesh.GetComponent<MeshRenderer>();
+        }
 
-
-            _sphrCollider.radius = Data.InteractionRadius;
-            _meshFiltr.mesh = Data.Mesh;
-            _meshRndr.material = Data.Material;
-            transform.localScale = Data.Scale;
+        private void Update()
+        {
+            
         }
 
         public void SetData(ItemTypeSO newData)
         {
             data = newData;
+            _sphrCollider.radius = Data.InteractionRadius;
+            _meshFiltr.mesh = Data.Mesh;
+            _meshRndr.material = Data.Material;
+            transform.localScale = Data.Scale;
         }
 
 

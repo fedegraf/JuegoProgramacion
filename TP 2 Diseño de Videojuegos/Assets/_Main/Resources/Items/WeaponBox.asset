@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WeaponBox
   m_EditorClassIdentifier: 
   scale: {x: 1, y: 1, z: 1}
-  material: {fileID: 2100000, guid: f90c5aaa72bf3f14da67bbf15c6f5827, type: 2}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 2100000, guid: e47e8f0bb92aaff4c93eedb0398a1c96, type: 2}
+  mesh: {fileID: -5793873684414432915, guid: 77fd3f23017f637479f20255333ee7b0, type: 3}
   interactionRadius: 1.5

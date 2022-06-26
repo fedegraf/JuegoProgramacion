@@ -6,6 +6,6 @@ namespace Items
 {
     public interface IInteractable
     {
-        public bool Interact(GameObject user);
+        public string Interact(GameObject user);
     }
 }

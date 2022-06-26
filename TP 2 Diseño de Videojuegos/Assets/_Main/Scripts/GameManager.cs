@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public UnityAction OnGamePaused;
     public UnityAction OnDead;
     public UnityAction OnMainMenu;
+    public UnityAction OnWin;
 
 
 
@@ -18,7 +19,8 @@ public class GameManager : MonoBehaviour
         Playing,
         Paused,
         Dead,
-        InitScreen
+        InitScreen,
+        Win
     }
 
     public GameStates CurrentState { get; private set; }
@@ -73,6 +75,9 @@ public class GameManager : MonoBehaviour
             case GameStates.InitScreen:
                 StateInitScreen();
                 break;
+            case GameStates.Win:
+                StateGameWon();
+                break;
         }
 
         CurrentState = newState;
@@ -111,7 +116,19 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
+    }
 
+    private void StateGameWon()
+    {
+        GamePaused();
+        OnWin?.Invoke();
+    }
+
+    public void ReloadScene()
+    {
+        SetState(GameStates.Playing);
+        var currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     public void QuitGame()

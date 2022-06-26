@@ -40,14 +40,42 @@ public class EnemyIA : MonoBehaviour
 
     private void Update()
     {
+        if (_enemy.IsDead || _enemy.IsStuned)
+        {
+            playerInSightRange = false;
+            playerInAttackRange = false;
+            _walkPointSet = false;
+            _agent.SetDestination(transform.position);
+            return;
+        }
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!_enemy.CanMove) return;
+        if (!playerInSightRange && !playerInAttackRange)
+        {
+            _enemy.SetIsMoving(true);
+            if (_enemy.IsFollowingPlayer) _enemy.SetIsFollowing(false);
 
-        if (!playerInSightRange && !playerInAttackRange) Patrolling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange) AttackPlayer();
+            Patrolling();
+        }
+        if (playerInSightRange && !playerInAttackRange)
+        {
+            _enemy.SetIsFollowing(true);
+            if (_enemy.IsAttacking) _enemy.SetIsAttacking(false);
+            ChasePlayer();
+        }
+        if (playerInAttackRange)
+        {
+            _enemy.SetIsAttacking(true);
+            if (_enemy.IsFollowingPlayer)
+            {
+                _enemy.SetIsFollowing(false);
+                _enemy.SetIsMoving(false);
+            }
+            
+            StartCoroutine(AttackPlayer());
+        }
     }
 
     private void Patrolling()
@@ -58,9 +86,11 @@ public class EnemyIA : MonoBehaviour
             _agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
+        
         if (distanceToWalkPoint.magnitude < 1f)
             _walkPointSet = false;
+
+        _enemy.SetIsMoving(true);
 
         //_enemy.Movement();
     }
@@ -81,8 +111,10 @@ public class EnemyIA : MonoBehaviour
         _agent.SetDestination(_player.transform.position);
     }
 
-    private void AttackPlayer()
+    private IEnumerator AttackPlayer()
     {
+        //wait for the animation begin
+        yield return new WaitForSeconds(0.5f);
         _agent.SetDestination(transform.position);
 
         transform.LookAt(_player.transform.position);
@@ -99,20 +131,21 @@ public class EnemyIA : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
+        _enemy.SetIsAttacking(false);
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         //Walking Range
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, walkPointRange);
 
         //Sight Range
-        Gizmos.color = playerInSightRange ? Color.green : Color.red;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, sightRange);
 
         //Attack Range
-        Gizmos.color = playerInAttackRange ? Color.green : Color.red;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

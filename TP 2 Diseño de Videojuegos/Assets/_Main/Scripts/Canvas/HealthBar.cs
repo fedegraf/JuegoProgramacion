@@ -16,7 +16,7 @@ public class HealthBar : MonoBehaviour, IObserver
     {
         _damagable = GetComponent<Damagable>();
         _damagable.Suscribe(this);
-
+        _damagable.OnDie += OnDeadHandler;
         SetHealthColors();
     }
 
@@ -24,7 +24,7 @@ public class HealthBar : MonoBehaviour, IObserver
     {
         if (message != "TAKE_DAMAGE") return;
 
-        _healthBar.fillAmount = (float)_damagable.CurrentHealth / 100;
+        _healthBar.fillAmount = (float)_damagable.CurrentHealth / _damagable.MaxHealth;
 
         SetHealthColors();
     }
@@ -39,5 +39,10 @@ public class HealthBar : MonoBehaviour, IObserver
     private void SetColor(Color newCOlor)
     {
         _healthBar.color = newCOlor;
+    }
+
+    private void OnDeadHandler()
+    {
+        _healthBar.gameObject.transform.parent.gameObject.SetActive(false);
     }
 }

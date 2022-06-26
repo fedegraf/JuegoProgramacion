@@ -33,6 +33,6 @@ public class Movement : MonoBehaviour
 
     public void Rotation(Vector2 inputRotation)
     {
-        transform.Rotate(Vector3.up, inputRotation.x * _rotationSpeed);
+        transform.Rotate(Vector3.up, inputRotation.x * (_rotationSpeed * Time.deltaTime));
     }
 }

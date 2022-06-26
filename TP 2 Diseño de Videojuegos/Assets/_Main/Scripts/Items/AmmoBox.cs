@@ -7,21 +7,28 @@ namespace Items
     public class AmmoBox : BaseItem, IInteractable
     {
         [SerializeField] private int ammoAmmount;
-        [SerializeField] private Weapons.AmmoTypeSO bulletType;
+        [SerializeField] private Weapons.AmmoTypeSO ammoType;
         private Weapons.TakeAmmoCommand _command;
 
-        public Weapons.AmmoTypeSO BulletType => bulletType;
+        public Weapons.AmmoTypeSO BulletType => ammoType;
 
-        public bool Interact(GameObject user)
+
+        public string Interact(GameObject user)
         {
-            if (!user.TryGetComponent<Weapons.WeaponController>(out var weapon)) return false;
+            if (!user.TryGetComponent<Weapons.WeaponController>(out var weapon)) return "You can't get ammo";
 
-            if (weapon.Ammo.CanReload(weapon.CurrentWeapon)) return false;
+            if (weapon.Ammo.IsAmmoFull(weapon.CurrentWeapon)) return "You've reached max ammount for this ammo";
 
-            _command = new Weapons.TakeAmmoCommand(weapon.Ammo, bulletType, ammoAmmount);
+            _command = new Weapons.TakeAmmoCommand(weapon.Ammo, ammoType, ammoAmmount);
             _command.Do();
             gameObject.SetActive(false);
-            return true;
+            return $"You got {ammoAmmount} {ammoType.BulletName} ammo";
+        }
+
+        public void SetValues(Weapons.AmmoTypeSO ammoToSet, int ammoAmmount)
+        {
+            ammoType = ammoToSet;
+            this.ammoAmmount = ammoAmmount;
         }
     }
 

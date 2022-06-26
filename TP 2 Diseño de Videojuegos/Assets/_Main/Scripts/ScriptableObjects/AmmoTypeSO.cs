@@ -12,6 +12,7 @@ namespace Weapons
         [SerializeField] private float lifeTime;
         [SerializeField] private int maxAmmo;
         [SerializeField] private bool isThrowable;
+        [SerializeField] private Mesh mesh;
 
         public string BulletName => name;
         public float Speed => speed;
@@ -19,5 +20,6 @@ namespace Weapons
         public float LifeTime => lifeTime;
         public int MaxAmmo => maxAmmo;
         public bool IsThrowable => isThrowable;
+        public Mesh Mesh => mesh;
     }
 }
