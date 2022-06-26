@@ -73,7 +73,8 @@ public class EnemyIA : MonoBehaviour
                 _enemy.SetIsFollowing(false);
                 _enemy.SetIsMoving(false);
             }
-            AttackPlayer();
+            
+            StartCoroutine(AttackPlayer());
         }
     }
 
@@ -110,8 +111,10 @@ public class EnemyIA : MonoBehaviour
         _agent.SetDestination(_player.transform.position);
     }
 
-    private void AttackPlayer()
+    private IEnumerator AttackPlayer()
     {
+        //wait for the animation begin
+        yield return new WaitForSeconds(0.5f);
         _agent.SetDestination(transform.position);
 
         transform.LookAt(_player.transform.position);
