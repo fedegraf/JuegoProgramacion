@@ -16,8 +16,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private string shootInput;
     [SerializeField] private string skillInput;
     [SerializeField] private string reloadInput;
-    [SerializeField] private string pickUpInput;
-    [SerializeField] private string itemInGroundUse;
+    [SerializeField] private string useItem;
     [SerializeField] private string cycleWeapons;
 
 
@@ -73,12 +72,22 @@ public class PlayerInputs : MonoBehaviour
 
     private void Rotation()
     {
-        float x = Input.GetAxis(mouseXInput) * mouseSensivity;
-        float Y = Input.GetAxis(mouseYInput) * mouseSensivity;
+        /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        Vector2 mouseInput = new Vector2(x, Y);
+        if (!Physics.Raycast(ray, out RaycastHit raycastHit)) return;
 
-        _character.DoRotation(mouseInput);
+        _character.DoRotation(raycastHit.point);
+
+        Debug.Log(raycastHit.point);*/
+
+        var positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
+        Vector3 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+
+        var direction = mouseOnScreen - positionOnScreen;
+
+        _character.DoRotation(direction);
+
+
     }
 
     private void Weapon()
@@ -90,8 +99,7 @@ public class PlayerInputs : MonoBehaviour
 
     private void Item()
     {
-        if (Input.GetButtonDown(pickUpInput)) _character.DoPickUp();
-        else if (Input.GetButtonDown(itemInGroundUse)) _character.DoItemUse();
+        if (Input.GetButtonDown(useItem)) _character.DoItemUse();
     }
 
     private void Skill()

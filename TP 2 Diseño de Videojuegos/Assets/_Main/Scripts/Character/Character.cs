@@ -120,18 +120,12 @@ public class Character : MonoBehaviour
         Weapon.DoCycleWeapons();
     }
 
-    public void DoPickUp()
-    {
-        if (IsItemLooterNull()) return;
-
-        ItemLooter.LootItem();
-    }
-
     public void DoItemUse()
     {
-        if (IsItemInteractorNull()) return;
+        if (IsItemInteractorNull() || IsItemLooterNull()) return;
 
         ItemInteracter.InteractWithItem();
+        ItemLooter.LootItem();
     }
 
     public void DoSkill()
