@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4429363396527040232}
   - component: {fileID: 2363010620379959002}
-  - component: {fileID: 2404339677492161379}
   - component: {fileID: 5222861132029692872}
   - component: {fileID: 7656251215987713964}
   - component: {fileID: 744227829332623501}
@@ -50,20 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 15
   explosionForce: 15
---- !u!114 &2404339677492161379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2918043198136433635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfad562125fd1334cb5826040baa8fe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 200
-  isDestroyable: 1
+  BlastFx: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56, type: 3}
 --- !u!33 &5222861132029692872
 MeshFilter:
   m_ObjectHideFlags: 0
