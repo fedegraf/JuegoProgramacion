@@ -11,12 +11,12 @@ namespace Skills
         [SerializeField] private Color loadingColor;
         [SerializeField] private Color readyColor;
 
-        private ExpandForce _expandForce;
+        private SkillController _skillController;
 
         private void Awake()
         {
-            _expandForce = GetComponent<ExpandForce>();
-            _expandForce.Suscribe(this);
+            _skillController = GetComponent<SkillController>();
+            _skillController?.Suscribe(this);
         }
 
         public void OnNotify(string message, params object[] args)
@@ -28,7 +28,7 @@ namespace Skills
 
         private void UpdateBar()
         {
-            skillBar.fillAmount = _expandForce.CurrentCoolDown / _expandForce.MaxCoolDown;
+            skillBar.fillAmount = _skillController.CurrentCoolDown / _skillController.MaxCoolDown;
             if (skillBar.fillAmount == 1)
                 skillBar.color = readyColor;
             else
