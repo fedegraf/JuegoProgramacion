@@ -8,6 +8,7 @@ namespace Weapons
     {
         [SerializeField] private float explosionRadius;
         [SerializeField] private float explosionForce;
+        [SerializeField] private GameObject BlastFx;
         private Rigidbody _rb;
 
         private List<IDamagable> _damagablesInRange = new List<IDamagable>();
@@ -38,19 +39,19 @@ namespace Weapons
 
         private void Explode()
         {
-            var newSphere = gameObject.AddComponent<SphereCollider>();
-            newSphere.isTrigger = true;
-            newSphere.radius = explosionRadius;
             Debug.Log("EXPLOSION");
+            Instantiate(BlastFx, transform.position, transform.rotation);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+            foreach (Collider nearbyObject in colliders)
+            {
+                if (nearbyObject.gameObject.tag == "Player")
+                {
+                    nearbyObject.GetComponent<IDamagable>().TakeDamage(ScriptableObjects.BlastDamage);
+                    nearbyObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce,
+                        transform.position, explosionRadius, 0.0f, ForceMode.Impulse);
+                }
+            }
             DestroyBullet();
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            var rigidBody = other.GetComponent<Rigidbody>();
-            if (!rigidBody) return;
-
-            rigidBody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
 
         private void OnDrawGizmos()

@@ -20,7 +20,7 @@ namespace Weapons
         {
             Data = newData;
             _currentLifeTime = Data.LifeTime;
-            GetComponent<Damager>().SetDamage(Data.Damage);
+            GetComponent<Damager>()?.SetDamage(Data.Damage);
         }
         protected void DestroyBullet()
         {
