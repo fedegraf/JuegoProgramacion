@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2931,11 +2931,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7222235140474792199, guid: 178f60d2b4879f3418f00a1e46de969e, type: 3}
   m_PrefabInstance: {fileID: 610693267}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &633108560 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 6456845834569969088, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-  m_PrefabInstance: {fileID: 4531170041955474761}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &634922701
 PrefabInstance:
@@ -7173,7 +7168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5245563061933444695, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.4
+      value: 191.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
@@ -8395,6 +8390,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 299943908672263404, guid: 9f41859e7d97ad643b9286cb92e39ec0, type: 3}
   m_PrefabInstance: {fileID: 1965953388}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1976580681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1457562025685302760, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+  m_PrefabInstance: {fileID: 4531170041955474761}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1987312446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9126,30 +9126,6 @@ PrefabInstance:
       propertyPath: currentWeaponText
       value: 
       objectReference: {fileID: 1192754825}
-    - target: {fileID: 780603079417573319, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: force
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 780603079417573319, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: damage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 780603079417573319, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: useMessage
-      value: Expand Force Used
-      objectReference: {fileID: 0}
-    - target: {fileID: 780603079417573319, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: sphreCollider
-      value: 
-      objectReference: {fileID: 633108560}
-    - target: {fileID: 780603079417573319, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: cantUseMessage
-      value: You can't use that now
-      objectReference: {fileID: 0}
-    - target: {fileID: 1392719673363979076, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: mouseSensivity
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1587141021445262582, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: _healthBar
       value: 
@@ -9158,22 +9134,10 @@ PrefabInstance:
       propertyPath: bulletBox
       value: 
       objectReference: {fileID: 851107750}
-    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: weaponsType.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: weaponsType.Array.data[1]
+    - target: {fileID: 6629952559062936490, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: expandForce
       value: 
-      objectReference: {fileID: 11400000, guid: f7b555a4650f8584aaea48e88233fe78, type: 2}
-    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: weaponsType.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9a03442b1255c7f4c8ff08a54d6cf066, type: 2}
-    - target: {fileID: 4531170041955474804, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1976580681}
     - target: {fileID: 6685502671525265540, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9222,54 +9186,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8066088393548141749, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: tagsToAvoid.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8066088393548141749, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: tagsToAvoid.Array.data[1]
-      value: Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 8066088393548141749, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: tagsToAvoid.Array.data[2]
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: skillBar
       value: 
       objectReference: {fileID: 403928185}
-    - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: _skillBar
-      value: 
-      objectReference: {fileID: 403928185}
-    - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: readyColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: readyColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: readyColor.r
-      value: 0.93725497
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: loadingColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: loadingColor.b
-      value: 0.18115878
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: loadingColor.g
-      value: 0.6509434
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: loadingColor.r
-      value: 0.6214667
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
 --- !u!1 &4531170041955474762 stripped

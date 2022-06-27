@@ -31,8 +31,10 @@ public class Movement : MonoBehaviour
         _rBody.AddForce(direction * CurrentSpeed, ForceMode.Force);
     }
 
-    public void Rotation(Vector2 inputRotation)
+    public void Rotation(Vector3 inputRotation)
     {
-        transform.Rotate(Vector3.up, inputRotation.x * (_rotationSpeed * Time.deltaTime));
+        float newAngle = Mathf.Atan2(inputRotation.y, inputRotation.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(new Vector3(0, -newAngle, 0));
     }
 }

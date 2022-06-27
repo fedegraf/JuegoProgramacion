@@ -10,4 +10,5 @@ public class ScriptableObjects : MonoBehaviour
 {
     public static float BulletSpeed = 25f;
     public static float BulletDamage = 25f;
+    public static float BlastDamage = 25f;
 }
