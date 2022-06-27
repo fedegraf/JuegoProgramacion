@@ -4814,7 +4814,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164256555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8390,11 +8390,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 299943908672263404, guid: 9f41859e7d97ad643b9286cb92e39ec0, type: 3}
   m_PrefabInstance: {fileID: 1965953388}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1976580681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1457562025685302760, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-  m_PrefabInstance: {fileID: 4531170041955474761}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1987312446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9134,10 +9129,6 @@ PrefabInstance:
       propertyPath: bulletBox
       value: 
       objectReference: {fileID: 851107750}
-    - target: {fileID: 6629952559062936490, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: expandForce
-      value: 
-      objectReference: {fileID: 1976580681}
     - target: {fileID: 6685502671525265540, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9185,6 +9176,10 @@ PrefabInstance:
     - target: {fileID: 6685502671525764260, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334636956506767481, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: isVulnerable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: skillBar

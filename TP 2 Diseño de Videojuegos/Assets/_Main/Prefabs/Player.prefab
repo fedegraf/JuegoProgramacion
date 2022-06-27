@@ -442,6 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVulnerable: 0
   _maxHealth: 100
+  bloodEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
 --- !u!114 &6629952559062936490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,8 +456,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxCoolDown: 5
-  sphreObject: {fileID: 1457562025685302760}
-  cantUseMessage: You can't use that
+  expandForce: {fileID: 1457562025685302760}
+  cantUseMessage: 
   useMessage: 
 --- !u!114 &8081049537286133071
 MonoBehaviour:
@@ -473,6 +474,7 @@ MonoBehaviour:
   skillBar: {fileID: 0}
   loadingColor: {r: 0.6214667, g: 0.6509434, b: 0.18115878, a: 1}
   readyColor: {r: 0.93725497, g: 1, b: 0, a: 1}
+  warningColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!95 &6685502671532667654
 Animator:
   serializedVersion: 3

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Default Enemy
   m_EditorClassIdentifier: 
   enemyName: Default Enemy
-  walkSpeed: 3
+  walkSpeed: 5
   rotationSpeed: 10

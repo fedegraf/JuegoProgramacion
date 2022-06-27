@@ -413,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVulnerable: 1
   _maxHealth: 100
+  bloodEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
 --- !u!114 &502425257
 MonoBehaviour:
   m_ObjectHideFlags: 0

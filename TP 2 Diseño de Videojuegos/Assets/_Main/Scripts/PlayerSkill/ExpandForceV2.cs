@@ -13,6 +13,8 @@ namespace Skills
         [SerializeField] private int damage;
 
         private float _currentTimeExpanded;
+        private bool _isExpanding;
+        private bool _isShrinking;
         public bool IsSphereExpanded { get; private set; }
 
         private void Awake()
@@ -59,7 +61,7 @@ namespace Skills
         {
             var sphreScale = transform.localScale.x;
             gameObject.SetActive(true);
-            IsSphereExpanded = true;
+            _isExpanding = true;
 
             while (expansionRadius > sphreScale)
             {
@@ -70,7 +72,11 @@ namespace Skills
 
                 gameObject.transform.localScale = newScale;
 
-                if (sphreScale >= expansionRadius) 
+                if (sphreScale >= expansionRadius)
+                {
+                    IsSphereExpanded = true;
+                    _isExpanding = false;
+                }
 
                 yield return null;
             }
@@ -81,6 +87,7 @@ namespace Skills
         private IEnumerator ShrinkSphere()
         {
             var sphreScale = gameObject.transform.localScale.x;
+            _isShrinking = true;
 
             while (sphreScale > 0)
             {
@@ -92,8 +99,9 @@ namespace Skills
 
                 if (sphreScale <= 0)
                 {
-                    gameObject.SetActive(false);
                     IsSphereExpanded = false;
+                    _isShrinking = false;
+                    gameObject.SetActive(false);
                 }
 
                 yield return null;
@@ -104,14 +112,18 @@ namespace Skills
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!IsSphereExpanded) return;
+            if (_isShrinking) return;
 
-            var enemy = other.GetComponent<IEnemy>();
+            if (_isExpanding || IsSphereExpanded)
+            {
+                var enemy = other.GetComponent<IEnemy>();
 
-            if (enemy == null || enemy.IsDead) return;
+                if (enemy == null || enemy.IsDead) return;
 
-            UseForce(other.GetComponent<Rigidbody>());
-            DamageBody(other.GetComponent<Damagable>());
+                UseForce(other.GetComponent<Rigidbody>());
+                DamageBody(other.GetComponent<Damagable>());
+            }
+
         }
     }
 }

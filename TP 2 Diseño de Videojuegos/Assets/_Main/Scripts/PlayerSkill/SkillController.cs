@@ -45,6 +45,7 @@ namespace Skills
             if (!CanUseSkill)
             {
                 NotifyAll("MESSAGE", cantUseMessage);
+                NotifyAll("SKILL_TRYTOUSE");
                 return;
             }
 
