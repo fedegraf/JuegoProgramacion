@@ -59,6 +59,7 @@ namespace Skills
         {
             var sphreScale = transform.localScale.x;
             gameObject.SetActive(true);
+            IsSphereExpanded = true;
 
             while (expansionRadius > sphreScale)
             {
@@ -69,7 +70,7 @@ namespace Skills
 
                 gameObject.transform.localScale = newScale;
 
-                if (sphreScale >= expansionRadius) IsSphereExpanded = true;
+                if (sphreScale >= expansionRadius) 
 
                 yield return null;
             }
@@ -103,6 +104,8 @@ namespace Skills
 
         private void OnTriggerEnter(Collider other)
         {
+            if (!IsSphereExpanded) return;
+
             var enemy = other.GetComponent<IEnemy>();
 
             if (enemy == null || enemy.IsDead) return;
