@@ -356,6 +356,8 @@ MonoBehaviour:
   bulletBox: {fileID: 0}
   weaponsType:
   - {fileID: 11400000, guid: 9a03442b1255c7f4c8ff08a54d6cf066, type: 2}
+  - {fileID: 11400000, guid: df336edb6a6943b4282004398ca78c48, type: 2}
+  - {fileID: 11400000, guid: 87275a6ad6610834f8bf8c1f14845ad0, type: 2}
   weaponGO: {fileID: 6685502671525265610}
   ammoTypeToAdd:
   - {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
@@ -440,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f1b15eeb58db34c8da611bf2b60939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVulnerable: 0
+  isVulnerable: 1
   _maxHealth: 100
   bloodEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
 --- !u!114 &6629952559062936490
