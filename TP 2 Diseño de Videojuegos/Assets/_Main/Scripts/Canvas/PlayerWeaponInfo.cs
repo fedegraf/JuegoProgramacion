@@ -19,7 +19,7 @@ namespace Weapons
         {
             if (message == "AMMOUPDATE")
             {
-                UpdateAmmoText((int)args[0], (int)args[1]);
+                UpdateAmmoText((string)args[0]);
             }
             else if (message == "RELOAD")
             {
@@ -31,9 +31,9 @@ namespace Weapons
             }
         }
 
-        private void UpdateAmmoText(int currentAmmo, int maxAmmo)
+        private void UpdateAmmoText(string weaponInfo)
         {
-            currentAmmoText.text = $"Ammo: {currentAmmo}/{maxAmmo}";
+            currentAmmoText.text = $"Ammo: {weaponInfo}";
         }
 
         private void UpdateCurrentWeaponText(string weaponName)

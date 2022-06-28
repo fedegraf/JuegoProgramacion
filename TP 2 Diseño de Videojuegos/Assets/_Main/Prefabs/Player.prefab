@@ -358,6 +358,8 @@ MonoBehaviour:
   bulletBox: {fileID: 0}
   weaponsType:
   - {fileID: 11400000, guid: 9a03442b1255c7f4c8ff08a54d6cf066, type: 2}
+  - {fileID: 11400000, guid: df336edb6a6943b4282004398ca78c48, type: 2}
+  - {fileID: 11400000, guid: 87275a6ad6610834f8bf8c1f14845ad0, type: 2}
   weaponGO: {fileID: 6685502671525265610}
   ammoTypeToAdd:
   - {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}

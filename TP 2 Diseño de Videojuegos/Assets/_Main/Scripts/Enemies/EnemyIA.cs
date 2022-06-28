@@ -117,7 +117,9 @@ public class EnemyIA : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _agent.SetDestination(transform.position);
 
+        var lastRotation = transform.rotation;
         transform.LookAt(_player.transform.position);
+        transform.rotation = new Quaternion(lastRotation.x, transform.rotation.y, lastRotation.z, lastRotation.w);
 
         if (!alreadyAttacked)
         {
