@@ -44,9 +44,9 @@ namespace Weapons
             Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
             foreach (Collider nearbyObject in colliders)
             {
-                if (nearbyObject.gameObject.tag == "Player")
+                if (nearbyObject.TryGetComponent<IDamagable>(out var damagable))
                 {
-                    nearbyObject.GetComponent<IDamagable>().TakeDamage(ScriptableObjects.BlastDamage);
+                    damagable.TakeDamage(ScriptableObjects.BlastDamage);
                     nearbyObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce,
                         transform.position, explosionRadius, 0.0f, ForceMode.Impulse);
                 }

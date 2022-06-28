@@ -17,10 +17,10 @@ public class GameMessage : MonoBehaviour, IObserver
 
     private void Awake()
     {
-        player.GetComponent<Items.ItemLooter>().Suscribe(this);
-        player.GetComponent<Items.ItemInteracter>().Suscribe(this);
-        player.GetComponent<Skills.ExpandForce>().Suscribe(this);
-        itemChecker.Suscribe(this);
+        player.GetComponent<Items.ItemLooter>()?.Suscribe(this);
+        player.GetComponent<Items.ItemInteracter>()?.Suscribe(this);
+        player.GetComponent<Skills.SkillController>()?.Suscribe(this);
+        itemChecker?.Suscribe(this);
     }
 
     private void Start()
