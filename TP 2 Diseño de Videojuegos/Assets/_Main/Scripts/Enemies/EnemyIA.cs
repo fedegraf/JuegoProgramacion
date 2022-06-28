@@ -116,7 +116,6 @@ public class EnemyIA : MonoBehaviour
         //wait for the animation begin
         yield return new WaitForSeconds(0.5f);
         _agent.SetDestination(transform.position);
-
         transform.LookAt(_player.transform.position);
 
         if (!alreadyAttacked)

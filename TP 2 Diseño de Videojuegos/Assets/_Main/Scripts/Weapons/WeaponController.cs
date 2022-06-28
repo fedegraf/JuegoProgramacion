@@ -94,7 +94,13 @@ namespace Weapons
         {
             if (CurrentWeapon == null) return;
 
-            NotifyAll("AMMOUPDATE", CurrentWeapon.AmmoInMag, Ammo.GetAmmo(CurrentWeapon.Data.AmmoType));
+            string message = "";
+            if (!CurrentWeapon.Data.HasInfiniteAmmo)
+                message = $"{CurrentWeapon.AmmoInMag}/{Ammo.GetAmmo(CurrentWeapon.Data.AmmoType)}";
+            else
+                message = $"{CurrentWeapon.AmmoInMag}";
+
+            NotifyAll("AMMOUPDATE", message);
         }
 
         private void UpdateWeaponHud()
@@ -150,7 +156,9 @@ namespace Weapons
         {
             if (CurrentWeapon == null) return;
 
-            if (CurrentWeapon.AmmoInMag == CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting || !Ammo.CanReload(CurrentWeapon)) return;
+            if (CurrentWeapon.AmmoInMag == CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting) return;
+
+            if (!Ammo.CanReload(CurrentWeapon) && !CurrentWeapon.Data.HasInfiniteAmmo) return;
 
             Ammo.Reload(CurrentWeapon);
             NotifyAll("RELOAD");
@@ -282,6 +290,12 @@ namespace Weapons
 
         public void Reload(Weapon weapon)
         {
+            if (weapon.Data.HasInfiniteAmmo)
+            {
+                weapon.SetAmmoInMag(weapon.Data.MagazineSize);
+                return;
+            }
+
             int ammoNeeded = weapon.Data.MagazineSize - weapon.AmmoInMag;
             int ammoInBag = AmmoCollected[weapon.Data.AmmoType];
             int newAmmoInBag = ammoInBag - ammoNeeded;

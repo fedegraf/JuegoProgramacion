@@ -9129,6 +9129,10 @@ PrefabInstance:
       propertyPath: bulletBox
       value: 
       objectReference: {fileID: 851107750}
+    - target: {fileID: 4531170041955474804, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6685502671525265540, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9176,10 +9180,6 @@ PrefabInstance:
     - target: {fileID: 6685502671525764260, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7334636956506767481, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: isVulnerable
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8081049537286133071, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: skillBar
