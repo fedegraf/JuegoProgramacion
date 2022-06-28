@@ -121,7 +121,8 @@ public class EnemyIA : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            _enemy.DoAttack();
+            if(playerInAttackRange)
+                _enemy.DoAttack();
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

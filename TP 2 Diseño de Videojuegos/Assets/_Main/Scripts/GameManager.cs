@@ -28,8 +28,9 @@ public class GameManager : MonoBehaviour
 
 
     private void Awake()
-    {
+    {        
         MakeSingleton();
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     void Start()
@@ -56,7 +57,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     public void SetState(GameStates newState)
@@ -90,9 +90,8 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
         }
 
-        Time.timeScale = 1;
-        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Time.timeScale = 1;        
         OnGamePlaying?.Invoke();
     }
 

@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb3625c90fb6214188ffb76afecf774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearMessage: Press F To Take
+  nearMessage: E To Take
   awayMessage: 
   text: {fileID: 5337446664089259185}
 --- !u!135 &105288905

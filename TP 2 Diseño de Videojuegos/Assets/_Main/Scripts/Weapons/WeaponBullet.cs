@@ -21,9 +21,9 @@ namespace Weapons
             transform.position += transform.forward * finalSpeed;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.CompareTag("Wall"))
+            if (other.CompareTag("Wall"))
                 DestroyBullet();
         }
     }

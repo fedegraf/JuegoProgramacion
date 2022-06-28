@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: a13d816714663cb4ea73c6b478e27427, type: 2}
-  mesh: {fileID: 3238087690204008847}
   ammoAmmount: 25
   ammoType: {fileID: 0}
 --- !u!114 &4818959018214347425
@@ -286,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb3625c90fb6214188ffb76afecf774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearMessage: Press E To Take Ammo
+  nearMessage: E To Take Ammo
   awayMessage: 
   text: {fileID: 2495363648710934039}
 --- !u!114 &5826417838901024504

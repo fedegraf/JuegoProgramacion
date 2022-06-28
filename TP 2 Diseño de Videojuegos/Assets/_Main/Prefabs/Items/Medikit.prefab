@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb3625c90fb6214188ffb76afecf774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearMessage: Press E To Heal
+  nearMessage: E To Heal
   awayMessage: 
   text: {fileID: 1614627460229290044}
 --- !u!65 &8520181766003344816

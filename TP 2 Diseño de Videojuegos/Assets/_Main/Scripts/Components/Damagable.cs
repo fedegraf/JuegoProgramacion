@@ -20,6 +20,7 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
     private DieCommand dieCommand;
 
     [SerializeField] private int _maxHealth;
+    [SerializeField] private GameObject bloodEffect;
 
     public UnityAction OnDie;
 
@@ -30,14 +31,24 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
         dieCommand = new DieCommand(this, gameObject.tag);
     }
 
+    private void SpawnBlood()
+    {
+        if (!bloodEffect) return;
+
+        Instantiate(bloodEffect, transform);
+    }
+
     public void Die()
     {
         _isAlive = false;
+        gameObject.layer = LayerMask.NameToLayer("DeadEntity");
         OnDie?.Invoke();
     }
 
     public void TakeDamage(float damage)
     {   
+        SpawnBlood();
+
         if (!IsAlive || !IsVulnearble) return;
 
         _currentHealth -= damage;
