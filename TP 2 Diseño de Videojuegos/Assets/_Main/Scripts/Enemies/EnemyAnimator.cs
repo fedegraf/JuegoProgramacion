@@ -6,13 +6,14 @@ namespace Enemies
 {
     public class EnemyAnimator : MonoBehaviour
     {
-        private Animator _animator;
+        [SerializeField] private Animator animator; 
         private IEnemy _enemy;
 
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
+            if(animator == null)
+                animator = GetComponent<Animator>();
             _enemy = GetComponent<IEnemy>();
         }
 
@@ -28,21 +29,21 @@ namespace Enemies
 
         private void Movements()
         {
-            _animator.SetBool("IsWalking", _enemy.IsMoving);
-            _animator.SetBool("IsChasing", _enemy.IsFollowingPlayer);
+            animator.SetBool("IsWalking", _enemy.IsMoving);
+            animator.SetBool("IsChasing", _enemy.IsFollowingPlayer);
         }
 
         private void Attacking()
         {
             if (_enemy.IsAttacking)
-                _animator.SetTrigger("Attack");
+                animator.SetTrigger("Attack");
         }
 
 
         private void Death()
         {
             if(_enemy.IsDead)
-            _animator.SetTrigger("Death");
+            animator.SetTrigger("Death");
         }
     }
 }

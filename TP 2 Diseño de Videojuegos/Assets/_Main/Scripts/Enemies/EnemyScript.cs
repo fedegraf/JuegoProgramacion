@@ -21,6 +21,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
     public bool IsStuned { get; private set; }
 
     [SerializeField] private float damage;
+    [SerializeField] private float stuntTime;
 
     private void Awake()
     {
@@ -55,9 +56,36 @@ public class EnemyScript : MonoBehaviour, IEnemy
         }
     }
 
-    public void Movement(Vector2 direction)
+    public void Movement(Vector3 targetPosition)
     {
-        Character.DoWalking(direction, false); 
+        var currentPost = transform.position;
+        var direction = currentPost - targetPosition;
+
+        Vector2 inputDirection = new Vector2(SetInputDirection(direction.x), -SetInputDirection(direction.z));
+
+        Character.DoWalking(inputDirection, false);
+
+        Debug.Log(inputDirection);
+    }
+
+    public void Rotation(Vector3 targetToSee)
+    {
+        Vector3 inputRotation = new Vector3(0, 0, 0);
+
+        //Character.DoRotation(inputRotation);
+    }
+
+    private float SetInputDirection(float direction)
+    {
+        if (direction == 0)
+            return 0;
+
+        var newDirection = direction / direction;
+
+        if (direction < 0)
+            newDirection *= -1;
+
+        return newDirection;
     }
 
     public void DoAttack()
@@ -73,6 +101,8 @@ public class EnemyScript : MonoBehaviour, IEnemy
     public void SetIsMoving(bool isMoving)
     {
         IsMoving = isMoving;
+        if (!isMoving)
+            SetIsFollowing(false);
     }
 
     public void SetIsFollowing(bool isFollowingPlayer)
@@ -92,12 +122,12 @@ public class EnemyScript : MonoBehaviour, IEnemy
 
     private IEnumerator StuntTime()
     {
-        var time = 3;
         IsStuned = true;
-        yield return new WaitForSeconds(time);
+        SetIsMoving(false);
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        yield return new WaitForSeconds(stuntTime);
         IsStuned = false;
     }
-
 }
 
 
