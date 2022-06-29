@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MP5 Ammo
   m_EditorClassIdentifier: 
   speed: 60
-  damage: 15
+  damage: 10
   lifeTime: 3
-  maxAmmo: 60
+  maxAmmo: 120
   isThrowable: 0
   mesh: {fileID: -7745756782809674522, guid: faf35e45031de1744b38f392782c3d72, type: 3}

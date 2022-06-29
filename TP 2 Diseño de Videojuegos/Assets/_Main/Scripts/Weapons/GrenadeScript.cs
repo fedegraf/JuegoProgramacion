@@ -9,7 +9,7 @@ namespace Weapons
         [SerializeField] private float explosionRadius;
         [SerializeField] private float explosionForce;
         [SerializeField] private GameObject BlastFx;
-        [SerializeField] private bool canThrow = true;
+        private bool canThrow = true;
         private GameObject _grenade;
 
         private bool _hasExplode;
@@ -54,7 +54,12 @@ namespace Weapons
             _grenade.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
         }
 
-        private void Explode()
+        public void ToggleCanThrow()
+        {
+            canThrow = false;
+        }
+
+        public void Explode()
         {
             transform.position = _grenade.transform.position;
             _hasExplode = true;

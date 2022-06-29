@@ -185,7 +185,7 @@ namespace Weapons
             UpdateAmmoHud();
             ResetShootCoolDown();
 
-            if (CurrentWeapon.AmmoInMag == 0)
+            if (CurrentWeapon.AmmoInMag < 1)
             {
                 DoReload();
             }
