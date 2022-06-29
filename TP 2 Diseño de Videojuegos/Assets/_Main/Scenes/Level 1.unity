@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9267,18 +9267,6 @@ PrefabInstance:
       propertyPath: currentWeaponText
       value: 
       objectReference: {fileID: 1192754825}
-    - target: {fileID: 1582530903515818157, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: sounds.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1582530903515818157, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: sounds.Array.data[9].name
-      value: Dead
-      objectReference: {fileID: 0}
-    - target: {fileID: 1582530903515818157, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
-      propertyPath: sounds.Array.data[9].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 5039414d94a6e4e70a5ab9e8833e992a, type: 3}
     - target: {fileID: 1587141021445262582, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: _healthBar
       value: 
@@ -9287,6 +9275,14 @@ PrefabInstance:
       propertyPath: bulletBox
       value: 
       objectReference: {fileID: 851107750}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: weaponsType.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756824151234202591, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
+      propertyPath: weaponsType.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: f7b555a4650f8584aaea48e88233fe78, type: 2}
     - target: {fileID: 6685502671525265540, guid: a71a68651e7fa824096d09d6c93af8d0, type: 3}
       propertyPath: m_Name
       value: Player

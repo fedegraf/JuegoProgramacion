@@ -461,8 +461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxCoolDown: 5
   expandForce: {fileID: 1457562025685302760}
-  cantUseMessage: 
-  useMessage: 
 --- !u!114 &8081049537286133071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,6 +516,9 @@ MonoBehaviour:
     isLooping: 0
   - name: Negative
     audioClip: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
+    isLooping: 0
+  - name: Dead
+    audioClip: {fileID: 8300000, guid: 5039414d94a6e4e70a5ab9e8833e992a, type: 3}
     isLooping: 0
 --- !u!95 &6685502671532667654
 Animator:

@@ -63,9 +63,11 @@ namespace Skills
         private void UpdateBar()
         {
             skillBar.fillAmount = _skillController.CurrentCoolDown / _skillController.MaxCoolDown;
+            if (_isWarning) return;
+
             if (skillBar.fillAmount == 1)
                 skillBar.color = readyColor;
-            else if(!_isWarning)
+            else
                 skillBar.color = loadingColor;
         }
     }

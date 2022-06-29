@@ -106,6 +106,8 @@ namespace Weapons
                 case "Rifle":
                     soundName = "RifleShoot";
                     break;
+                case "Grenade":
+                    return;
             }
 
             _sounds.PlaySound(soundName);

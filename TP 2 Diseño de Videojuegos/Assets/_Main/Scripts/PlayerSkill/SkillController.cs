@@ -29,7 +29,7 @@ namespace Skills
 
         private void Update()
         {
-            if (!CanUseSkill)
+            if (CurrentCoolDown < maxCoolDown + .2f)
             {
                 CurrentCoolDown += Time.deltaTime;
                 NotifyAll("SKILL_UPDATED");

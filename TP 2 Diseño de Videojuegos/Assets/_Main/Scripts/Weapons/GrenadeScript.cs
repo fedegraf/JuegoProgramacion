@@ -9,20 +9,34 @@ namespace Weapons
         [SerializeField] private float explosionRadius;
         [SerializeField] private float explosionForce;
         [SerializeField] private GameObject BlastFx;
-        private Rigidbody _rb;
+        private GameObject _grenade;
+        private bool _hasExplode;
 
         private List<IDamagable> _damagablesInRange = new List<IDamagable>();
 
+        private SoundManager _sounds;
+
+        private float currentTime;
+        private float afterExplosionMaxTime = 2f;
+
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
+            _sounds = GetComponent<SoundManager>();
+            _grenade = transform.GetChild(0).gameObject;
+            currentTime = afterExplosionMaxTime;
         }
 
         public override void Update()
         {
             base.Update();
-            if (_currentLifeTime <= 0)
+            if (_currentLifeTime <= 0 && !_hasExplode)
                 Explode();
+            if (_hasExplode)
+            {
+                currentTime -= Time.deltaTime;
+                if (currentTime <= 0)
+                    DestroyBullet();
+            }
         }
 
         private void Start()
@@ -34,12 +48,14 @@ namespace Weapons
         public void Throw()
         {
             var direction = (transform.forward + (Vector3.up * 0.5f)) * Data.Speed;
-            _rb.AddForce(direction, ForceMode.Impulse);
+            _grenade.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
         }
 
         private void Explode()
         {
-            Debug.Log("EXPLOSION");
+            transform.position = _grenade.transform.position;
+            _hasExplode = true;
+            _sounds.PlaySound("Explotion");
             Instantiate(BlastFx, transform.position, transform.rotation);
             GetComponentInParent<AudioSource>().Play();
             Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
@@ -52,7 +68,7 @@ namespace Weapons
                         transform.position, explosionRadius, 0.0f, ForceMode.Impulse);
                 }
             }
-            DestroyBullet();
+            _grenade.SetActive(false);
         }
 
         private void OnDrawGizmos()
