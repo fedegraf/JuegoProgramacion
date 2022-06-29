@@ -41,6 +41,7 @@ namespace Weapons
         {
             Debug.Log("EXPLOSION");
             Instantiate(BlastFx, transform.position, transform.rotation);
+            GetComponentInParent<AudioSource>().Play();
             Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
             foreach (Collider nearbyObject in colliders)
             {
