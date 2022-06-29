@@ -7,36 +7,34 @@ namespace Items
 {
     public class ItemMessage : MonoBehaviour
     {
-        [SerializeField] private string nearMessage;
-        [SerializeField] private string awayMessage;
-        [SerializeField] private TextMesh text;
-
-        private void Awake()
-        {
-            if(awayMessage == "")
-                awayMessage = GetComponent<IItem>().Data.ItemName;
-        }
+        [SerializeField] private string itemName;
+        [SerializeField] private string interactionMessage;
+        [SerializeField] private TextMesh itemNameText;
+        [SerializeField] private TextMesh interactionMessageText;
 
         private void Start()
         {
-            ChangeMessage(awayMessage);
+            ToggleInfoText(false);
+
+            itemNameText.text = itemName;
+            interactionMessageText.text = interactionMessage;
         }
 
-        void ChangeMessage(string message)
+        void ToggleInfoText(bool isActive)
         {
-            text.text = message;
+            interactionMessageText.gameObject.SetActive(isActive);
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
-                ChangeMessage(nearMessage);
+                ToggleInfoText(true);
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
-                ChangeMessage(awayMessage);
+                ToggleInfoText(false);
         }
 
 

@@ -30,12 +30,14 @@ namespace Weapons
         [SerializeField] AmmoTypeSO[] ammoTypeToAdd;
         [SerializeField] int[] ammoAmmountToAdd;
         private TakeAmmoCommand _takeAmmoCommand;
+        private SoundManager _sounds;
 
 
         private void Awake()
         {
             Ammo = new AmmoController();
             Ammo.OnAmmoAdded += OnAmmoAddedHandler;
+            _sounds = GetComponent<SoundManager>();
         }
 
         private void Start()
@@ -90,11 +92,43 @@ namespace Weapons
             UpdateWeaponHud();
         }
 
+        private void ShootSound()
+        {
+            string soundName = "";
+            switch (CurrentWeapon.Data.WeaponName)
+            {
+                case "Pistol":
+                    soundName = "PistolShoot";
+                    break;
+                case "MP5":
+                    soundName = "MP5Shoot";
+                    break;
+                case "Rifle":
+                    soundName = "RifleShoot";
+                    break;
+                case "Grenade":
+                    return;
+            }
+
+            _sounds.PlaySound(soundName);
+        }
+
+        private void ReloadSound()
+        {
+            _sounds.PlaySound("Reload");
+        }
+
         private void UpdateAmmoHud()
         {
             if (CurrentWeapon == null) return;
 
-            NotifyAll("AMMOUPDATE", CurrentWeapon.AmmoInMag, Ammo.GetAmmo(CurrentWeapon.Data.AmmoType));
+            string message = "";
+            if (!CurrentWeapon.Data.HasInfiniteAmmo)
+                message = $"{CurrentWeapon.AmmoInMag}/{Ammo.GetAmmo(CurrentWeapon.Data.AmmoType)}";
+            else
+                message = $"{CurrentWeapon.AmmoInMag}";
+
+            NotifyAll("AMMOUPDATE", message);
         }
 
         private void UpdateWeaponHud()
@@ -124,6 +158,12 @@ namespace Weapons
 
         public void AddWeapon(Weapon newWeapon)
         {
+            if (_weaponsList.Contains(newWeapon))
+            {
+                Debug.Log("You already own this weapon");
+                return;
+            }
+
             _weaponsList.Add(newWeapon);
             if (_weaponsList.Count == 1)
                 SetWeapon(0);
@@ -142,6 +182,7 @@ namespace Weapons
             if (!CanShoot || IsShooting || IsReloading || _currentShootCD > 0) return;
 
             _bulletsInWorld.Add(CreateBullet(CurrentWeapon.Shoot()));
+            ShootSound();
             UpdateAmmoHud();
             ResetShootCoolDown();
         }
@@ -150,9 +191,12 @@ namespace Weapons
         {
             if (CurrentWeapon == null) return;
 
-            if (CurrentWeapon.AmmoInMag == CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting || !Ammo.CanReload(CurrentWeapon)) return;
+            if (CurrentWeapon.AmmoInMag == CurrentWeapon.Data.MagazineSize || IsReloading || IsShooting) return;
+
+            if (!Ammo.CanReload(CurrentWeapon) && !CurrentWeapon.Data.HasInfiniteAmmo) return;
 
             Ammo.Reload(CurrentWeapon);
+            ReloadSound();
             NotifyAll("RELOAD");
             ResetReloadCoolDown();
 
@@ -267,10 +311,10 @@ namespace Weapons
                 return 0;
         }
 
-        public bool IsAmmoFull(Weapon weapon)
+        public bool IsAmmoFull(AmmoTypeSO ammoType)
         { 
-            int currentAmmo = GetAmmo(weapon.Data.AmmoType);
-            return currentAmmo >= weapon.Data.AmmoType.MaxAmmo;
+            int currentAmmo = GetAmmo(ammoType);
+            return currentAmmo >= ammoType.MaxAmmo;
         }
 
         public bool CanReload(Weapon weapon)
@@ -282,6 +326,12 @@ namespace Weapons
 
         public void Reload(Weapon weapon)
         {
+            if (weapon.Data.HasInfiniteAmmo)
+            {
+                weapon.SetAmmoInMag(weapon.Data.MagazineSize);
+                return;
+            }
+
             int ammoNeeded = weapon.Data.MagazineSize - weapon.AmmoInMag;
             int ammoInBag = AmmoCollected[weapon.Data.AmmoType];
             int newAmmoInBag = ammoInBag - ammoNeeded;

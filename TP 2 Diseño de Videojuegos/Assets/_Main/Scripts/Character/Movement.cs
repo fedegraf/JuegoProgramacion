@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     public float CurrentSpeed => IsRunning ? _runningSpeed : _walkingSpeed;
     public float BodySpeed => _rBody.velocity.magnitude;
 
+
     private void Awake()
     {
         _rBody = GetComponent<Rigidbody>();

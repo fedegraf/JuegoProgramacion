@@ -7,5 +7,6 @@ namespace Items
     public interface IInteractable
     {
         public string Interact(GameObject user);
+        public object[] Test(GameObject user);
     }
 }

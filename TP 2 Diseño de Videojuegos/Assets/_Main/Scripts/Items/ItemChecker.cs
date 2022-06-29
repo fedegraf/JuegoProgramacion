@@ -11,6 +11,12 @@ namespace Items
         private List<IObserver> _subscribers = new List<IObserver>();
         public List<IObserver> Subscribers => _subscribers;
         //checks if the player has the item and the ammount needed
+        private SoundManager _sound;
+
+        private void Awake()
+        {
+            _sound = GetComponent<SoundManager>();
+        }
 
         private void CheckItems(List<IItem> itemList)
         {
@@ -24,13 +30,18 @@ namespace Items
                     ammontInInventory++;
                     if (ammontInInventory >= ammountNeeded)
                     {
+                        _sound.PlaySound("Win");
                         GameManager.Instance.SetState(GameManager.GameStates.Win);
                     }
                 }                    
             }
 
             if (ammontInInventory < ammountNeeded)
+            {
                 NotifyAll("MESSAGE", $"You Need {ammountNeeded - ammontInInventory} {itemToCheck.ItemName} To Finish The Reserach");
+                _sound.PlaySound("Negative");
+            }
+
         }
 
         public void Suscribe(IObserver observer)

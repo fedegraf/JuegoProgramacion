@@ -22,5 +22,24 @@ namespace Items
             gameObject.SetActive(false);
             return $"You got a {weaponType.WeaponName}!";
         }
+
+        public object[] Test(GameObject user)
+        {
+            object[] values = new object[5];
+
+            if (!user.TryGetComponent<Weapons.WeaponController>(out var wpnController))
+            {
+                values[0] = "Can't equip this weapon";
+                values[1] = false;
+                return values;
+            }
+
+            _command = new Weapons.AddWeaponCommand(wpnController, weaponType);
+            _command.Do();
+            gameObject.SetActive(false);
+            values[0] = $"You got a {weaponType.WeaponName}!";
+            values[1] = true;
+            return values;
+        }
     }
 }

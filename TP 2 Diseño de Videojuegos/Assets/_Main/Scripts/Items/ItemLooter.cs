@@ -14,6 +14,13 @@ namespace Items
 
         private ILootable _item;
 
+        private SoundManager _sound;
+
+        private void Awake()
+        {
+            _sound = GetComponent<SoundManager>();
+        }
+
         private bool IsItemlootable()
         {
             if (!IsItemInRange) return false;
@@ -41,10 +48,14 @@ namespace Items
 
         public void LootItem()
         {
-            if (!IsItemlootable()) return;
+            if (!IsItemlootable())
+            {
+                return;
+            }
 
             _inventory.Add(_item.Loot());
             NotifyAll("MESSAGE", CreateGameMessage());
+            _sound.PlaySound("UseItem");
             ItemInRange = null;
         }
 

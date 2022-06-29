@@ -12,12 +12,14 @@ namespace Weapons
         [SerializeField] private float cadence;
         [SerializeField] private float reloadTime;
         [SerializeField] AmmoTypeSO ammoType;
+        [SerializeField] private bool hasInfiniteAmmo;
         [SerializeField] Mesh mesh;
         public string WeaponName => name;
         public int MagazineSize => magazineSize;
         public float Cadence => cadence;
         public float ReloadTime => reloadTime;
         public AmmoTypeSO AmmoType => ammoType;
+        public bool HasInfiniteAmmo => hasInfiniteAmmo;
         public Mesh Mesh => mesh;
     }
 

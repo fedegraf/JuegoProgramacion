@@ -10,8 +10,8 @@ public class Character : MonoBehaviour
     public Items.ItemInteracter ItemInteracter { get; private set; }
     public Items.ItemLooter ItemLooter { get; private set; }
     public Skills.SkillController SkillController { get; private set; }
-
     [SerializeField] private EntityTypeSO stats;
+    private CharacterSounds _characterSounds;
 
     private void Awake()
     {
@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
         ItemInteracter = GetComponent<Items.ItemInteracter>();
         ItemLooter = GetComponent<Items.ItemLooter>();
         SkillController = GetComponent<Skills.SkillController>();
-
+        _characterSounds = GetComponent<CharacterSounds>();
 
         Movement.SetValues(Stats.WalkSpeed, Stats.RunSpeed, Stats.RotationSpeed);
     }
@@ -104,6 +104,7 @@ public class Character : MonoBehaviour
         if (IsWeaponNull()) return;
 
         Weapon.DoShoot();
+        //_characterSounds.PlayShootSFX();
     }
 
     public void DoReload()

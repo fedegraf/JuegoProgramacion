@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 7610901505805408112}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1566265206825599653
 MonoBehaviour:
@@ -94,7 +94,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2780069486916824230}
-  m_Text: 9mm
+  m_Text: MP5 Ammo
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -216,8 +216,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 68681650548627570}
   - {fileID: 462159477357650485}
+  - {fileID: 68681650548627570}
   m_Father: {fileID: 4824722125950247815}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: a13d816714663cb4ea73c6b478e27427, type: 2}
-  mesh: {fileID: 3238087690204008847}
   ammoAmmount: 25
   ammoType: {fileID: 0}
 --- !u!114 &4818959018214347425
@@ -286,9 +285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb3625c90fb6214188ffb76afecf774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearMessage: Press E To Take Ammo
-  awayMessage: 
-  text: {fileID: 2495363648710934039}
+  itemName: 
+  interactionMessage: E To Take
+  itemNameText: {fileID: 5449316397563039320}
+  interactionMessageText: {fileID: 2495363648710934039}
 --- !u!114 &5826417838901024504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +359,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 7610901505805408112}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7596727288058907319
 MonoBehaviour:
@@ -422,7 +422,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5278171886322649691}
-  m_Text: AmmoBox
+  m_Text: E To Take
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

@@ -29,6 +29,12 @@ public class CanvasController : MonoBehaviour
 
     private void SetCanvas(GameObject newCanvas)
     {
+        if (!newCanvas)
+        {
+            Debug.Log("New Canvas is Null");
+            return;
+        }
+
         if (_currentActiveCanvas)
             _currentActiveCanvas.SetActive(false);
 
@@ -53,6 +59,7 @@ public class CanvasController : MonoBehaviour
 
     private void OnWinHandler()
     {
+        //Debug.Log("Won");
         SetCanvas(winMenuCanvas);
     }
 

@@ -18,8 +18,10 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
     private bool _isAlive;
 
     private DieCommand dieCommand;
+    private SoundManager _sound;
 
     [SerializeField] private int _maxHealth;
+    [SerializeField] private GameObject bloodEffect;
 
     public UnityAction OnDie;
 
@@ -28,16 +30,29 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
         _isAlive = true;
         _currentHealth = MaxHealth;
         dieCommand = new DieCommand(this, gameObject.tag);
+        _sound = GetComponent<SoundManager>();
+    }
+
+    private void SpawnBlood()
+    {
+        if (!bloodEffect) return;
+
+        Instantiate(bloodEffect, transform);
+        _sound.PlaySound("Damage");
     }
 
     public void Die()
     {
         _isAlive = false;
+        gameObject.layer = LayerMask.NameToLayer("DeadEntity");
+        _sound.PlaySound("Dead");
         OnDie?.Invoke();
     }
 
     public void TakeDamage(float damage)
     {   
+        SpawnBlood();
+
         if (!IsAlive || !IsVulnearble) return;
 
         _currentHealth -= damage;
@@ -54,6 +69,7 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
 
         _currentHealth += heal;
         if (_currentHealth > MaxHealth) _currentHealth = MaxHealth;
+        _sound.PlaySound("Heal");
         NotifyAll("TAKE_DAMAGE");
     }
     public void SetVulnerable(bool vulnerable)
