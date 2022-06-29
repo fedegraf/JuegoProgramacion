@@ -9,6 +9,7 @@ public class EnemyIA : MonoBehaviour
     private GameObject _player;
     private IEnemy _enemy;
 
+
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
 
     //Patrolling Values
@@ -20,6 +21,7 @@ public class EnemyIA : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private float timeBetweenAttacks;
     private bool alreadyAttacked;
+        private bool _hasSeenPlayer;
 
     //States Values
     [SerializeField] private float sightRange, attackRange;
@@ -27,7 +29,7 @@ public class EnemyIA : MonoBehaviour
 
     private void Awake()
     {
-        _player = GameObject.Find("Player");
+        _player = GameObject.FindGameObjectWithTag("Player");
         _agent = GetComponent<NavMeshAgent>();
         _enemy = GetComponent<IEnemy>();
     }
@@ -46,8 +48,12 @@ public class EnemyIA : MonoBehaviour
             playerInAttackRange = false;
             _walkPointSet = false;
             _agent.SetDestination(transform.position);
+            _agent.speed = 0;
             return;
         }
+        
+        if(_agent.speed == 0)
+            _agent.speed = _enemy.Character.Stats.WalkSpeed;
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -115,7 +121,7 @@ public class EnemyIA : MonoBehaviour
     {
         //wait for the animation begin
         yield return new WaitForSeconds(0.5f);
-        _agent.SetDestination(transform.position);
+        _agent.speed = 0;
 
         var lastRotation = transform.rotation;
         transform.LookAt(_player.transform.position);

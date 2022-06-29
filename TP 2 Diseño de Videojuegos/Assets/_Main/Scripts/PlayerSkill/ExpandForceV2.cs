@@ -120,8 +120,10 @@ namespace Skills
 
                 if (enemy == null || enemy.IsDead) return;
 
-                UseForce(other.GetComponent<Rigidbody>());
                 DamageBody(other.GetComponent<Damagable>());
+
+                if (enemy.IsDead) return;
+                UseForce(other.GetComponent<Rigidbody>());
                 enemy.Stunt();
             }
 

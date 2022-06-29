@@ -39,6 +39,7 @@ public class EnemyScript : MonoBehaviour, IEnemy
     private void OnDieHandler()
     {
         SetIsDead(true);
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         gameObject.layer = 13;
     }
 
