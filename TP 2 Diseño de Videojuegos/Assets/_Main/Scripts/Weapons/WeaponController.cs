@@ -30,12 +30,14 @@ namespace Weapons
         [SerializeField] AmmoTypeSO[] ammoTypeToAdd;
         [SerializeField] int[] ammoAmmountToAdd;
         private TakeAmmoCommand _takeAmmoCommand;
+        private SoundManager _sounds;
 
 
         private void Awake()
         {
             Ammo = new AmmoController();
             Ammo.OnAmmoAdded += OnAmmoAddedHandler;
+            _sounds = GetComponent<SoundManager>();
         }
 
         private void Start()
@@ -88,6 +90,30 @@ namespace Weapons
 
             UpdateAmmoHud();
             UpdateWeaponHud();
+        }
+
+        private void ShootSound()
+        {
+            string soundName = "";
+            switch (CurrentWeapon.Data.WeaponName)
+            {
+                case "Pistol":
+                    soundName = "PistolShoot";
+                    break;
+                case "MP5":
+                    soundName = "MP5Shoot";
+                    break;
+                case "Rifle":
+                    soundName = "RifleShoot";
+                    break;
+            }
+
+            _sounds.PlaySound(soundName);
+        }
+
+        private void ReloadSound()
+        {
+            _sounds.PlaySound("Reload");
         }
 
         private void UpdateAmmoHud()
@@ -148,6 +174,7 @@ namespace Weapons
             if (!CanShoot || IsShooting || IsReloading || _currentShootCD > 0) return;
 
             _bulletsInWorld.Add(CreateBullet(CurrentWeapon.Shoot()));
+            ShootSound();
             UpdateAmmoHud();
             ResetShootCoolDown();
         }
@@ -161,6 +188,7 @@ namespace Weapons
             if (!Ammo.CanReload(CurrentWeapon) && !CurrentWeapon.Data.HasInfiniteAmmo) return;
 
             Ammo.Reload(CurrentWeapon);
+            ReloadSound();
             NotifyAll("RELOAD");
             ResetReloadCoolDown();
 
@@ -275,10 +303,10 @@ namespace Weapons
                 return 0;
         }
 
-        public bool IsAmmoFull(Weapon weapon)
+        public bool IsAmmoFull(AmmoTypeSO ammoType)
         { 
-            int currentAmmo = GetAmmo(weapon.Data.AmmoType);
-            return currentAmmo >= weapon.Data.AmmoType.MaxAmmo;
+            int currentAmmo = GetAmmo(ammoType);
+            return currentAmmo >= ammoType.MaxAmmo;
         }
 
         public bool CanReload(Weapon weapon)

@@ -9,6 +9,12 @@ namespace Items
         private IInteractable _item;
         private List<IObserver> _subscribers = new List<IObserver>();
         public List<IObserver> Subscribers => _subscribers;
+        private SoundManager _sound;
+
+        private void Awake()
+        {
+            _sound = GetComponent<SoundManager>();
+        }
 
         private bool IsItemInteractable()
         {
@@ -27,9 +33,20 @@ namespace Items
 
         public void InteractWithItem()
         {
-            if (!IsItemInteractable()) return;
+            if (!IsItemInteractable())
+            {
+                return;
+            }
+            var message = (string)_item.Test(gameObject)[0];
+            var isUsed = (bool)_item.Test(gameObject)[1];
+            CreateGameMessage(message);
 
-            CreateGameMessage(_item.Interact(gameObject));         
+            if (isUsed)
+                _sound.PlaySound("UseItem");
+            else
+                _sound.PlaySound("Negative");
+
+            Debug.Log(isUsed);
             ItemInRange = null;
         }
 
