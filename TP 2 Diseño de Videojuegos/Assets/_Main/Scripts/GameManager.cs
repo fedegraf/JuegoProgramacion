@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
         MakeSingleton();
         Cursor.lockState = CursorLockMode.Confined;
         _sound = GetComponent<SoundManager>();
-        _sound.PlaySound("BGM");
     }
 
     void Start()
@@ -93,6 +92,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
         }
 
+        _sound.PlaySound("BGM");
         Cursor.visible = false;
         Time.timeScale = 1;        
         OnGamePlaying?.Invoke();
@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
 
     private void StateInitScreen()
     {
+        _sound.PlaySound("BGM");
         GamePaused();
         OnMainMenu?.Invoke();
         if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("MainMenu"))

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   enemyName: Player
-  walkSpeed: 15
+  walkSpeed: 40
   rotationSpeed: 15

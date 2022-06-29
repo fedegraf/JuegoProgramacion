@@ -67,7 +67,7 @@ public class PlayerInputs : MonoBehaviour
 
         bool runInput = Input.GetButton(this.runInput);
 
-        _character.DoWalking(inputDirection, runInput);
+        _character.DoWalking(inputDirection, false);
     }
 
     private void Rotation()

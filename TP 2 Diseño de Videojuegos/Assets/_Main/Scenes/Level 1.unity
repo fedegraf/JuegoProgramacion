@@ -9399,6 +9399,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3786516427510441612, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: ammoAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786516427840731379, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: healAmmount
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3786516427904678052, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -9446,6 +9454,38 @@ PrefabInstance:
     - target: {fileID: 3786516427904678053, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
       propertyPath: m_Name
       value: ItemBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786516427963784614, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: ammoAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786516428010994075, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: ammoAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786516428171456606, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: healAmmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786516428299578175, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: healAmmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786516428304276735, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: ammoAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786516428368870243, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: ammoAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786516428674164770, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: ammoAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786516428999812498, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: ammoAmount
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4450286470514628015, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
       propertyPath: m_IsActive
