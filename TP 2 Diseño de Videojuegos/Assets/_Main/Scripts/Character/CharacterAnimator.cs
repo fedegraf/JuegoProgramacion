@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class CharacterAnimator : MonoBehaviour
 {
-    private Animator _animator;
+   [SerializeField] private Animator _animator;
     private Rigidbody _rb;
     private Character _character;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        if(_animator == null)
+            _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         _character = GetComponent<Character>();
     }
