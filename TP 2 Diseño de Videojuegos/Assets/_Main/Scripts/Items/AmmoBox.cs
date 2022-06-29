@@ -35,7 +35,7 @@ namespace Items
             _command.Do();
             gameObject.SetActive(false);
 
-            values[0] = $"You got {ammoAmmount} {ammoType.BulletName} ammo";
+            values[0] = $"+ {ammoAmmount} {ammoType.BulletName}";
             values[1] = true;
             return values;
         }
@@ -49,7 +49,7 @@ namespace Items
             _command = new Weapons.TakeAmmoCommand(weapon.Ammo, ammoType, ammoAmmount);
             _command.Do();
             gameObject.SetActive(false);
-            return $"You got {ammoAmmount} {ammoType.BulletName} ammo";
+            return $"You got {ammoAmmount} {ammoType.BulletName}";
         }
 
         public void SetValues(Weapons.AmmoTypeSO ammoToSet, int ammoAmmount)

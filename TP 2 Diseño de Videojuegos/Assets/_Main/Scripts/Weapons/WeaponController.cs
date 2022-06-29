@@ -158,6 +158,12 @@ namespace Weapons
 
         public void AddWeapon(Weapon newWeapon)
         {
+            if (_weaponsList.Contains(newWeapon))
+            {
+                Debug.Log("You already own this weapon");
+                return;
+            }
+
             _weaponsList.Add(newWeapon);
             if (_weaponsList.Count == 1)
                 SetWeapon(0);

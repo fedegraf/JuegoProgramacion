@@ -37,11 +37,10 @@ namespace Items
             {
                 return;
             }
-            var message = (string)_item.Test(gameObject)[0];
-            var isUsed = (bool)_item.Test(gameObject)[1];
-            CreateGameMessage(message);
+            var itemValues = _item.Test(gameObject);
+            CreateGameMessage((string)itemValues[0]);
 
-            if (isUsed)
+            if ((bool)itemValues[1])
                 _sound.PlaySound("UseItem");
             else
                 _sound.PlaySound("Negative");
