@@ -19,10 +19,13 @@ namespace Skills
         public float MaxCoolDown => maxCoolDown;
         public List<IObserver> Subscribers => _subscribers;
 
+        private SoundManager _sound;
+
 
         private void Awake()
         {
             CurrentCoolDown = maxCoolDown;
+            _sound = GetComponent<SoundManager>();
         }
 
 
@@ -46,9 +49,11 @@ namespace Skills
             {
                 NotifyAll("MESSAGE", cantUseMessage);
                 NotifyAll("SKILL_TRYTOUSE");
+                _sound.PlaySound("Negative");
                 return;
             }
 
+            _sound.PlaySound("UseSkill");
             expandForce.SetActive(true);
             expandForce.GetComponent<ExpandForceV2>().DoStartForce();
             ResetUseSkillCoolDown();

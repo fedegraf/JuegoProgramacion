@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public UnityAction OnMainMenu;
     public UnityAction OnWin;
 
+    private SoundManager _sound;
 
 
     public enum GameStates
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     {        
         MakeSingleton();
         Cursor.lockState = CursorLockMode.Confined;
+        _sound = GetComponent<SoundManager>();
+        _sound.PlaySound("BGM");
     }
 
     void Start()

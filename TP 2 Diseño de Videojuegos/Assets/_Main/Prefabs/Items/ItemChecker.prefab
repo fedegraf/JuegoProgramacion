@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4934318602910866029}
   - component: {fileID: 8266610111365160401}
+  - component: {fileID: 1623203855143687472}
   - component: {fileID: 376077350664282979}
   m_Layer: 0
   m_Name: ItemChecker
@@ -46,6 +47,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemToCheck: {fileID: 11400000, guid: 232ca0eee3966994aa307213c638666d, type: 2}
   ammountNeeded: 3
+--- !u!114 &1623203855143687472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6740765479421685154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a7368e7479eaf40a626876cd470927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []
 --- !u!65 &376077350664282979
 BoxCollider:
   m_ObjectHideFlags: 0
