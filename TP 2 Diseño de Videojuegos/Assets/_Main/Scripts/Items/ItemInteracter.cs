@@ -46,7 +46,6 @@ namespace Items
             else
                 _sound.PlaySound("Negative");
 
-            Debug.Log(isUsed);
             ItemInRange = null;
         }
 
