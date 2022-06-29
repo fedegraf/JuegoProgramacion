@@ -46,7 +46,6 @@ namespace Skills
             if (!CanUseSkill)
             {
                 NotifyAll("SKILL_TRYTOUSE");
-                _sound.PlaySound("Negative");
                 return;
             }
 

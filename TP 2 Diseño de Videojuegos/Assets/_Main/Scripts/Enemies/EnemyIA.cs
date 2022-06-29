@@ -32,6 +32,7 @@ public class EnemyIA : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _agent = GetComponent<NavMeshAgent>();
         _enemy = GetComponent<IEnemy>();
+        _enemy.Enemy.GetComponent<Damagable>().OnTakeDamage += OnTakeDamageHandler;
     }
 
     private void Start()
@@ -141,6 +142,12 @@ public class EnemyIA : MonoBehaviour
     {
         alreadyAttacked = false;
         _enemy.SetIsAttacking(false);
+    }
+
+    private void OnTakeDamageHandler()
+    {
+        sightRange *= 1000;
+        _enemy.Enemy.GetComponent<Damagable>().OnTakeDamage -= OnTakeDamageHandler;
     }
 
     private void OnDrawGizmosSelected()

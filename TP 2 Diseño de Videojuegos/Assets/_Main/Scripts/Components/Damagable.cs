@@ -22,8 +22,10 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
 
     [SerializeField] private int _maxHealth;
     [SerializeField] private GameObject bloodEffect;
+    [SerializeField] private Transform bloodSpawn;
 
     public UnityAction OnDie;
+    public UnityAction OnTakeDamage;
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
     {
         if (!bloodEffect) return;
 
-        Instantiate(bloodEffect, transform);
+        Instantiate(bloodEffect, bloodSpawn.position, bloodSpawn.rotation, transform);
         _sound.PlaySound("Damage");
     }
 
@@ -45,6 +47,7 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
     {
         _isAlive = false;
         gameObject.layer = LayerMask.NameToLayer("DeadEntity");
+        gameObject.tag = "DeadEntity";
         _sound.PlaySound("Dead");
         OnDie?.Invoke();
     }
@@ -56,6 +59,7 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
         if (!IsAlive || !IsVulnearble) return;
 
         _currentHealth -= damage;
+        OnTakeDamage?.Invoke();
         if (_currentHealth < 0) _currentHealth = 0;
 
         if (_currentHealth == 0) dieCommand.Do();

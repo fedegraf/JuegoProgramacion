@@ -9,7 +9,9 @@ namespace Weapons
         [SerializeField] private float explosionRadius;
         [SerializeField] private float explosionForce;
         [SerializeField] private GameObject BlastFx;
+        [SerializeField] private bool canThrow = true;
         private GameObject _grenade;
+
         private bool _hasExplode;
 
         private List<IDamagable> _damagablesInRange = new List<IDamagable>();
@@ -41,7 +43,8 @@ namespace Weapons
 
         private void Start()
         {
-            Throw();
+            if(canThrow)
+                Throw();
         }
 
 

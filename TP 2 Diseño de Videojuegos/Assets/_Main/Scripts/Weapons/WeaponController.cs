@@ -165,8 +165,7 @@ namespace Weapons
             }
 
             _weaponsList.Add(newWeapon);
-            if (_weaponsList.Count == 1)
-                SetWeapon(0);
+            SetWeapon(_weaponsList.Count-1);
         }
 
         public void DoShoot()
@@ -185,6 +184,11 @@ namespace Weapons
             ShootSound();
             UpdateAmmoHud();
             ResetShootCoolDown();
+
+            if (CurrentWeapon.AmmoInMag == 0)
+            {
+                DoReload();
+            }
         }
 
         public void DoReload()

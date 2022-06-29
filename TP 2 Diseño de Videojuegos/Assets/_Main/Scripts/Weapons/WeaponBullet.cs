@@ -6,6 +6,8 @@ namespace Weapons
 {
     public class WeaponBullet : BulletBase, IProduct<AmmoTypeSO>
     {
+        [SerializeField] private GameObject particleEffect;
+
         public override void Update()
         {
             base.Update();
@@ -23,8 +25,12 @@ namespace Weapons
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Wall"))
+            if (other.CompareTag("Wall") || other.CompareTag("Prop"))
+            {
+                Instantiate(particleEffect, transform.position, transform.rotation);
                 DestroyBullet();
+            }
+                
         }
     }
 }

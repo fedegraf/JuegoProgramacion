@@ -6,7 +6,7 @@ namespace Weapons
 {
     public class LaserSight : MonoBehaviour
     {
-        [SerializeField] private string[] tagsToAvoid; 
+        [SerializeField] private string[] tagsToAvoid;
         private LineRenderer lr;
         // Start is called before the first frame update
         void Start()
@@ -31,7 +31,7 @@ namespace Weapons
                     lr.SetPosition(1, new Vector3(0, 0, 4000));
                 }
             }
-
+        
         }
 
         private bool CheckForTag(GameObject gameObject)
