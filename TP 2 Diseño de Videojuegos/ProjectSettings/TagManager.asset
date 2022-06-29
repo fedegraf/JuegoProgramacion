@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - bullet
+  - Wall
+  - Item
+  - Enemy
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -13,6 +18,16 @@ TagManager:
   - UI
   - 
   - 
+  - Player
+  - Enemy
+  - Bullet
+  - 
+  - 
+  - DeadEntity
+  - 
+  - 
+  - Item
+  - Props
   - 
   - 
   - 
@@ -22,18 +37,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Wall
   - 
   - 
   - 

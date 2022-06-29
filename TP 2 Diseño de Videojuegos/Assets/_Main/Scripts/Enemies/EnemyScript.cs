@@ -1,0 +1,134 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyScript : MonoBehaviour, IEnemy
+{
+    public GameObject Enemy => gameObject;
+    public bool CanMove {get; private set;}
+    public Character Character { get; private set; }
+    public TakeDamageCommand PlayerDamageCommand { get; private set; }
+    public Damagable Damagable { get; private set; }
+
+    public bool IsAttacking { get; private set; }
+
+    public bool IsMoving { get; private set; }
+    public bool IsFollowingPlayer { get; private set; }
+
+    public bool IsDead { get; private set; }
+
+    public bool IsStuned { get; private set; }
+
+    [SerializeField] private float damage;
+    [SerializeField] private float stuntTime;
+
+    private void Awake()
+    {
+        Character = GetComponent<Character>();
+        Damagable = GetComponent<Damagable>();
+        Damagable.OnDie += OnDieHandler;
+        SetIsDead(false);
+    }
+
+    private void Start()
+    {
+        EnableMovement(true);
+    }
+
+    private void OnDieHandler()
+    {
+        SetIsDead(true);
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        gameObject.layer = 13;
+    }
+
+    public void SetPlayerDamageCommand(Damagable player)
+    {
+        PlayerDamageCommand = new TakeDamageCommand(player, damage);
+    }
+
+    public void EnableMovement(bool enable)
+    {
+        CanMove = enable;
+        if (!enable)
+        {
+            SetIsFollowing(false);
+        }
+    }
+
+    public void Movement(Vector3 targetPosition)
+    {
+        var currentPost = transform.position;
+        var direction = currentPost - targetPosition;
+
+        Vector2 inputDirection = new Vector2(SetInputDirection(direction.x), -SetInputDirection(direction.z));
+
+        Character.DoWalking(inputDirection, false);
+
+        Debug.Log(inputDirection);
+    }
+
+    public void Rotation(Vector3 targetToSee)
+    {
+        Vector3 inputRotation = new Vector3(0, 0, 0);
+
+        //Character.DoRotation(inputRotation);
+    }
+
+    private float SetInputDirection(float direction)
+    {
+        if (direction == 0)
+            return 0;
+
+        var newDirection = direction / direction;
+
+        if (direction < 0)
+            newDirection *= -1;
+
+        return newDirection;
+    }
+
+    public void DoAttack()
+    {
+        PlayerDamageCommand.Do();
+    }
+
+    public void SetIsAttacking(bool isAttacking)
+    {
+        IsAttacking = isAttacking;
+    }
+
+    public void SetIsMoving(bool isMoving)
+    {
+        IsMoving = isMoving;
+        if (!isMoving)
+            SetIsFollowing(false);
+    }
+
+    public void SetIsFollowing(bool isFollowingPlayer)
+    {
+        IsFollowingPlayer = isFollowingPlayer;
+    }
+
+    public void SetIsDead(bool isDead)
+    {
+        IsDead = isDead;
+    }
+
+    public void Stunt()
+    {
+        StartCoroutine(StuntTime());
+    }
+
+    private IEnumerator StuntTime()
+    {
+        IsStuned = true;
+        SetIsMoving(false);
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        yield return new WaitForSeconds(stuntTime);
+        IsStuned = false;
+    }
+}
+
+

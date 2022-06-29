@@ -1,0 +1,18 @@
+Mecanicas:
+- Disparos
+- Saltar?
+- Moverse
+- Interactuar con objetos
+
+Dinamica:
+
+El jugador explora el planeta FKN735 buscando el elemento Orisus, al mismo tiempo que lucha contra los Inonus mutantes 
+
+Estetica:
+- Ambiente post apocaliptico
+- Edificios rotos y en mal estado
+- Manchas de sangre por todos lados
+- Cuerpos descomponiendose por todos lados
+
+
+Nombre del juego: ???
