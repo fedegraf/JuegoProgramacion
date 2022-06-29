@@ -35,6 +35,7 @@ namespace Items
         {
             if (!IsItemInteractable())
             {
+                ItemInRange = null;
                 return;
             }
             var itemValues = _item.Test(gameObject);

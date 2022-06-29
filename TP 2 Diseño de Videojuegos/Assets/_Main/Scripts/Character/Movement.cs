@@ -34,8 +34,9 @@ public class Movement : MonoBehaviour
 
     public void Rotation(Vector3 inputRotation)
     {
-        float newAngle = Mathf.Atan2(inputRotation.y, inputRotation.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(inputRotation.y, inputRotation.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.down);
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, -newAngle, 0));
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, _rotationSpeed * Time.deltaTime);
     }
 }

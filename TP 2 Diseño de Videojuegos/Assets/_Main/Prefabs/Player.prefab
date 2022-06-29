@@ -358,14 +358,12 @@ MonoBehaviour:
   bulletBox: {fileID: 0}
   weaponsType:
   - {fileID: 11400000, guid: 9a03442b1255c7f4c8ff08a54d6cf066, type: 2}
-  - {fileID: 11400000, guid: df336edb6a6943b4282004398ca78c48, type: 2}
-  - {fileID: 11400000, guid: 87275a6ad6610834f8bf8c1f14845ad0, type: 2}
   weaponGO: {fileID: 6685502671525265610}
   ammoTypeToAdd:
   - {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
-  - {fileID: 11400000, guid: b0401c18bd7cd424482a3b94f3843392, type: 2}
   - {fileID: 11400000, guid: c0617010fcf802a488dc56c2b27240db, type: 2}
-  ammoAmmountToAdd: e7030000e7030000e7030000
+  - {fileID: 11400000, guid: b0401c18bd7cd424482a3b94f3843392, type: 2}
+  ammoAmmountToAdd: 1e0000001e00000006000000
 --- !u!114 &3712746200007334427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9734a89223a05408de6bf02c004d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!114 &1587141021445262582
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,12 +26,6 @@ namespace Items
             _meshFiltr = _mesh.GetComponent<MeshFilter>();
             _meshRndr = _mesh.GetComponent<MeshRenderer>();
         }
-
-        private void Update()
-        {
-            
-        }
-
         public void SetData(ItemTypeSO newData)
         {
             data = newData;
