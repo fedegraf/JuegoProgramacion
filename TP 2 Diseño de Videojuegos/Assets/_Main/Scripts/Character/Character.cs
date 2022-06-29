@@ -104,7 +104,7 @@ public class Character : MonoBehaviour
         if (IsWeaponNull()) return;
 
         Weapon.DoShoot();
-        _characterSounds.PlayShootSFX();
+        //_characterSounds.PlayShootSFX();
     }
 
     public void DoReload()

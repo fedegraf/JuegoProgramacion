@@ -8,8 +8,6 @@ namespace Skills
     {
         [SerializeField] private float maxCoolDown;
         [SerializeField] private GameObject expandForce;
-        [SerializeField] private string cantUseMessage;
-        [SerializeField] private string useMessage;
         private bool _canUseSkill => CurrentCoolDown >= maxCoolDown;
         private List<IObserver> _subscribers = new List<IObserver>();
 
@@ -47,7 +45,6 @@ namespace Skills
         {
             if (!CanUseSkill)
             {
-                NotifyAll("MESSAGE", cantUseMessage);
                 NotifyAll("SKILL_TRYTOUSE");
                 _sound.PlaySound("Negative");
                 return;
@@ -57,7 +54,6 @@ namespace Skills
             expandForce.SetActive(true);
             expandForce.GetComponent<ExpandForceV2>().DoStartForce();
             ResetUseSkillCoolDown();
-            NotifyAll("MESSAGE", useMessage);
         }
 
 
