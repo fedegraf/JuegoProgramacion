@@ -271,6 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: a13d816714663cb4ea73c6b478e27427, type: 2}
+  rotatinSpeed: 150
+  canRotate: 1
   ammoAmmount: 25
   ammoType: {fileID: 0}
 --- !u!114 &4818959018214347425

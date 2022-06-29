@@ -8,6 +8,8 @@ namespace Items
     {
         [Header("Base Settings")]
         [SerializeField] private ItemTypeSO data;
+        [SerializeField] private float rotatinSpeed;
+        [SerializeField] private bool canRotate;
         //[SerializeField] private float rotationSpeed;
         public ItemTypeSO Data => data;
         public GameObject ItemObject => gameObject;
@@ -25,6 +27,14 @@ namespace Items
             _mesh = transform.GetChild(0).gameObject;
             _meshFiltr = _mesh.GetComponent<MeshFilter>();
             _meshRndr = _mesh.GetComponent<MeshRenderer>();
+        }
+
+        private void Update()
+        {
+            if (canRotate)
+            {
+                transform.Rotate(Vector3.up, rotatinSpeed * Time.deltaTime);
+            }
         }
         public void SetData(ItemTypeSO newData)
         {

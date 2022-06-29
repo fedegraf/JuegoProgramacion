@@ -378,6 +378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: e3404f7870f6413419637625555101cb, type: 2}
+  rotatinSpeed: 150
+  canRotate: 1
   healAmmount: 50
 --- !u!114 &8514475844944295050
 MonoBehaviour:

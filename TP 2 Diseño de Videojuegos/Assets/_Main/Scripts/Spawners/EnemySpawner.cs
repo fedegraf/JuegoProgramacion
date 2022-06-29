@@ -24,6 +24,7 @@ public class EnemySpawner : MonoBehaviour
         {
             _spawnPoints.Add(transform.GetChild(i).transform);
         }
+
     }
 
     private void SpawnEnemies()
@@ -34,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject newEnemy = Instantiate(enemyToSpawn, currentSpawn.position, currentSpawn.rotation, transform);
         }
 
-        for (int i = 0; i < _spawnPoints.Count; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             var currentChild = transform.GetChild(i);
             if (_spawnPoints.Contains(currentChild))

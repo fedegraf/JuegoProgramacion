@@ -189,6 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: acab76de519625d4db2e22e0bb810b0b, type: 2}
+  rotatinSpeed: 150
+  canRotate: 1
   weaponType: {fileID: 11400000, guid: df336edb6a6943b4282004398ca78c48, type: 2}
 --- !u!114 &4455798844542539834
 MonoBehaviour:

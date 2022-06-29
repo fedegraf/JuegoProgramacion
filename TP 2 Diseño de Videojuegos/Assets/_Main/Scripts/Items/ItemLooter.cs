@@ -54,7 +54,8 @@ namespace Items
             }
 
             _inventory.Add(_item.Loot());
-            NotifyAll("MESSAGE", CreateGameMessage());
+            NotifyAll("ITEMCOLLECTED", _inventory.Count);
+            //NotifyAll("MESSAGE", CreateGameMessage());
             _sound.PlaySound("UseItem");
             ItemInRange = null;
         }
