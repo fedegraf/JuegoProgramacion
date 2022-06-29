@@ -49,7 +49,7 @@ namespace Skills
 
         private void UseForce(Rigidbody body)
         {
-            body.AddForce(-body.transform.forward * force, ForceMode.VelocityChange);          
+            body.AddForce(-body.transform.forward * force, ForceMode.Impulse);          
         }
 
         private void DamageBody(IDamagable damagable)
@@ -122,6 +122,7 @@ namespace Skills
 
                 UseForce(other.GetComponent<Rigidbody>());
                 DamageBody(other.GetComponent<Damagable>());
+                enemy.Stunt();
             }
 
         }
