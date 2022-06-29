@@ -72,22 +72,12 @@ public class PlayerInputs : MonoBehaviour
 
     private void Rotation()
     {
-        /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (!Physics.Raycast(ray, out RaycastHit raycastHit)) return;
-
-        _character.DoRotation(raycastHit.point);
-
-        Debug.Log(raycastHit.point);*/
-
         var positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
         Vector3 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
         var direction = mouseOnScreen - positionOnScreen;
 
         _character.DoRotation(direction);
-
-
     }
 
     private void Weapon()

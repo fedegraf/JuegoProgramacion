@@ -7316,6 +7316,30 @@ PrefabInstance:
       propertyPath: nearMessage
       value: Use E To Equip Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 687321399504975705, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: m_Size.x
+      value: 16.71223
+      objectReference: {fileID: 0}
+    - target: {fileID: 687321399504975705, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: m_Size.y
+      value: 5.7034373
+      objectReference: {fileID: 0}
+    - target: {fileID: 687321399504975705, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 687321399504975705, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: m_Center.x
+      value: -0.68652153
+      objectReference: {fileID: 0}
+    - target: {fileID: 687321399504975705, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: m_Center.y
+      value: 2.3517187
+      objectReference: {fileID: 0}
+    - target: {fileID: 687321399504975705, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1888983233468350730, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
       propertyPath: sounds.Array.size
       value: 2
@@ -7418,7 +7442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5245563061933444695, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.2
+      value: 202.01
       objectReference: {fileID: 0}
     - target: {fileID: 9081831257930467819, guid: 751f8c164cce8b54089b53e40cf30182, type: 3}
       propertyPath: ammountNeeded
