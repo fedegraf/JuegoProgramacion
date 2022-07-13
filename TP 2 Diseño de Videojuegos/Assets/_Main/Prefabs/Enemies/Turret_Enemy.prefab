@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 7925300048280769164}
   - component: {fileID: 7925300048280769163}
   - component: {fileID: 7925300048280769162}
-  - component: {fileID: 7925300048280769160}
   - component: {fileID: 7925300048280769161}
   - component: {fileID: 7925300048280769165}
   - component: {fileID: 1585881364923626233}
+  - component: {fileID: 732172595}
+  - component: {fileID: 732172587}
   m_Layer: 9
   m_Name: Turret_Enemy
   m_TagString: Enemy
@@ -166,21 +167,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7925300048280769160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3425796783925276369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f1b15eeb58db34c8da611bf2b60939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVulnerable: 1
-  _maxHealth: 100
-  bloodEffect: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
 --- !u!114 &7925300048280769161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,11 +211,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aae7c84e77f914d8129a447344907c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 0}
-  Head: {fileID: 0}
-  Barrell: {fileID: 0}
-  ShootingCooldown: 1.75
+  Bullet: {fileID: 6024985987121798096, guid: 30926b776760dc247b04f795291286ee, type: 3}
+  Head: {fileID: 3425796783925276371}
+  Barrell: {fileID: 7557844100381553859}
+  ShootingCooldown: 1
   CurrentCooldown: 0
+--- !u!114 &732172595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425796783925276369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a7368e7479eaf40a626876cd470927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Damage
+    audioClip: {fileID: 8300000, guid: e11a5a019377fbd4c81caa0adcb4c236, type: 3}
+    isLooping: 0
+  - name: Dead
+    audioClip: {fileID: 8300000, guid: 19b948743a322d4438de0322d4ef4163, type: 3}
+    isLooping: 0
+--- !u!114 &732172587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425796783925276369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3370c414482e284e92f23b33136b51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVulnerable: 1
+  _maxHealth: 100
+  bloodEffect: {fileID: 0}
+  bloodSpawn: {fileID: 3425796783925441265}
 --- !u!1 &3425796783925276371
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +265,7 @@ GameObject:
   - component: {fileID: 6622308029723739776}
   m_Layer: 9
   m_Name: MGMain
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,7 +280,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.00000049274723, y: 7.4200683, z: -0.44090742}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5654672656636814961}
   m_Father: {fileID: 3425796783925441265}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -295,7 +317,7 @@ MeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 3425796783925441267}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1
@@ -340,7 +362,7 @@ GameObject:
   - component: {fileID: 3192214179084741321}
   m_Layer: 9
   m_Name: Stand
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,7 +413,7 @@ MeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 3425796783925441269}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1
@@ -436,7 +458,7 @@ GameObject:
   - component: {fileID: 1958971256292719651}
   m_Layer: 9
   m_Name: Swivel
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,7 +509,7 @@ MeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 3425796783925441271}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1
@@ -518,6 +540,36 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
+--- !u!1 &7557844100381553859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5654672656636814961}
+  m_Layer: 9
+  m_Name: Barrell
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5654672656636814961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557844100381553859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10.8, z: 33.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3425796783925441267}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6217287219821813270
 PrefabInstance:
   m_ObjectHideFlags: 0

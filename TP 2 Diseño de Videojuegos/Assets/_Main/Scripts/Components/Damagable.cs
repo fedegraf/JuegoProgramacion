@@ -35,7 +35,7 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
         _sound = GetComponent<SoundManager>();
     }
 
-    private void SpawnBlood()
+    protected virtual void SpawnBlood()
     {
         if (!bloodEffect) return;
 
@@ -43,7 +43,7 @@ public class Damagable : MonoBehaviour, IDamagable, IObservable
         _sound.PlaySound("Damage");
     }
 
-    public void Die()
+    public virtual void Die()
     {
         _isAlive = false;
         gameObject.layer = LayerMask.NameToLayer("DeadEntity");

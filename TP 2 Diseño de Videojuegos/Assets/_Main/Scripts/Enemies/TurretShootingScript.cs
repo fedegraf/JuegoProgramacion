@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Weapons;
 
 public class TurretShootingScript : MonoBehaviour
 {
@@ -31,6 +33,8 @@ public class TurretShootingScript : MonoBehaviour
 
     void Shoot()
     {
+        Debug.Log("Shoot");
         GameObject clone = Instantiate(Bullet, Barrell.transform.position, Head.transform.rotation);
     }
 }
+ 
