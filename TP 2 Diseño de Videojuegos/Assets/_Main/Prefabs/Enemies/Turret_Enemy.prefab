@@ -211,11 +211,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aae7c84e77f914d8129a447344907c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 6024985987121798096, guid: 30926b776760dc247b04f795291286ee, type: 3}
-  Head: {fileID: 3425796783925276371}
-  Barrell: {fileID: 7557844100381553859}
-  ShootingCooldown: 1
+  bulletPrefab: {fileID: 6024985987121798096, guid: 30926b776760dc247b04f795291286ee, type: 3}
+  grenadePrefab: {fileID: 6024985987121798096, guid: 30926b776760dc247b04f795291286ee, type: 3}
+  bulletSpawn: {fileID: 5654672656636814961}
+  bulletBox: {fileID: 0}
+  weaponsType:
+  - {fileID: 11400000, guid: df336edb6a6943b4282004398ca78c48, type: 2}
+  weaponGO: {fileID: 0}
+  ShootingCooldown: 0.5
   CurrentCooldown: 0
+  ammoTypeToAdd:
+  - {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
+  ammoAmmountToAdd: 64000000
 --- !u!114 &732172595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +242,9 @@ MonoBehaviour:
   - name: Dead
     audioClip: {fileID: 8300000, guid: 19b948743a322d4438de0322d4ef4163, type: 3}
     isLooping: 0
+  - name: Shoot
+    audioClip: {fileID: 8300000, guid: 34b439bf70b80a6409eadecc6be92d68, type: 3}
+    isLooping: 0
 --- !u!114 &732172587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVulnerable: 1
   _maxHealth: 100
-  bloodEffect: {fileID: 0}
+  bloodEffect: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0, type: 3}
   bloodSpawn: {fileID: 3425796783925441265}
 --- !u!1 &3425796783925276371
 GameObject:

@@ -23,6 +23,7 @@ public class Damager : MonoBehaviour, IDamager
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Choco con:" + other.tag);
         Damagable damagable = other.gameObject.GetComponent<Damagable>();
         if (!damagable) return;
 
