@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Weapons;
 
@@ -128,7 +129,9 @@ namespace Weapons
 
         public void DoShoot()
         {
-            _bulletsInWorld.Add(CreateBullet(CurrentWeapon.Shoot()));
+            Weapons.BulletBase bullet = CreateBullet(CurrentWeapon.Shoot());
+            _bulletsInWorld.Add(bullet);
+            bullet.gameObject.layer = LayerMask.NameToLayer("EnemyBullet");
             ShootSound();
             ResetShootCoolDown();
         }
