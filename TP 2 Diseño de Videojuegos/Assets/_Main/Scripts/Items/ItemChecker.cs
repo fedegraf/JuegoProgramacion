@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using Weapons;
 
 namespace Items
 {
@@ -12,6 +14,7 @@ namespace Items
         public List<IObserver> Subscribers => _subscribers;
         //checks if the player has the item and the ammount needed
         private SoundManager _sound;
+        [SerializeField] private TurretShootingScript _turret;
 
         private void Awake()
         {
@@ -31,7 +34,9 @@ namespace Items
                     if (ammontInInventory >= ammountNeeded)
                     {
                         _sound.PlaySound("Win");
-                        GameManager.Instance.SetState(GameManager.GameStates.Win);
+                        // GameManager.Instance.SetState(GameManager.GameStates.Win);
+                        _turret.Activate();
+                        gameObject.SetActive(false);
                     }
                 }                    
             }

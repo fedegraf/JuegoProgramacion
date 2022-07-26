@@ -12,7 +12,9 @@ public class TurretAimingScript : MonoBehaviour
     [SerializeField] private float maxDistanceTarget;
     private void Update()
     {
-        currentDistance = Vector3.Distance(target.transform.position, transform.position);
+        if (target != null)
+        {
+            currentDistance = Vector3.Distance(target.transform.position, transform.position);
             if (currentDistance <= maxDistanceTarget)
             {
                 Head.transform.LookAt(target.transform);
@@ -21,6 +23,7 @@ public class TurretAimingScript : MonoBehaviour
             else
             {
                 isTargetInRange = false;
-            }   
+            }  
         }
     }
+}

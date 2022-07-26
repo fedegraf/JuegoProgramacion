@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105826086915796043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39, y: 136.2, z: 101.1}
+  m_LocalPosition: {x: 37.2, y: 141.1, z: 100.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2036879714502414818}
@@ -101,6 +101,7 @@ MonoBehaviour:
   runInput: Sprint
   shootInput: Shoot
   skillInput: Skill
+  grenadeInput: Grenade
   reloadInput: Reload
   useItem: UseItem
   cycleWeapons: CycleWeapons
@@ -141,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d8a05f173723b47b9a2769015169a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2010877876507002221, guid: e0fa8ef6dea72464ba2dc370882e594a, type: 3}
+  bulletPrefab: {fileID: 6024985987121798096, guid: 30926b776760dc247b04f795291286ee, type: 3}
   grenadePrefab: {fileID: 2918043198136433635, guid: acb0d6a2c56e6584aa474d485e56368a, type: 3}
   bulletSpawn: {fileID: 8062542794762982536}
   bulletBox: {fileID: 0}
@@ -152,7 +153,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d9f49557bd56ad448903138ef9cfbc0, type: 2}
   - {fileID: 11400000, guid: c0617010fcf802a488dc56c2b27240db, type: 2}
   - {fileID: 11400000, guid: b0401c18bd7cd424482a3b94f3843392, type: 2}
-  ammoAmmountToAdd: 1e0000001e00000006000000
+  ammoAmmountToAdd: 2d0000002d00000006000000
 --- !u!114 &4344695737933656991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +261,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 34b439bf70b80a6409eadecc6be92d68, type: 3}
     isLooping: 0
   - name: Reload
-    audioClip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
+    audioClip: {fileID: 8300000, guid: 382741cbdd40a14479a8c9b90984167a, type: 3}
     isLooping: 0
   - name: Damage
     audioClip: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
@@ -272,7 +273,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
     isLooping: 0
   - name: UseSkill
-    audioClip: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
+    audioClip: {fileID: 8300000, guid: 7d5f71bb6145fab479ada159e6422144, type: 3}
     isLooping: 0
   - name: Negative
     audioClip: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
@@ -444,7 +445,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.36
+  m_Radius: 0.46
   m_Height: 2.34
   m_Direction: 1
   m_Center: {x: 0.0031377673, y: -0.17884827, z: 0}
@@ -623,6 +624,7 @@ MonoBehaviour:
   tagsToAvoid:
   - Player
   - Wall
+  - Enemy
   - Enemy
 --- !u!1001 &5337568243596644742
 PrefabInstance:
@@ -983,6 +985,10 @@ PrefabInstance:
     - target: {fileID: 1828042340809052294, guid: d924e55992ec4bc4dba85be9299a8ffe, type: 3}
       propertyPath: force
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828042340809052294, guid: d924e55992ec4bc4dba85be9299a8ffe, type: 3}
+      propertyPath: maxTimeExpanded
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2140061109251277112, guid: d924e55992ec4bc4dba85be9299a8ffe, type: 3}
       propertyPath: m_RootOrder

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Items;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Weapons;
@@ -21,6 +22,7 @@ namespace Weapons
         private List<BulletBase> _bulletsInWorld = new List<BulletBase>();
         [SerializeField] public float ShootingCooldown = 1.75f;
         public float CurrentCooldown = 0f;
+        private bool isActive = false;
 
 
         public Weapon CurrentWeapon { get; private set; }
@@ -64,10 +66,15 @@ namespace Weapons
             AddAmmo();
         }
 
+        public void Activate()
+        {
+            isActive = true;
+        }
+
         private void Update()
         {
             CurrentCooldown += Time.deltaTime;
-            if (gameObject.GetComponent<TurretAimingScript>().isTargetInRange)
+            if (gameObject.GetComponent<TurretAimingScript>().isTargetInRange && isActive)
             {
                 if (CurrentCooldown >= ShootingCooldown)
                 {

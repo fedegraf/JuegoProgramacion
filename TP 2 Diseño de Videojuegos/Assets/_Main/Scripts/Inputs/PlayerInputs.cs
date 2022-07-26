@@ -15,6 +15,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private string runInput;
     [SerializeField] private string shootInput;
     [SerializeField] private string skillInput;
+    [SerializeField] private string grenadeInput = "Grenade";
     [SerializeField] private string reloadInput;
     [SerializeField] private string useItem;
     [SerializeField] private string cycleWeapons;
@@ -51,6 +52,7 @@ public class PlayerInputs : MonoBehaviour
         Weapon();
         Item();
         Skill();
+        Grenade();
     }
 
     private void UIInputs()
@@ -95,6 +97,11 @@ public class PlayerInputs : MonoBehaviour
     private void Skill()
     { 
         if(Input.GetButtonDown(skillInput)) _character.DoSkill();
+    }
+
+    private void Grenade()
+    {
+//        if(Input.GetButtonDown(grenadeInput)) _character.DoSkill();
     }
 
     private void TogglePauseGame()
