@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5b23b35fd58ad4e9aceeaa0d93cad9, type: 3}
   m_Name: Grenade
   m_EditorClassIdentifier: 
-  magazineSize: 1
+  magazineSize: 3
   cadence: 1
   reloadTime: 0.5
   ammoType: {fileID: 11400000, guid: b0401c18bd7cd424482a3b94f3843392, type: 2}
+  hasInfiniteAmmo: 0
   mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}

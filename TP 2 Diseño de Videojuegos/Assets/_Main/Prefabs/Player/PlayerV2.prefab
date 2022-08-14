@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 7403698287944010886}
   - component: {fileID: 3535442733727345476}
   - component: {fileID: 6084169275596349327}
+  - component: {fileID: 608793292}
   m_Layer: 8
   m_Name: PlayerV2
   m_TagString: Player
@@ -281,6 +282,9 @@ MonoBehaviour:
   - name: Dead
     audioClip: {fileID: 8300000, guid: 5039414d94a6e4e70a5ab9e8833e992a, type: 3}
     isLooping: 0
+  - name: Grenade
+    audioClip: {fileID: 8300000, guid: 0bd05763df902854a80475577a26666a, type: 3}
+    isLooping: 0
 --- !u!114 &6020703010088791602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +453,30 @@ CapsuleCollider:
   m_Height: 2.34
   m_Direction: 1
   m_Center: {x: 0.0031377673, y: -0.17884827, z: 0}
+--- !u!114 &608793292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147342328717290078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b51668e93a2cbf4eab087e4124b7018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2918043198136433635, guid: acb0d6a2c56e6584aa474d485e56368a, type: 3}
+  grenadePrefab: {fileID: 2918043198136433635, guid: acb0d6a2c56e6584aa474d485e56368a, type: 3}
+  bulletSpawn: {fileID: 8062542794762982536}
+  bulletBox: {fileID: 0}
+  weaponsType:
+  - {fileID: 11400000, guid: f7b555a4650f8584aaea48e88233fe78, type: 2}
+  weaponGO: {fileID: 2337203238620773808}
+  currentGrenadeText: {fileID: 0}
+  ShootingCooldown: 1.75
+  CurrentCooldown: 0
+  ammoTypeToAdd: []
+  ammoAmmountToAdd: 
 --- !u!1 &2129284611210272030
 GameObject:
   m_ObjectHideFlags: 0

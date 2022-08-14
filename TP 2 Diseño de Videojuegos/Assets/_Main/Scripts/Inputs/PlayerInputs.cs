@@ -101,7 +101,7 @@ public class PlayerInputs : MonoBehaviour
 
     private void Grenade()
     {
-//        if(Input.GetButtonDown(grenadeInput)) _character.DoSkill();
+        if(Input.GetButtonDown(grenadeInput)) _character.TrhowGrenade();
     }
 
     private void TogglePauseGame()

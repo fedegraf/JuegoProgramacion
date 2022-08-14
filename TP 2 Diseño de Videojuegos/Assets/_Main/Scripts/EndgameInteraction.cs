@@ -42,8 +42,11 @@ namespace Items
 
         private void OnTriggerEnter(Collider other)
         {
-            _sound.PlaySound("Win");
-            GameManager.Instance.SetState(GameManager.GameStates.Win);
+            if (other.CompareTag("Player"))
+            {
+                _sound.PlaySound("Win");
+                GameManager.Instance.SetState(GameManager.GameStates.Win);
+            }
         }
     }
 }

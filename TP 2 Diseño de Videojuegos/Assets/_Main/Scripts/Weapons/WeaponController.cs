@@ -302,7 +302,7 @@ namespace Weapons
                 AmmoCollected.Add(bulletType, ammoToAdd);
             }
 
-            OnAmmoAdded.Invoke();
+  //          OnAmmoAdded.Invoke();
 
         }
         public int GetAmmo(AmmoTypeSO ammoType)

@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     public Items.ItemInteracter ItemInteracter { get; private set; }
     public Items.ItemLooter ItemLooter { get; private set; }
     public Skills.SkillController SkillController { get; private set; }
+    public GrenadeSkill _grandeSkill { get; private set; }
     [SerializeField] private EntityTypeSO stats;
     private CharacterSounds _characterSounds;
 
@@ -21,6 +22,7 @@ public class Character : MonoBehaviour
         ItemLooter = GetComponent<Items.ItemLooter>();
         SkillController = GetComponent<Skills.SkillController>();
         _characterSounds = GetComponent<CharacterSounds>();
+        _grandeSkill = GetComponent<GrenadeSkill>();
 
         Movement.SetValues(Stats.WalkSpeed, Stats.RunSpeed, Stats.RotationSpeed);
     }
@@ -134,5 +136,11 @@ public class Character : MonoBehaviour
         if (IsExpandForceNull()) return;
 
         SkillController.UseSkill();
+    }
+
+    public void TrhowGrenade()
+    {
+        _grandeSkill.ThrowGrenade();
+        Debug.Log("Throw Grenade");
     }
 }
